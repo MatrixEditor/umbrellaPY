@@ -12,7 +12,7 @@ Install the whole ``umbrella`` package (or add it to your ``requirements.txt`` f
 
 .. code:: console
 
-    pip install umbrella
+    pip install umbrella-py
 
 
 .. hint::
