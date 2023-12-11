@@ -1,0 +1,1790 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="#" /><link rel="search" title="Search" href="search.html" />
+
+    <!-- Generated with Sphinx 7.2.6 and Furo 2023.09.10 --><title>Index - Umbrella 0.0.4 documentation</title>
+<link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Umbrella 0.0.4 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">Umbrella 0.0.4 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Using this Library</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API Concepts &amp; Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="abi/index.html">List of ABI Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Components</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/runtime.html">Static Runtime</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/iterator.html">Iterators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/flags.html">Flags and FlagSet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/dump.html">Class-Dump</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/trailing_objects.html">Trailing Objects</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ABI Implementations</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="abi/swift/index.html">1. Swift ABI</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of 1. Swift ABI</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="abi/swift/metadata_values.html">1.1. Metadata Values (Enums)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="abi/swift/reconstruction.html">1.2. Reconstruction of Swift Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="abi/swift/reconstruction.html#protocols">1.3. Protocols</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="abi/objc/index.html">2. Objective-C ABI</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="abi/java/index.html">3. Java Class Files</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of 3. Java Class Files</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="abi/java/access_flags.html">3.1.1. Access Flags (Enums)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="abi/java/constant_pool.html">3.1.2. Constant Pool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="abi/java/attribute.html">3.1.3. Attribute Types</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          
+<section class="genindex-section">
+  <h1 id="index">Index</h1>
+  <div class="genindex-jumpbox"><a href="#_"><strong>_</strong></a> | <a href="#A"><strong>A</strong></a> | <a href="#B"><strong>B</strong></a> | <a href="#C"><strong>C</strong></a> | <a href="#D"><strong>D</strong></a> | <a href="#E"><strong>E</strong></a> | <a href="#F"><strong>F</strong></a> | <a href="#G"><strong>G</strong></a> | <a href="#H"><strong>H</strong></a> | <a href="#I"><strong>I</strong></a> | <a href="#J"><strong>J</strong></a> | <a href="#K"><strong>K</strong></a> | <a href="#L"><strong>L</strong></a> | <a href="#M"><strong>M</strong></a> | <a href="#N"><strong>N</strong></a> | <a href="#O"><strong>O</strong></a> | <a href="#P"><strong>P</strong></a> | <a href="#R"><strong>R</strong></a> | <a href="#S"><strong>S</strong></a> | <a href="#T"><strong>T</strong></a> | <a href="#U"><strong>U</strong></a> | <a href="#V"><strong>V</strong></a> | <a href="#W"><strong>W</strong></a></div>
+</section>
+<section id="_" class="genindex-section">
+  <h2>_</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/iterator.html#umbrella.iterator.CachingIterator.__len__">__len__() (umbrella.iterator.CachingIterator method)</a>
+</li>
+        <li><a href="api/runtime.html#umbrella.runtime.__x64__">__x64__() (in module umbrella.runtime)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/iterator.html#umbrella.iterator.CachingIterator._load">_load() (umbrella.iterator.CachingIterator method)</a>
+</li>
+        <li><a href="api/iterator.html#umbrella.iterator.LazyIterator._preload_context">_preload_context() (umbrella.iterator.LazyIterator method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="A" class="genindex-section">
+  <h2>A</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.ClassAccessFlags.ACC_ABSTRACT">ACC_ABSTRACT (umbrella.java.access_flags.ClassAccessFlags attribute)</a>
+
+        <ul>
+          <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.MethodAccessFlags.ACC_ABSTRACT">(umbrella.java.access_flags.MethodAccessFlags attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.ClassAccessFlags.ACC_ANNOTATION">ACC_ANNOTATION (umbrella.java.access_flags.ClassAccessFlags attribute)</a>
+</li>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.MethodAccessFlags.ACC_BRIDGE">ACC_BRIDGE (umbrella.java.access_flags.MethodAccessFlags attribute)</a>
+</li>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.ClassAccessFlags.ACC_ENUM">ACC_ENUM (umbrella.java.access_flags.ClassAccessFlags attribute)</a>
+
+        <ul>
+          <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.FieldAccessFlags.ACC_ENUM">(umbrella.java.access_flags.FieldAccessFlags attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.ClassAccessFlags.ACC_FINAL">ACC_FINAL (umbrella.java.access_flags.ClassAccessFlags attribute)</a>
+
+        <ul>
+          <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.FieldAccessFlags.ACC_FINAL">(umbrella.java.access_flags.FieldAccessFlags attribute)</a>
+</li>
+          <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.MethodAccessFlags.ACC_FINAL">(umbrella.java.access_flags.MethodAccessFlags attribute)</a>
+</li>
+          <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.ParameterAccessFlags.ACC_FINAL">(umbrella.java.access_flags.ParameterAccessFlags attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.ClassAccessFlags.ACC_INTERFACE">ACC_INTERFACE (umbrella.java.access_flags.ClassAccessFlags attribute)</a>
+</li>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.ModuleAccessFlags.ACC_MANDATED">ACC_MANDATED (umbrella.java.access_flags.ModuleAccessFlags attribute)</a>
+
+        <ul>
+          <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.ModuleExportsAccessFlags.ACC_MANDATED">(umbrella.java.access_flags.ModuleExportsAccessFlags attribute)</a>
+</li>
+          <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.ModuleOpensAccessFlags.ACC_MANDATED">(umbrella.java.access_flags.ModuleOpensAccessFlags attribute)</a>
+</li>
+          <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.ModuleRequiresAccessFlags.ACC_MANDATED">(umbrella.java.access_flags.ModuleRequiresAccessFlags attribute)</a>
+</li>
+          <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.ParameterAccessFlags.ACC_MANDATED">(umbrella.java.access_flags.ParameterAccessFlags attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.ClassAccessFlags.ACC_MODULE">ACC_MODULE (umbrella.java.access_flags.ClassAccessFlags attribute)</a>
+</li>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.MethodAccessFlags.ACC_NATIVE">ACC_NATIVE (umbrella.java.access_flags.MethodAccessFlags attribute)</a>
+</li>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.ModuleAccessFlags.ACC_OPEN">ACC_OPEN (umbrella.java.access_flags.ModuleAccessFlags attribute)</a>
+</li>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.FieldAccessFlags.ACC_PRIVATE">ACC_PRIVATE (umbrella.java.access_flags.FieldAccessFlags attribute)</a>
+
+        <ul>
+          <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.MethodAccessFlags.ACC_PRIVATE">(umbrella.java.access_flags.MethodAccessFlags attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.FieldAccessFlags.ACC_PROTECTED">ACC_PROTECTED (umbrella.java.access_flags.FieldAccessFlags attribute)</a>
+
+        <ul>
+          <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.MethodAccessFlags.ACC_PROTECTED">(umbrella.java.access_flags.MethodAccessFlags attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.ClassAccessFlags.ACC_PUBLIC">ACC_PUBLIC (umbrella.java.access_flags.ClassAccessFlags attribute)</a>
+
+        <ul>
+          <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.FieldAccessFlags.ACC_PUBLIC">(umbrella.java.access_flags.FieldAccessFlags attribute)</a>
+</li>
+          <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.MethodAccessFlags.ACC_PUBLIC">(umbrella.java.access_flags.MethodAccessFlags attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.ClassAccessFlags.ACC_STATIC">ACC_STATIC (umbrella.java.access_flags.ClassAccessFlags attribute)</a>
+
+        <ul>
+          <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.FieldAccessFlags.ACC_STATIC">(umbrella.java.access_flags.FieldAccessFlags attribute)</a>
+</li>
+          <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.MethodAccessFlags.ACC_STATIC">(umbrella.java.access_flags.MethodAccessFlags attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.ModuleRequiresAccessFlags.ACC_STATIC_PHASE">ACC_STATIC_PHASE (umbrella.java.access_flags.ModuleRequiresAccessFlags attribute)</a>
+</li>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.MethodAccessFlags.ACC_STRICT">ACC_STRICT (umbrella.java.access_flags.MethodAccessFlags attribute)</a>
+</li>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.ClassAccessFlags.ACC_SUPER">ACC_SUPER (umbrella.java.access_flags.ClassAccessFlags attribute)</a>
+</li>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.MethodAccessFlags.ACC_SYNCHRONIZED">ACC_SYNCHRONIZED (umbrella.java.access_flags.MethodAccessFlags attribute)</a>
+</li>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.ClassAccessFlags.ACC_SYNTHETIC">ACC_SYNTHETIC (umbrella.java.access_flags.ClassAccessFlags attribute)</a>
+
+        <ul>
+          <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.FieldAccessFlags.ACC_SYNTHETIC">(umbrella.java.access_flags.FieldAccessFlags attribute)</a>
+</li>
+          <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.MethodAccessFlags.ACC_SYNTHETIC">(umbrella.java.access_flags.MethodAccessFlags attribute)</a>
+</li>
+          <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.ModuleAccessFlags.ACC_SYNTHETIC">(umbrella.java.access_flags.ModuleAccessFlags attribute)</a>
+</li>
+          <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.ModuleExportsAccessFlags.ACC_SYNTHETIC">(umbrella.java.access_flags.ModuleExportsAccessFlags attribute)</a>
+</li>
+          <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.ModuleOpensAccessFlags.ACC_SYNTHETIC">(umbrella.java.access_flags.ModuleOpensAccessFlags attribute)</a>
+</li>
+          <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.ModuleRequiresAccessFlags.ACC_SYNTHETIC">(umbrella.java.access_flags.ModuleRequiresAccessFlags attribute)</a>
+</li>
+          <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.ParameterAccessFlags.ACC_SYNTHETIC">(umbrella.java.access_flags.ParameterAccessFlags attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.FieldAccessFlags.ACC_TRANSIENT">ACC_TRANSIENT (umbrella.java.access_flags.FieldAccessFlags attribute)</a>
+</li>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.ModuleRequiresAccessFlags.ACC_TRANSITIVE">ACC_TRANSITIVE (umbrella.java.access_flags.ModuleRequiresAccessFlags attribute)</a>
+</li>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.MethodAccessFlags.ACC_VARARGS">ACC_VARARGS (umbrella.java.access_flags.MethodAccessFlags attribute)</a>
+</li>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.FieldAccessFlags.ACC_VOLATILE">ACC_VOLATILE (umbrella.java.access_flags.FieldAccessFlags attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.FieldInfo.access_flags">access_flags (umbrella.java.attribute.FieldInfo attribute)</a>
+
+        <ul>
+          <li><a href="abi/java/attribute.html#umbrella.java.attribute.MethodInfo.access_flags">(umbrella.java.attribute.MethodInfo attribute)</a>
+</li>
+          <li><a href="abi/java/attribute.html#umbrella.java.attribute.MethodParameter.access_flags">(umbrella.java.attribute.MethodParameter attribute)</a>
+</li>
+          <li><a href="abi/java/index.html#umbrella.java.ClassFile.access_flags">(umbrella.java.ClassFile attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.AccessFlags">AccessFlags (class in umbrella.java.access_flags)</a>
+</li>
+        <li><a href="api/runtime.html#umbrella.runtime.AlignedUnion">AlignedUnion (class in umbrella.runtime)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.TargetIVarRaw64.alignment">alignment (umbrella.objc.TargetIVarRaw64 attribute)</a>
+</li>
+        <li><a href="api/iterator.html#umbrella.iterator.CachingIterator.all">all() (umbrella.iterator.CachingIterator method)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Annotation">Annotation (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.AnnotationDefault">AnnotationDefault (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.ParameterAnnotation.annotations">annotations (umbrella.java.attribute.ParameterAnnotation attribute)</a>
+
+        <ul>
+          <li><a href="abi/java/attribute.html#umbrella.java.attribute.RuntimeAnnotations.annotations">(umbrella.java.attribute.RuntimeAnnotations attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.ContextDescriptorKind.Anonymous">Anonymous (umbrella.swift.ContextDescriptorKind attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.AnonymousContextDescriptorFlags">AnonymousContextDescriptorFlags (class in umbrella.swift)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.ProtocolClassConstraint.Any">Any (umbrella.swift.ProtocolClassConstraint attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.ArrayValue">ArrayValue (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.ProtocolRequirementKind.AssociatedConformanceAccessFunction">AssociatedConformanceAccessFunction (umbrella.swift.ProtocolRequirementKind attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.ProtocolRequirementKind.AssociatedTypeAccessFunction">AssociatedTypeAccessFunction (umbrella.swift.ProtocolRequirementKind attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.AttributeInfo.attribute_length">attribute_length (umbrella.java.attribute.AttributeInfo attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.AttributeInfo">AttributeInfo (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.AttributeRef">AttributeRef (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Code.attributes">attributes (umbrella.java.attribute.Code attribute)</a>
+
+        <ul>
+          <li><a href="abi/java/attribute.html#umbrella.java.attribute.FieldInfo.attributes">(umbrella.java.attribute.FieldInfo attribute)</a>
+</li>
+          <li><a href="abi/java/attribute.html#umbrella.java.attribute.MethodInfo.attributes">(umbrella.java.attribute.MethodInfo attribute)</a>
+</li>
+          <li><a href="abi/java/attribute.html#umbrella.java.attribute.RecordComponentInfo.attributes">(umbrella.java.attribute.RecordComponentInfo attribute)</a>
+</li>
+          <li><a href="abi/java/index.html#umbrella.java.ClassFile.attributes">(umbrella.java.ClassFile attribute)</a>
+</li>
+          <li><a href="abi/objc/index.html#umbrella.objc.ObjCProperty.attributes">(umbrella.objc.ObjCProperty attribute)</a>
+</li>
+          <li><a href="abi/objc/index.html#umbrella.objc.TargetPropertyRaw64.attributes">(umbrella.objc.TargetPropertyRaw64 attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.RecordComponentInfo.attributes_count">attributes_count (umbrella.java.attribute.RecordComponentInfo attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="B" class="genindex-section">
+  <h2>B</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/objc/index.html#umbrella.objc.ObjCCategory.base_class">base_class (umbrella.objc.ObjCCategory attribute)</a>
+
+        <ul>
+          <li><a href="abi/objc/index.html#umbrella.objc.TargetCategoryRaw64.base_class">(umbrella.objc.TargetCategoryRaw64 attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/objc/index.html#umbrella.objc.TargetClassDataRaw64.base_methods">base_methods (umbrella.objc.TargetClassDataRaw64 attribute)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.TargetClassDataRaw64.base_properties">base_properties (umbrella.objc.TargetClassDataRaw64 attribute)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.TargetCategoryRaw64.base_protocols">base_protocols (umbrella.objc.TargetCategoryRaw64 attribute)</a>
+
+        <ul>
+          <li><a href="abi/objc/index.html#umbrella.objc.TargetClassDataRaw64.base_protocols">(umbrella.objc.TargetClassDataRaw64 attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.GenericRequirementKind.Baseclass">Baseclass (umbrella.swift.GenericRequirementKind attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.ProtocolRequirementKind.BaseProtocol">BaseProtocol (umbrella.swift.ProtocolRequirementKind attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/runtime.html#umbrella.runtime.Runtime.binary">binary (umbrella.runtime.Runtime property)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.ClassDataBits64.bits">bits (umbrella.objc.ClassDataBits64 attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.BootstrapMethod.bootstrap_arguments">bootstrap_arguments (umbrella.java.attribute.BootstrapMethod attribute)</a>
+</li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInvokeDynamic.bootstrap_method_attr_index">bootstrap_method_attr_index (umbrella.java.constant_pool.ConstantInvokeDynamic attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.BootstrapMethod.bootstrap_method_ref">bootstrap_method_ref (umbrella.java.attribute.BootstrapMethod attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.BootstrapMethods.bootstrap_methods">bootstrap_methods (umbrella.java.attribute.BootstrapMethods attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.BootstrapMethod">BootstrapMethod (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.BootstrapMethods">BootstrapMethods (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Code.bytecode">bytecode (umbrella.java.attribute.Code attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="C" class="genindex-section">
+  <h2>C</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/objc/index.html#umbrella.objc.TargetObjCClassRaw64.cache">cache (umbrella.objc.TargetObjCClassRaw64 attribute)</a>
+</li>
+        <li><a href="api/iterator.html#umbrella.iterator.CachingIterator">CachingIterator (class in umbrella.iterator)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.CodeException.catch_type">catch_type (umbrella.java.attribute.CodeException attribute)</a>
+</li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInfoKind.CLASS">CLASS (umbrella.java.constant_pool.ConstantInfoKind attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.ContextDescriptorKind.Class">Class (umbrella.swift.ContextDescriptorKind attribute)</a>
+
+        <ul>
+          <li><a href="abi/swift/metadata_values.html#umbrella.swift.FieldDescriptorKind.Class">(umbrella.swift.FieldDescriptorKind attribute)</a>
+</li>
+          <li><a href="abi/swift/metadata_values.html#umbrella.swift.MetadataKind.Class">(umbrella.swift.MetadataKind attribute)</a>
+</li>
+          <li><a href="abi/swift/metadata_values.html#umbrella.swift.ProtocolClassConstraint.Class">(umbrella.swift.ProtocolClassConstraint attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.EnclosingMethod.class_index">class_index (umbrella.java.attribute.EnclosingMethod attribute)</a>
+
+        <ul>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantNameAndTypeRef.class_index">(umbrella.java.constant_pool.ConstantNameAndTypeRef attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/objc/index.html#umbrella.objc.ObjCCategory.class_methods">class_methods (umbrella.objc.ObjCCategory attribute)</a>
+
+        <ul>
+          <li><a href="abi/objc/index.html#umbrella.objc.TargetCategoryRaw64.class_methods">(umbrella.objc.TargetCategoryRaw64 attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.ClassAccessFlags">ClassAccessFlags (class in umbrella.java.access_flags)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.ClassDataBits64">ClassDataBits64 (class in umbrella.objc)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.InnerClasses.classes">classes (umbrella.java.attribute.InnerClasses attribute)</a>
+
+        <ul>
+          <li><a href="abi/java/attribute.html#umbrella.java.attribute.NestMembers.classes">(umbrella.java.attribute.NestMembers attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/java/index.html#umbrella.java.ClassFile">ClassFile (class in umbrella.java)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.ClassFlags">ClassFlags (class in umbrella.swift)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.FieldDescriptorKind.ClassProtocol">ClassProtocol (umbrella.swift.FieldDescriptorKind attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Code">Code (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Code.code_length">code_length (umbrella.java.attribute.Code attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.CodeException">CodeException (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Record.components">components (umbrella.java.attribute.Record attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Record.components_count">components_count (umbrella.java.attribute.Record attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.EnumConstValue.const_name_index">const_name_index (umbrella.java.attribute.EnumConstValue attribute)</a>
+</li>
+        <li><a href="abi/java/index.html#umbrella.java.ClassFile.constant_pool">constant_pool (umbrella.java.ClassFile attribute)</a>
+</li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantDouble">ConstantDouble (class in umbrella.java.constant_pool)</a>
+</li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantFloat">ConstantFloat (class in umbrella.java.constant_pool)</a>
+</li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInfo">ConstantInfo (class in umbrella.java.constant_pool)</a>
+</li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInfoKind">ConstantInfoKind (class in umbrella.java.constant_pool)</a>
+</li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInteger">ConstantInteger (class in umbrella.java.constant_pool)</a>
+</li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInvokeDynamic">ConstantInvokeDynamic (class in umbrella.java.constant_pool)</a>
+</li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantLong">ConstantLong (class in umbrella.java.constant_pool)</a>
+</li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantMethodHandle">ConstantMethodHandle (class in umbrella.java.constant_pool)</a>
+</li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantNameAndType">ConstantNameAndType (class in umbrella.java.constant_pool)</a>
+</li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantNameAndTypeRef">ConstantNameAndTypeRef (class in umbrella.java.constant_pool)</a>
+</li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantPool">ConstantPool (class in umbrella.java.constant_pool)</a>
+</li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantRef">ConstantRef (class in umbrella.java.constant_pool)</a>
+</li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantUTF8">ConstantUTF8 (class in umbrella.java.constant_pool)</a>
+</li>
+        <li><a href="api/iterator.html#umbrella.iterator.LazyIterator.context">context (umbrella.iterator.LazyIterator property)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.ContextDescriptorFlags">ContextDescriptorFlags (class in umbrella.swift)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.ContextDescriptorKind">ContextDescriptorKind (class in umbrella.swift)</a>
+</li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantPool.count">count (umbrella.java.constant_pool.ConstantPool attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="D" class="genindex-section">
+  <h2>D</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInfo.data">data (umbrella.java.constant_pool.ConstantInfo attribute)</a>
+
+        <ul>
+          <li><a href="abi/objc/index.html#umbrella.objc.TargetObjCClassRaw64.data">(umbrella.objc.TargetObjCClassRaw64 attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/runtime.html#umbrella.runtime.DataStream">DataStream (class in umbrella.runtime)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.ObjCProperty.decode_attributes">decode_attributes() (umbrella.objc.ObjCProperty method)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.ObjCMethod.decode_desc">decode_desc() (umbrella.objc.ObjCMethod method)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.ObjCIVar.decode_type">decode_type() (umbrella.objc.ObjCIVar method)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.AnnotationDefault.default_value">default_value (umbrella.java.attribute.AnnotationDefault attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.FieldInfo.descriptor_index">descriptor_index (umbrella.java.attribute.FieldInfo attribute)</a>
+
+        <ul>
+          <li><a href="abi/java/attribute.html#umbrella.java.attribute.LocalVariable.descriptor_index">(umbrella.java.attribute.LocalVariable attribute)</a>
+</li>
+          <li><a href="abi/java/attribute.html#umbrella.java.attribute.MethodInfo.descriptor_index">(umbrella.java.attribute.MethodInfo attribute)</a>
+</li>
+          <li><a href="abi/java/attribute.html#umbrella.java.attribute.RecordComponentInfo.descriptor_index">(umbrella.java.attribute.RecordComponentInfo attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.TypeReferenceKind.DirectObjCClassName">DirectObjCClassName (umbrella.swift.TypeReferenceKind attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.TypeReferenceKind.DirectTypeDescriptor">DirectTypeDescriptor (umbrella.swift.TypeReferenceKind attribute)</a>
+</li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInfoKind.DOUBLE">DOUBLE (umbrella.java.constant_pool.ConstantInfoKind attribute)</a>
+</li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInfoKind.DYNAMIC">DYNAMIC (umbrella.java.constant_pool.ConstantInfoKind attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.MethodDescriptorFlags.dynamic">dynamic (umbrella.swift.MethodDescriptorFlags attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="E" class="genindex-section">
+  <h2>E</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.ElementValuePair.element_name_index">element_name_index (umbrella.java.attribute.ElementValuePair attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Annotation.element_value_pairs">element_value_pairs (umbrella.java.attribute.Annotation attribute)</a>
+</li>
+        <li><a href="api/iterator.html#umbrella.iterator.CachingIterator.elements">elements (umbrella.iterator.CachingIterator property)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.ElementValue">ElementValue (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.ElementValueAdapter">ElementValueAdapter (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.ElementValuePair">ElementValuePair (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.EnclosingMethod">EnclosingMethod (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.CodeException.end_pc">end_pc (umbrella.java.attribute.CodeException attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.ContextDescriptorKind.Enum">Enum (umbrella.swift.ContextDescriptorKind attribute)</a>
+
+        <ul>
+          <li><a href="abi/swift/metadata_values.html#umbrella.swift.FieldDescriptorKind.Enum">(umbrella.swift.FieldDescriptorKind attribute)</a>
+</li>
+          <li><a href="abi/swift/metadata_values.html#umbrella.swift.MetadataKind.Enum">(umbrella.swift.MetadataKind attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.EnumConstValue">EnumConstValue (class in umbrella.java.attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.SpecialProtocol.Error">Error (umbrella.swift.SpecialProtocol attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Exceptions.exception_index_table">exception_index_table (umbrella.java.attribute.Exceptions attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Code.exception_table">exception_table (umbrella.java.attribute.Code attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Code.exception_table_length">exception_table_length (umbrella.java.attribute.Code attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Exceptions">Exceptions (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module.exports">exports (umbrella.java.attribute.Module attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module.exports_count">exports_count (umbrella.java.attribute.Module attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module.Exports.exports_flags">exports_flags (umbrella.java.attribute.Module.Exports attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module.Exports.exports_index">exports_index (umbrella.java.attribute.Module.Exports attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module.Exports.exports_to_count">exports_to_count (umbrella.java.attribute.Module.Exports attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module.Exports.exports_to_index">exports_to_index (umbrella.java.attribute.Module.Exports attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.ContextDescriptorKind.Extension">Extension (umbrella.swift.ContextDescriptorKind attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.ExtraClassDescriptorFlags">ExtraClassDescriptorFlags (class in umbrella.swift)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="F" class="genindex-section">
+  <h2>F</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInfoKind.FIELD_REF">FIELD_REF (umbrella.java.constant_pool.ConstantInfoKind attribute)</a>
+</li>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.FieldAccessFlags">FieldAccessFlags (class in umbrella.java.access_flags)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.FieldDescriptorKind">FieldDescriptorKind (class in umbrella.swift)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.FieldInfo">FieldInfo (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.FieldRecordFlags">FieldRecordFlags (class in umbrella.swift)</a>
+</li>
+        <li><a href="abi/java/index.html#umbrella.java.ClassFile.fields">fields (umbrella.java.ClassFile attribute)</a>
+</li>
+        <li><a href="api/runtime.html#umbrella.runtime.Runtime.fixup_address">fixup_address() (umbrella.runtime.Runtime method)</a>
+</li>
+        <li><a href="api/flags.html#umbrella.flags.Flags">Flags (class in umbrella.flags)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/flags.html#umbrella.flags.FlagSet.flags">flags (umbrella.flags.FlagSet attribute)</a>
+
+        <ul>
+          <li><a href="abi/objc/index.html#umbrella.objc.TargetClassDataRaw64.flags">(umbrella.objc.TargetClassDataRaw64 attribute)</a>
+</li>
+          <li><a href="abi/objc/index.html#umbrella.objc.TargetProtocolRaw64.flags">(umbrella.objc.TargetProtocolRaw64 attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.Flags">Flags() (in module umbrella.java.access_flags)</a>
+</li>
+        <li><a href="api/flags.html#umbrella.flags.FlagSet">FlagSet (class in umbrella.flags)</a>
+</li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInfoKind.FLOAT">FLOAT (umbrella.java.constant_pool.ConstantInfoKind attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.MetadataInitializationKind.ForeignMetadataInitialization">ForeignMetadataInitialization (umbrella.swift.MetadataInitializationKind attribute)</a>
+</li>
+        <li><a href="api/dump.html#umbrella.dump.IDumper.formatter">formatter (umbrella.dump.IDumper attribute)</a>
+</li>
+        <li><a href="api/flags.html#umbrella.flags.from_flags">from_flags() (in module umbrella.flags)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="G" class="genindex-section">
+  <h2>G</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.GenericPackKind">GenericPackKind (class in umbrella.swift)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.GenericParamKind">GenericParamKind (class in umbrella.swift)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.GenericRequirementFlags">GenericRequirementFlags (class in umbrella.swift)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.GenericRequirementKind">GenericRequirementKind (class in umbrella.swift)</a>
+</li>
+        <li><a href="abi/java/index.html#umbrella.java.JavaClassFile.get_attribute">get_attribute() (umbrella.java.JavaClassFile method)</a>
+</li>
+        <li><a href="api/runtime.html#umbrella.runtime.Runtime.get_binary_kind">get_binary_kind() (umbrella.runtime.Runtime method)</a>
+</li>
+        <li><a href="abi/java/index.html#umbrella.java.ClassFile.get_constant">get_constant() (umbrella.java.ClassFile method)</a>
+</li>
+        <li><a href="abi/java/index.html#umbrella.java.JavaClassFile.get_constant_value">get_constant_value() (umbrella.java.JavaClassFile method)</a>
+</li>
+        <li><a href="api/runtime.html#umbrella.runtime.get_context_value">get_context_value() (in module umbrella.runtime)</a>
+</li>
+        <li><a href="api/flags.html#umbrella.flags.FlagSet.get_field">get_field() (umbrella.flags.FlagSet method)</a>
+</li>
+        <li><a href="api/flags.html#umbrella.flags.FlagSet.get_flag">get_flag() (umbrella.flags.FlagSet method)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.ObjCMethod.get_impl">get_impl() (umbrella.objc.ObjCMethod method)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/java/index.html#umbrella.java.ClassFile.get_interface_names">get_interface_names() (umbrella.java.ClassFile method)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.MethodDescriptorFlags.get_kind_name">get_kind_name() (umbrella.swift.MethodDescriptorFlags method)</a>
+</li>
+        <li><a href="abi/java/index.html#umbrella.java.ClassFile.get_name">get_name() (umbrella.java.ClassFile method)</a>
+</li>
+        <li><a href="abi/java/index.html#umbrella.java.JavaClassFile.get_package_name">get_package_name() (umbrella.java.JavaClassFile method)</a>
+</li>
+        <li><a href="abi/java/index.html#umbrella.java.JavaClassFile.get_simple_name">get_simple_name() (umbrella.java.JavaClassFile method)</a>
+</li>
+        <li><a href="abi/java/index.html#umbrella.java.JavaClassFile.get_source_name">get_source_name() (umbrella.java.JavaClassFile method)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.ProtocolContextDescriptorFlags.get_special_protocol_kind">get_special_protocol_kind() (umbrella.swift.ProtocolContextDescriptorFlags method)</a>
+</li>
+        <li><a href="abi/java/index.html#umbrella.java.ClassFile.get_super_class_name">get_super_class_name() (umbrella.java.ClassFile method)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.MethodDescriptorKind.Getter">Getter (umbrella.swift.MethodDescriptorKind attribute)</a>
+
+        <ul>
+          <li><a href="abi/swift/metadata_values.html#umbrella.swift.ProtocolRequirementKind.Getter">(umbrella.swift.ProtocolRequirementKind attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/trailing_objects.html#umbrella.trailing_objects.TrailingObjects.getTrailingObject">getTrailingObject() (umbrella.trailing_objects.TrailingObjects method)</a>
+</li>
+        <li><a href="api/trailing_objects.html#umbrella.trailing_objects.TrailingObjects.getTrailingObjects">getTrailingObjects() (umbrella.trailing_objects.TrailingObjects method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="H" class="genindex-section">
+  <h2>H</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.CodeException.handler_pc">handler_pc (umbrella.java.attribute.CodeException attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.TypeContextDescriptorFlags.has_canonical_metadata_prespecializations">has_canonical_metadata_prespecializations (umbrella.swift.TypeContextDescriptorFlags attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.ProtocolContextDescriptorFlags.has_class_constraint">has_class_constraint() (umbrella.swift.ProtocolContextDescriptorFlags method)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.TypeContextDescriptorFlags.has_import_info">has_import_info (umbrella.swift.TypeContextDescriptorFlags attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.GenericRequirementFlags.has_key_arg">has_key_arg (umbrella.swift.GenericRequirementFlags attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.TypeContextDescriptorFlags.has_layout_string">has_layout_string (umbrella.swift.TypeContextDescriptorFlags attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.AnonymousContextDescriptorFlags.has_mangled_name">has_mangled_name (umbrella.swift.AnonymousContextDescriptorFlags attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.ExtraClassDescriptorFlags.has_obj_c_resilient_class_stub">has_obj_c_resilient_class_stub() (umbrella.swift.ExtraClassDescriptorFlags method)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.TypeContextDescriptorFlags.has_override_table">has_override_table (umbrella.swift.TypeContextDescriptorFlags attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.TypeContextDescriptorFlags.has_resilient_super_class">has_resilient_super_class (umbrella.swift.TypeContextDescriptorFlags attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.TypeContextDescriptorFlags.has_vtable">has_vtable (umbrella.swift.TypeContextDescriptorFlags attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.ClassFlags.HasCustomObjCName">HasCustomObjCName (umbrella.swift.ClassFlags attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="I" class="genindex-section">
+  <h2>I</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/dump.html#umbrella.dump.IDumper">IDumper (class in umbrella.dump)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.TypeContextDescriptorFlags.immediate_members_negativ">immediate_members_negativ (umbrella.swift.TypeContextDescriptorFlags attribute)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.TargetMethodRaw64.impl">impl (umbrella.objc.TargetMethodRaw64 attribute)</a>
+</li>
+        <li><a href="api/dump.html#umbrella.dump.IDumper.indent">indent (umbrella.dump.IDumper attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.AttributeRef.index">index (umbrella.java.attribute.AttributeRef attribute)</a>
+
+        <ul>
+          <li><a href="abi/java/attribute.html#umbrella.java.attribute.LocalVariable.index">(umbrella.java.attribute.LocalVariable attribute)</a>
+</li>
+          <li><a href="abi/java/attribute.html#umbrella.java.attribute.LocalVariableType.index">(umbrella.java.attribute.LocalVariableType attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantPool.index">index() (umbrella.java.constant_pool.ConstantPool method)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.TypeReferenceKind.IndirectObjCClass">IndirectObjCClass (umbrella.swift.TypeReferenceKind attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.TypeReferenceKind.IndirectTypeDescriptor">IndirectTypeDescriptor (umbrella.swift.TypeReferenceKind attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.AttributeInfo.info">info (umbrella.java.attribute.AttributeInfo attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.MethodDescriptorKind.Init">Init (umbrella.swift.MethodDescriptorKind attribute)</a>
+
+        <ul>
+          <li><a href="abi/swift/metadata_values.html#umbrella.swift.ProtocolRequirementKind.Init">(umbrella.swift.ProtocolRequirementKind attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.InnerClass.inner_class_access_flags">inner_class_access_flags (umbrella.java.attribute.InnerClass attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.InnerClass.inner_class_info_index">inner_class_info_index (umbrella.java.attribute.InnerClass attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.InnerClass.inner_name_index">inner_name_index (umbrella.java.attribute.InnerClass attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.InnerClass">InnerClass (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.InnerClasses">InnerClasses (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.MethodDescriptorFlags.instance">instance (umbrella.swift.MethodDescriptorFlags attribute)</a>
+
+        <ul>
+          <li><a href="abi/swift/metadata_values.html#umbrella.swift.ProcolRequirementFlags.instance">(umbrella.swift.ProcolRequirementFlags attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/objc/index.html#umbrella.objc.TargetClassDataRaw64.instance_end">instance_end (umbrella.objc.TargetClassDataRaw64 attribute)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.ObjCCategory.instance_methods">instance_methods (umbrella.objc.ObjCCategory attribute)</a>
+
+        <ul>
+          <li><a href="abi/objc/index.html#umbrella.objc.TargetCategoryRaw64.instance_methods">(umbrella.objc.TargetCategoryRaw64 attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/objc/index.html#umbrella.objc.ObjCProtocol.instance_properties">instance_properties (umbrella.objc.ObjCProtocol attribute)</a>
+
+        <ul>
+          <li><a href="abi/objc/index.html#umbrella.objc.TargetCategoryRaw64.instance_properties">(umbrella.objc.TargetCategoryRaw64 attribute)</a>
+</li>
+          <li><a href="abi/objc/index.html#umbrella.objc.TargetProtocolRaw64.instance_properties">(umbrella.objc.TargetProtocolRaw64 attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/objc/index.html#umbrella.objc.TargetClassDataRaw64.instance_start">instance_start (umbrella.objc.TargetClassDataRaw64 attribute)</a>
+</li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInfoKind.INTEGER">INTEGER (umbrella.java.constant_pool.ConstantInfoKind attribute)</a>
+</li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInfoKind.INTERFACE_METHOD_REF">INTERFACE_METHOD_REF (umbrella.java.constant_pool.ConstantInfoKind attribute)</a>
+</li>
+        <li><a href="abi/java/index.html#umbrella.java.ClassFile.interfaces">interfaces (umbrella.java.ClassFile attribute)</a>
+</li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInfoKind.INVOKE_DYNAMIC">INVOKE_DYNAMIC (umbrella.java.constant_pool.ConstantInfoKind attribute)</a>
+</li>
+        <li><a href="api/runtime.html#umbrella.runtime.Runtime.is_64">is_64() (umbrella.runtime.Runtime method)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.TypeContextDescriptorFlags.is_actor">is_actor (umbrella.swift.TypeContextDescriptorFlags attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.FieldRecordFlags.is_artificial">is_artificial (umbrella.swift.FieldRecordFlags attribute)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.ObjCMethod.is_class_method">is_class_method (umbrella.objc.ObjCMethod attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.TypeContextDescriptorFlags.is_default_actor">is_default_actor (umbrella.swift.TypeContextDescriptorFlags attribute)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.ObjCCategory.is_extension">is_extension() (umbrella.objc.ObjCCategory method)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.FieldRecordFlags.is_indirect_case">is_indirect_case (umbrella.swift.FieldRecordFlags attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.ProtocolContextDescriptorFlags.is_resilient">is_resilient() (umbrella.swift.ProtocolContextDescriptorFlags method)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.ObjCMethod.is_small">is_small (umbrella.objc.ObjCMethod attribute)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.ClassDataBits64.is_swift">is_swift() (umbrella.objc.ClassDataBits64 method)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.FieldRecordFlags.is_var">is_var (umbrella.swift.FieldRecordFlags attribute)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.TargetObjCObjectRaw64.isa_storage">isa_storage (umbrella.objc.TargetObjCObjectRaw64 attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.ClassFlags.IsCanonicalStaticSpecialization">IsCanonicalStaticSpecialization (umbrella.swift.ClassFlags attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.ClassFlags.IsStaticSpecialization">IsStaticSpecialization (umbrella.swift.ClassFlags attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.ClassFlags.IsSwiftPreStableABI">IsSwiftPreStableABI (umbrella.swift.ClassFlags attribute)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.TargetClassDataRaw64.ivar_layout">ivar_layout (umbrella.objc.TargetClassDataRaw64 attribute)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.ObjCClass.ivars">ivars (umbrella.objc.ObjCClass attribute)</a>
+
+        <ul>
+          <li><a href="abi/objc/index.html#umbrella.objc.TargetClassDataRaw64.ivars">(umbrella.objc.TargetClassDataRaw64 attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="J" class="genindex-section">
+  <h2>J</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/java/index.html#umbrella.java.JavaClassFile">JavaClassFile (class in umbrella.java)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/java/index.html#umbrella.java.JavaClassFile.jclass">jclass (umbrella.java.JavaClassFile property)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="K" class="genindex-section">
+  <h2>K</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.GenericRequirementFlags.kind">kind (umbrella.swift.GenericRequirementFlags attribute)</a>
+
+        <ul>
+          <li><a href="abi/swift/metadata_values.html#umbrella.swift.ProcolRequirementFlags.kind">(umbrella.swift.ProcolRequirementFlags attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="L" class="genindex-section">
+  <h2>L</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.GenericRequirementKind.Layout">Layout (umbrella.swift.GenericRequirementKind attribute)</a>
+</li>
+        <li><a href="api/iterator.html#umbrella.iterator.LazyIterator">LazyIterator (class in umbrella.iterator)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.LocalVariable.length">length (umbrella.java.attribute.LocalVariable attribute)</a>
+
+        <ul>
+          <li><a href="abi/java/attribute.html#umbrella.java.attribute.LocalVariableType.length">(umbrella.java.attribute.LocalVariableType attribute)</a>
+</li>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantUTF8.length">(umbrella.java.constant_pool.ConstantUTF8 attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/dump.html#umbrella.dump.IDumper.lexer">lexer (umbrella.dump.IDumper attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.LineNumber.line_number">line_number (umbrella.java.attribute.LineNumber attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.LineNumberTable.line_number_table">line_number_table (umbrella.java.attribute.LineNumberTable attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.LineNumberTable.line_number_table_length">line_number_table_length (umbrella.java.attribute.LineNumberTable attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.LineNumber">LineNumber (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.LineNumberTable">LineNumberTable (class in umbrella.java.attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.list_flags">list_flags() (in module umbrella.java.access_flags)</a>
+</li>
+        <li><a href="api/iterator.html#umbrella.iterator.ReflectionSectionIterator.load_at">load_at() (umbrella.iterator.ReflectionSectionIterator method)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.LocalVariableTable.local_variable_table">local_variable_table (umbrella.java.attribute.LocalVariableTable attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.LocalVariableTable.local_variable_table_length">local_variable_table_length (umbrella.java.attribute.LocalVariableTable attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.LocalVariableTypeTable.local_variable_type_table">local_variable_type_table (umbrella.java.attribute.LocalVariableTypeTable attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.LocalVariableTypeTable.local_variable_type_table_length">local_variable_type_table_length (umbrella.java.attribute.LocalVariableTypeTable attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.LocalVariable">LocalVariable (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.LocalVariableTable">LocalVariableTable (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.LocalVariableType">LocalVariableType (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.LocalVariableTypeTable">LocalVariableTypeTable (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInfoKind.LONG">LONG (umbrella.java.constant_pool.ConstantInfoKind attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="M" class="genindex-section">
+  <h2>M</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/java/index.html#umbrella.java.ClassFile.magic">magic (umbrella.java.ClassFile attribute)</a>
+</li>
+        <li><a href="abi/java/index.html#umbrella.java.ClassFile.major_version">major_version (umbrella.java.ClassFile attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.GenericParamKind.Max">Max (umbrella.swift.GenericParamKind attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Code.max_locals">max_locals (umbrella.java.attribute.Code attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Code.max_stack">max_stack (umbrella.java.attribute.Code attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.TypeContextDescriptorFlags.meta_initialization">meta_initialization (umbrella.swift.TypeContextDescriptorFlags attribute)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.ObjCClass.metaclass">metaclass (umbrella.objc.ObjCClass attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.GenericPackKind.Metadata">Metadata (umbrella.swift.GenericPackKind attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.MetadataInitializationKind">MetadataInitializationKind (class in umbrella.swift)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.MetadataKind">MetadataKind (class in umbrella.swift)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.MethodDescriptorKind.Method">Method (umbrella.swift.MethodDescriptorKind attribute)</a>
+
+        <ul>
+          <li><a href="abi/swift/metadata_values.html#umbrella.swift.ProtocolRequirementKind.Method">(umbrella.swift.ProtocolRequirementKind attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInfoKind.METHOD_HANDLE">METHOD_HANDLE (umbrella.java.constant_pool.ConstantInfoKind attribute)</a>
+</li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInfoKind.METHOD_REF">METHOD_REF (umbrella.java.constant_pool.ConstantInfoKind attribute)</a>
+</li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInfoKind.METHOD_TYPE">METHOD_TYPE (umbrella.java.constant_pool.ConstantInfoKind attribute)</a>
+</li>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.MethodAccessFlags">MethodAccessFlags (class in umbrella.java.access_flags)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.MethodDescriptorFlags">MethodDescriptorFlags (class in umbrella.swift)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.MethodDescriptorKind">MethodDescriptorKind (class in umbrella.swift)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.MethodInfo">MethodInfo (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.MethodParameter">MethodParameter (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.MethodParameters">MethodParameters (class in umbrella.java.attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/java/index.html#umbrella.java.ClassFile.methods">methods (umbrella.java.ClassFile attribute)</a>
+
+        <ul>
+          <li><a href="abi/objc/index.html#umbrella.objc.ObjCClass.methods">(umbrella.objc.ObjCClass attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/java/index.html#umbrella.java.ClassFile.minor_version">minor_version (umbrella.java.ClassFile attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.MethodDescriptorKind.ModifyCoroutine">ModifyCoroutine (umbrella.swift.MethodDescriptorKind attribute)</a>
+
+        <ul>
+          <li><a href="abi/swift/metadata_values.html#umbrella.swift.ProtocolRequirementKind.ModifyCoroutine">(umbrella.swift.ProtocolRequirementKind attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module">Module (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInfoKind.MODULE">MODULE (umbrella.java.constant_pool.ConstantInfoKind attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.ContextDescriptorKind.Module">Module (umbrella.swift.ContextDescriptorKind attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module.Exports">Module.Exports (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module.Opens">Module.Opens (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module.Provides">Module.Provides (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module.Requires">Module.Requires (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module.module_flags">module_flags (umbrella.java.attribute.Module attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module.module_name_index">module_name_index (umbrella.java.attribute.Module attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module.module_version_index">module_version_index (umbrella.java.attribute.Module attribute)</a>
+</li>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.ModuleAccessFlags">ModuleAccessFlags (class in umbrella.java.access_flags)</a>
+</li>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.ModuleExportsAccessFlags">ModuleExportsAccessFlags (class in umbrella.java.access_flags)</a>
+</li>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.ModuleOpensAccessFlags">ModuleOpensAccessFlags (class in umbrella.java.access_flags)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.ModulePackages">ModulePackages (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.ModuleRequiresAccessFlags">ModuleRequiresAccessFlags (class in umbrella.java.access_flags)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.FieldDescriptorKind.MultiPayloadEnum">MultiPayloadEnum (umbrella.swift.FieldDescriptorKind attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="N" class="genindex-section">
+  <h2>N</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.AttributeInfo.name">name (umbrella.java.attribute.AttributeInfo attribute)</a>
+
+        <ul>
+          <li><a href="abi/objc/index.html#umbrella.objc.ObjCCategory.name">(umbrella.objc.ObjCCategory attribute)</a>
+</li>
+          <li><a href="abi/objc/index.html#umbrella.objc.ObjCClass.name">(umbrella.objc.ObjCClass attribute)</a>
+</li>
+          <li><a href="abi/objc/index.html#umbrella.objc.ObjCIVar.name">(umbrella.objc.ObjCIVar attribute)</a>
+</li>
+          <li><a href="abi/objc/index.html#umbrella.objc.ObjCMethod.name">(umbrella.objc.ObjCMethod attribute)</a>
+</li>
+          <li><a href="abi/objc/index.html#umbrella.objc.ObjCProperty.name">(umbrella.objc.ObjCProperty attribute)</a>
+</li>
+          <li><a href="abi/objc/index.html#umbrella.objc.ObjCProtocol.name">(umbrella.objc.ObjCProtocol attribute)</a>
+</li>
+          <li><a href="abi/objc/index.html#umbrella.objc.TargetCategoryRaw64.name">(umbrella.objc.TargetCategoryRaw64 attribute)</a>
+</li>
+          <li><a href="abi/objc/index.html#umbrella.objc.TargetClassDataRaw64.name">(umbrella.objc.TargetClassDataRaw64 attribute)</a>
+</li>
+          <li><a href="abi/objc/index.html#umbrella.objc.TargetIVarRaw64.name">(umbrella.objc.TargetIVarRaw64 attribute)</a>
+</li>
+          <li><a href="abi/objc/index.html#umbrella.objc.TargetMethodRaw64.name">(umbrella.objc.TargetMethodRaw64 attribute)</a>
+</li>
+          <li><a href="abi/objc/index.html#umbrella.objc.TargetPropertyRaw64.name">(umbrella.objc.TargetPropertyRaw64 attribute)</a>
+</li>
+          <li><a href="abi/objc/index.html#umbrella.objc.TargetProtocolRaw64.name">(umbrella.objc.TargetProtocolRaw64 attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInfoKind.NAME_AND_TYPE">NAME_AND_TYPE (umbrella.java.constant_pool.ConstantInfoKind attribute)</a>
+</li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantNameAndTypeRef.name_and_type_index">name_and_type_index (umbrella.java.constant_pool.ConstantNameAndTypeRef attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.AttributeInfo.name_index">name_index (umbrella.java.attribute.AttributeInfo attribute)</a>
+
+        <ul>
+          <li><a href="abi/java/attribute.html#umbrella.java.attribute.EnclosingMethod.name_index">(umbrella.java.attribute.EnclosingMethod attribute)</a>
+</li>
+          <li><a href="abi/java/attribute.html#umbrella.java.attribute.FieldInfo.name_index">(umbrella.java.attribute.FieldInfo attribute)</a>
+</li>
+          <li><a href="abi/java/attribute.html#umbrella.java.attribute.LocalVariable.name_index">(umbrella.java.attribute.LocalVariable attribute)</a>
+</li>
+          <li><a href="abi/java/attribute.html#umbrella.java.attribute.LocalVariableType.name_index">(umbrella.java.attribute.LocalVariableType attribute)</a>
+</li>
+          <li><a href="abi/java/attribute.html#umbrella.java.attribute.MethodInfo.name_index">(umbrella.java.attribute.MethodInfo attribute)</a>
+</li>
+          <li><a href="abi/java/attribute.html#umbrella.java.attribute.MethodParameter.name_index">(umbrella.java.attribute.MethodParameter attribute)</a>
+</li>
+          <li><a href="abi/java/attribute.html#umbrella.java.attribute.RecordComponentInfo.name_index">(umbrella.java.attribute.RecordComponentInfo attribute)</a>
+</li>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantNameAndType.name_index">(umbrella.java.constant_pool.ConstantNameAndType attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.NestMembers">NestMembers (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.MetadataInitializationKind.NoMetadataInitialization">NoMetadataInitialization (umbrella.swift.MetadataInitializationKind attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.SpecialProtocol.NotSpecial">NotSpecial (umbrella.swift.SpecialProtocol attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.ParameterAnnotation.num_annotations">num_annotations (umbrella.java.attribute.ParameterAnnotation attribute)</a>
+
+        <ul>
+          <li><a href="abi/java/attribute.html#umbrella.java.attribute.RuntimeAnnotations.num_annotations">(umbrella.java.attribute.RuntimeAnnotations attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Code.num_attributes">num_attributes (umbrella.java.attribute.Code attribute)</a>
+
+        <ul>
+          <li><a href="abi/java/attribute.html#umbrella.java.attribute.FieldInfo.num_attributes">(umbrella.java.attribute.FieldInfo attribute)</a>
+</li>
+          <li><a href="abi/java/attribute.html#umbrella.java.attribute.MethodInfo.num_attributes">(umbrella.java.attribute.MethodInfo attribute)</a>
+</li>
+          <li><a href="abi/java/index.html#umbrella.java.ClassFile.num_attributes">(umbrella.java.ClassFile attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.BootstrapMethod.num_bootstrap_arguments">num_bootstrap_arguments (umbrella.java.attribute.BootstrapMethod attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.BootstrapMethods.num_bootstrap_methods">num_bootstrap_methods (umbrella.java.attribute.BootstrapMethods attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Annotation.num_element_value_pairs">num_element_value_pairs (umbrella.java.attribute.Annotation attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Exceptions.num_exceptions">num_exceptions (umbrella.java.attribute.Exceptions attribute)</a>
+</li>
+        <li><a href="abi/java/index.html#umbrella.java.ClassFile.num_fields">num_fields (umbrella.java.ClassFile attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.InnerClasses.num_inner_classes">num_inner_classes (umbrella.java.attribute.InnerClasses attribute)</a>
+</li>
+        <li><a href="abi/java/index.html#umbrella.java.ClassFile.num_interfaces">num_interfaces (umbrella.java.ClassFile attribute)</a>
+</li>
+        <li><a href="abi/java/index.html#umbrella.java.ClassFile.num_methods">num_methods (umbrella.java.ClassFile attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.RuntimeParameterAnnotations.num_parameters">num_parameters (umbrella.java.attribute.RuntimeParameterAnnotations attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.ArrayValue.num_values">num_values (umbrella.java.attribute.ArrayValue attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.NestMembers.number_of_classes">number_of_classes (umbrella.java.attribute.NestMembers attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="O" class="genindex-section">
+  <h2>O</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/objc/index.html#umbrella.objc.ObjCCategory">ObjCCategory (class in umbrella.objc)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.ObjCClass">ObjCClass (class in umbrella.objc)</a>
+
+        <ul>
+          <li><a href="abi/swift/metadata_values.html#umbrella.swift.FieldDescriptorKind.ObjCClass">(umbrella.swift.FieldDescriptorKind attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/objc/index.html#umbrella.objc.ObjCIVar">ObjCIVar (class in umbrella.objc)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.ObjCMethod">ObjCMethod (class in umbrella.objc)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.ObjCProperty">ObjCProperty (class in umbrella.objc)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.ObjCProtocol">ObjCProtocol (class in umbrella.objc)</a>
+
+        <ul>
+          <li><a href="abi/swift/metadata_values.html#umbrella.swift.FieldDescriptorKind.ObjCProtocol">(umbrella.swift.FieldDescriptorKind attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/objc/index.html#umbrella.objc.TargetIVarRaw64.offset">offset (umbrella.objc.TargetIVarRaw64 attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.ContextDescriptorKind.Opaque">Opaque (umbrella.swift.ContextDescriptorKind attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module.opens">opens (umbrella.java.attribute.Module attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module.opens_count">opens_count (umbrella.java.attribute.Module attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module.Opens.opens_flags">opens_flags (umbrella.java.attribute.Module.Opens attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module.Opens.opens_index">opens_index (umbrella.java.attribute.Module.Opens attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module.Opens.opens_to_count">opens_to_count (umbrella.java.attribute.Module.Opens attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module.Opens.opens_to_index">opens_to_index (umbrella.java.attribute.Module.Opens attribute)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.ObjCProtocol.optional_class_methods">optional_class_methods (umbrella.objc.ObjCProtocol attribute)</a>
+
+        <ul>
+          <li><a href="abi/objc/index.html#umbrella.objc.TargetProtocolRaw64.optional_class_methods">(umbrella.objc.TargetProtocolRaw64 attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/objc/index.html#umbrella.objc.ObjCProtocol.optional_instance_methods">optional_instance_methods (umbrella.objc.ObjCProtocol attribute)</a>
+
+        <ul>
+          <li><a href="abi/objc/index.html#umbrella.objc.TargetProtocolRaw64.optional_instance_methods">(umbrella.objc.TargetProtocolRaw64 attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.InnerClass.outer_class_info_index">outer_class_info_index (umbrella.java.attribute.InnerClass attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="P" class="genindex-section">
+  <h2>P</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInfoKind.PACKAGE">PACKAGE (umbrella.java.constant_pool.ConstantInfoKind attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.ModulePackages.package_count">package_count (umbrella.java.attribute.ModulePackages attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.ModulePackages.package_index">package_index (umbrella.java.attribute.ModulePackages attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.RuntimeParameterAnnotations.parameter_annotations">parameter_annotations (umbrella.java.attribute.RuntimeParameterAnnotations attribute)</a>
+</li>
+        <li><a href="abi/java/access_flags.html#umbrella.java.access_flags.ParameterAccessFlags">ParameterAccessFlags (class in umbrella.java.access_flags)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.ParameterAnnotation">ParameterAnnotation (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.MethodParameters.parameters">parameters (umbrella.java.attribute.MethodParameters attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.MethodParameters.parameters_count">parameters_count (umbrella.java.attribute.MethodParameters attribute)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.ObjCIVar.parent">parent (umbrella.objc.ObjCIVar attribute)</a>
+
+        <ul>
+          <li><a href="abi/objc/index.html#umbrella.objc.ObjCProperty.parent">(umbrella.objc.ObjCProperty attribute)</a>
+</li>
+          <li><a href="abi/objc/index.html#umbrella.objc.ObjCProtocol.parent">(umbrella.objc.ObjCProtocol attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantDouble.parser">parser (umbrella.java.constant_pool.ConstantDouble attribute)</a>
+
+        <ul>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantFloat.parser">(umbrella.java.constant_pool.ConstantFloat attribute)</a>
+</li>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInfo.parser">(umbrella.java.constant_pool.ConstantInfo attribute)</a>
+</li>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInteger.parser">(umbrella.java.constant_pool.ConstantInteger attribute)</a>
+</li>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInvokeDynamic.parser">(umbrella.java.constant_pool.ConstantInvokeDynamic attribute)</a>
+</li>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantLong.parser">(umbrella.java.constant_pool.ConstantLong attribute)</a>
+</li>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantMethodHandle.parser">(umbrella.java.constant_pool.ConstantMethodHandle attribute)</a>
+</li>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantNameAndType.parser">(umbrella.java.constant_pool.ConstantNameAndType attribute)</a>
+</li>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantNameAndTypeRef.parser">(umbrella.java.constant_pool.ConstantNameAndTypeRef attribute)</a>
+</li>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantRef.parser">(umbrella.java.constant_pool.ConstantRef attribute)</a>
+</li>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantUTF8.parser">(umbrella.java.constant_pool.ConstantUTF8 attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/runtime.html#umbrella.runtime.Runtime.pointers">pointers() (umbrella.runtime.Runtime method)</a>
+</li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantPool.pool">pool (umbrella.java.constant_pool.ConstantPool attribute)</a>
+</li>
+        <li><a href="api/iterator.html#umbrella.iterator.CachingIterator.pos">pos (umbrella.iterator.CachingIterator property)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.ProcolRequirementFlags">ProcolRequirementFlags (class in umbrella.swift)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.ObjCCategory.properties">properties (umbrella.objc.ObjCCategory attribute)</a>
+
+        <ul>
+          <li><a href="abi/objc/index.html#umbrella.objc.ObjCClass.properties">(umbrella.objc.ObjCClass attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.ContextDescriptorKind.Protocol">Protocol (umbrella.swift.ContextDescriptorKind attribute)</a>
+
+        <ul>
+          <li><a href="abi/swift/metadata_values.html#umbrella.swift.FieldDescriptorKind.Protocol">(umbrella.swift.FieldDescriptorKind attribute)</a>
+</li>
+          <li><a href="abi/swift/metadata_values.html#umbrella.swift.GenericRequirementKind.Protocol">(umbrella.swift.GenericRequirementKind attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.ProtocolClassConstraint">ProtocolClassConstraint (class in umbrella.swift)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.ProtocolContextDescriptorFlags">ProtocolContextDescriptorFlags (class in umbrella.swift)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.ProtocolRequirementKind">ProtocolRequirementKind (class in umbrella.swift)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.ObjCCategory.protocols">protocols (umbrella.objc.ObjCCategory attribute)</a>
+
+        <ul>
+          <li><a href="abi/objc/index.html#umbrella.objc.ObjCClass.protocols">(umbrella.objc.ObjCClass attribute)</a>
+</li>
+          <li><a href="abi/objc/index.html#umbrella.objc.ObjCProtocol.protocols">(umbrella.objc.ObjCProtocol attribute)</a>
+</li>
+          <li><a href="abi/objc/index.html#umbrella.objc.TargetProtocolRaw64.protocols">(umbrella.objc.TargetProtocolRaw64 attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module.provides">provides (umbrella.java.attribute.Module attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module.provides_count">provides_count (umbrella.java.attribute.Module attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module.Provides.provides_index">provides_index (umbrella.java.attribute.Module.Provides attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module.Provides.provides_with_count">provides_with_count (umbrella.java.attribute.Module.Provides attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module.Provides.provides_with_index">provides_with_index (umbrella.java.attribute.Module.Provides attribute)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.ClassDataBits64.ptr">ptr (umbrella.objc.ClassDataBits64 attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="R" class="genindex-section">
+  <h2>R</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/objc/index.html#umbrella.objc.ObjCCategory.raw">raw (umbrella.objc.ObjCCategory attribute)</a>
+
+        <ul>
+          <li><a href="abi/objc/index.html#umbrella.objc.ObjCClass.raw">(umbrella.objc.ObjCClass attribute)</a>
+</li>
+          <li><a href="abi/objc/index.html#umbrella.objc.ObjCIVar.raw">(umbrella.objc.ObjCIVar attribute)</a>
+</li>
+          <li><a href="abi/objc/index.html#umbrella.objc.ObjCMethod.raw">(umbrella.objc.ObjCMethod attribute)</a>
+</li>
+          <li><a href="abi/objc/index.html#umbrella.objc.ObjCProperty.raw">(umbrella.objc.ObjCProperty attribute)</a>
+</li>
+          <li><a href="abi/objc/index.html#umbrella.objc.ObjCProtocol.raw">(umbrella.objc.ObjCProtocol attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/objc/index.html#umbrella.objc.ObjCClass.raw_data">raw_data (umbrella.objc.ObjCClass attribute)</a>
+</li>
+        <li><a href="api/runtime.html#umbrella.runtime.Runtime.read_ptr_section">read_ptr_section() (umbrella.runtime.Runtime method)</a>
+</li>
+        <li><a href="api/runtime.html#umbrella.runtime.DataStream.read_raw">read_raw() (umbrella.runtime.DataStream method)</a>
+
+        <ul>
+          <li><a href="api/runtime.html#umbrella.runtime.Runtime.read_raw">(umbrella.runtime.Runtime method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/runtime.html#umbrella.runtime.Runtime.read_string">read_string() (umbrella.runtime.Runtime method)</a>
+</li>
+        <li><a href="api/runtime.html#umbrella.runtime.DataStream.read_struct">read_struct() (umbrella.runtime.DataStream method)</a>
+
+        <ul>
+          <li><a href="api/runtime.html#umbrella.runtime.Runtime.read_struct">(umbrella.runtime.Runtime method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/runtime.html#umbrella.runtime.Runtime.read_terminated">read_terminated() (umbrella.runtime.Runtime method)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.MethodDescriptorKind.ReadCoroutine">ReadCoroutine (umbrella.swift.MethodDescriptorKind attribute)</a>
+
+        <ul>
+          <li><a href="abi/swift/metadata_values.html#umbrella.swift.ProtocolRequirementKind.ReadCoroutine">(umbrella.swift.ProtocolRequirementKind attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Record">Record (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.RecordComponentInfo">RecordComponentInfo (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInvokeDynamic.reference_index">reference_index (umbrella.java.constant_pool.ConstantInvokeDynamic attribute)</a>
+
+        <ul>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantMethodHandle.reference_index">(umbrella.java.constant_pool.ConstantMethodHandle attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantMethodHandle.reference_kind">reference_kind (umbrella.java.constant_pool.ConstantMethodHandle attribute)</a>
+</li>
+        <li><a href="api/iterator.html#umbrella.iterator.ReflectionSectionIterator">ReflectionSectionIterator (class in umbrella.iterator)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.TargetIVarRaw64.remainder">remainder (umbrella.objc.TargetIVarRaw64 attribute)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.ObjCProtocol.required_class_methods">required_class_methods (umbrella.objc.ObjCProtocol attribute)</a>
+
+        <ul>
+          <li><a href="abi/objc/index.html#umbrella.objc.TargetProtocolRaw64.required_class_methods">(umbrella.objc.TargetProtocolRaw64 attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/objc/index.html#umbrella.objc.ObjCProtocol.required_instance_methods">required_instance_methods (umbrella.objc.ObjCProtocol attribute)</a>
+
+        <ul>
+          <li><a href="abi/objc/index.html#umbrella.objc.TargetProtocolRaw64.required_instance_methods">(umbrella.objc.TargetProtocolRaw64 attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module.requires">requires (umbrella.java.attribute.Module attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module.requires_count">requires_count (umbrella.java.attribute.Module attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module.Requires.requires_flags">requires_flags (umbrella.java.attribute.Module.Requires attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module.Requires.requires_index">requires_index (umbrella.java.attribute.Module.Requires attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module.Requires.requires_version_index">requires_version_index (umbrella.java.attribute.Module.Requires attribute)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.TargetClassDataRaw64.reserved">reserved (umbrella.objc.TargetClassDataRaw64 attribute)</a>
+</li>
+        <li><a href="api/iterator.html#umbrella.iterator.CachingIterator.RESET">RESET (umbrella.iterator.CachingIterator attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.TypeContextDescriptorFlags.resilient_superclass_reference_kind">resilient_superclass_reference_kind (umbrella.swift.TypeContextDescriptorFlags attribute)</a>
+</li>
+        <li><a href="api/runtime.html#umbrella.runtime.Runtime">Runtime (class in umbrella.runtime)</a>
+</li>
+        <li><a href="api/iterator.html#umbrella.iterator.LazyIterator.runtime">runtime (umbrella.iterator.LazyIterator property)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.RuntimeAnnotations">RuntimeAnnotations (class in umbrella.java.attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.RuntimeParameterAnnotations">RuntimeParameterAnnotations (class in umbrella.java.attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="S" class="genindex-section">
+  <h2>S</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.GenericRequirementKind.SameConformance">SameConformance (umbrella.swift.GenericRequirementKind attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.GenericRequirementKind.SameShape">SameShape (umbrella.swift.GenericRequirementKind attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.GenericRequirementKind.Sametype">Sametype (umbrella.swift.GenericRequirementKind attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.MethodDescriptorKind.Setter">Setter (umbrella.swift.MethodDescriptorKind attribute)</a>
+
+        <ul>
+          <li><a href="abi/swift/metadata_values.html#umbrella.swift.ProtocolRequirementKind.Setter">(umbrella.swift.ProtocolRequirementKind attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/objc/index.html#umbrella.objc.ObjCMethod.signature">signature (umbrella.objc.ObjCMethod attribute)</a>
+
+        <ul>
+          <li><a href="abi/objc/index.html#umbrella.objc.TargetMethodRaw64.signature">(umbrella.objc.TargetMethodRaw64 attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.LocalVariableType.signature_index">signature_index (umbrella.java.attribute.LocalVariableType attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.MetadataInitializationKind.SingletonMetadataInitialization">SingletonMetadataInitialization (umbrella.swift.MetadataInitializationKind attribute)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.TargetIVarRaw64.size">size (umbrella.objc.TargetIVarRaw64 attribute)</a>
+
+        <ul>
+          <li><a href="abi/objc/index.html#umbrella.objc.TargetProtocolRaw64.size">(umbrella.objc.TargetProtocolRaw64 attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/runtime.html#umbrella.runtime.sizeof">sizeof() (in module umbrella.runtime)</a>
+
+        <ul>
+          <li><a href="api/trailing_objects.html#umbrella.trailing_objects.TrailingObjects.sizeof">(umbrella.trailing_objects.TrailingObjects method)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.SpecialProtocol">SpecialProtocol (class in umbrella.swift)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.CodeException.start_pc">start_pc (umbrella.java.attribute.CodeException attribute)</a>
+
+        <ul>
+          <li><a href="abi/java/attribute.html#umbrella.java.attribute.LineNumber.start_pc">(umbrella.java.attribute.LineNumber attribute)</a>
+</li>
+          <li><a href="abi/java/attribute.html#umbrella.java.attribute.LocalVariable.start_pc">(umbrella.java.attribute.LocalVariable attribute)</a>
+</li>
+          <li><a href="abi/java/attribute.html#umbrella.java.attribute.LocalVariableType.start_pc">(umbrella.java.attribute.LocalVariableType attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/runtime.html#umbrella.runtime.VirtualMemoryBlock.stream">stream (umbrella.runtime.VirtualMemoryBlock attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInfoKind.STRING">STRING (umbrella.java.constant_pool.ConstantInfoKind attribute)</a>
+</li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantDouble.struct">struct (umbrella.java.constant_pool.ConstantDouble attribute)</a>
+
+        <ul>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantFloat.struct">(umbrella.java.constant_pool.ConstantFloat attribute)</a>
+</li>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInfo.struct">(umbrella.java.constant_pool.ConstantInfo attribute)</a>
+</li>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInteger.struct">(umbrella.java.constant_pool.ConstantInteger attribute)</a>
+</li>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInvokeDynamic.struct">(umbrella.java.constant_pool.ConstantInvokeDynamic attribute)</a>
+</li>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantLong.struct">(umbrella.java.constant_pool.ConstantLong attribute)</a>
+</li>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantMethodHandle.struct">(umbrella.java.constant_pool.ConstantMethodHandle attribute)</a>
+</li>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantNameAndType.struct">(umbrella.java.constant_pool.ConstantNameAndType attribute)</a>
+</li>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantNameAndTypeRef.struct">(umbrella.java.constant_pool.ConstantNameAndTypeRef attribute)</a>
+</li>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantRef.struct">(umbrella.java.constant_pool.ConstantRef attribute)</a>
+</li>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantUTF8.struct">(umbrella.java.constant_pool.ConstantUTF8 attribute)</a>
+</li>
+          <li><a href="api/runtime.html#umbrella.runtime.VirtualMemoryBlock.struct">(umbrella.runtime.VirtualMemoryBlock attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.ContextDescriptorKind.Struct">Struct (umbrella.swift.ContextDescriptorKind attribute)</a>
+
+        <ul>
+          <li><a href="abi/swift/metadata_values.html#umbrella.swift.FieldDescriptorKind.Struct">(umbrella.swift.FieldDescriptorKind attribute)</a>
+</li>
+          <li><a href="abi/swift/metadata_values.html#umbrella.swift.MetadataKind.Struct">(umbrella.swift.MetadataKind attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/java/index.html#umbrella.java.ClassFile.super_class">super_class (umbrella.java.ClassFile attribute)</a>
+
+        <ul>
+          <li><a href="abi/objc/index.html#umbrella.objc.ObjCClass.super_class">(umbrella.objc.ObjCClass attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/objc/index.html#umbrella.objc.TargetObjCClassRaw64.superclass">superclass (umbrella.objc.TargetObjCClassRaw64 attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="T" class="genindex-section">
+  <h2>T</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.ElementValue.tag">tag (umbrella.java.attribute.ElementValue attribute)</a>
+
+        <ul>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInfo.tag">(umbrella.java.constant_pool.ConstantInfo attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInfo.tag_value">tag_value (umbrella.java.constant_pool.ConstantInfo attribute)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.TargetCategoryRaw64">TargetCategoryRaw64 (class in umbrella.objc)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.TargetClassDataRaw64">TargetClassDataRaw64 (class in umbrella.objc)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.TargetIVarRaw64">TargetIVarRaw64 (class in umbrella.objc)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.TargetMethodRaw64">TargetMethodRaw64 (class in umbrella.objc)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.TargetObjCClassRaw64">TargetObjCClassRaw64 (class in umbrella.objc)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.TargetObjCObjectRaw64">TargetObjCObjectRaw64 (class in umbrella.objc)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.TargetPropertyRaw64">TargetPropertyRaw64 (class in umbrella.objc)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.TargetProtocolRaw64">TargetProtocolRaw64 (class in umbrella.objc)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/java/index.html#umbrella.java.ClassFile.this_class">this_class (umbrella.java.ClassFile attribute)</a>
+</li>
+        <li><a href="api/trailing_objects.html#umbrella.trailing_objects.TrailingObjects">TrailingObjects (class in umbrella.trailing_objects)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.TargetIVarRaw64.type">type (umbrella.objc.TargetIVarRaw64 attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.GenericParamKind.Type">Type (umbrella.swift.GenericParamKind attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Annotation.type_index">type_index (umbrella.java.attribute.Annotation attribute)</a>
+
+        <ul>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantNameAndType.type_index">(umbrella.java.constant_pool.ConstantNameAndType attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.ContextDescriptorKind.Type_Last">Type_Last (umbrella.swift.ContextDescriptorKind attribute)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.ObjCIVar.type_name">type_name (umbrella.objc.ObjCIVar attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.EnumConstValue.type_name_index">type_name_index (umbrella.java.attribute.EnumConstValue attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.TypeContextDescriptorFlags">TypeContextDescriptorFlags (class in umbrella.swift)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.GenericParamKind.TypePack">TypePack (umbrella.swift.GenericParamKind attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.TypeReferenceKind">TypeReferenceKind (class in umbrella.swift)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="U" class="genindex-section">
+  <h2>U</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/runtime.html#umbrella.runtime.CString">umbrella.runtime.CString (built-in class)</a>
+</li>
+        <li><a href="api/runtime.html#umbrella.runtime.CString.umbrella.runtime.CString.is_cstring">umbrella.runtime.CString.is_cstring() (in module umbrella.runtime.CString)</a>
+</li>
+        <li><a href="api/runtime.html#umbrella.runtime.RawCString">umbrella.runtime.RawCString (built-in class)</a>
+</li>
+        <li><a href="api/runtime.html#umbrella.runtime.RawCString.umbrella.runtime.RawCString.is_raw_cstring">umbrella.runtime.RawCString.is_raw_cstring() (in module umbrella.runtime.RawCString)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module.uses">uses (umbrella.java.attribute.Module attribute)</a>
+</li>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.Module.uses_count">uses_count (umbrella.java.attribute.Module attribute)</a>
+</li>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.ClassFlags.UsesSwiftRefcounting">UsesSwiftRefcounting (umbrella.swift.ClassFlags attribute)</a>
+</li>
+        <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInfoKind.UTF8">UTF8 (umbrella.java.constant_pool.ConstantInfoKind attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="V" class="genindex-section">
+  <h2>V</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.ElementValue.value">value (umbrella.java.attribute.ElementValue attribute)</a>
+
+        <ul>
+          <li><a href="abi/java/attribute.html#umbrella.java.attribute.ElementValuePair.value">(umbrella.java.attribute.ElementValuePair attribute)</a>
+</li>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantDouble.value">(umbrella.java.constant_pool.ConstantDouble attribute)</a>
+</li>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantFloat.value">(umbrella.java.constant_pool.ConstantFloat attribute)</a>
+</li>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantInteger.value">(umbrella.java.constant_pool.ConstantInteger attribute)</a>
+</li>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantLong.value">(umbrella.java.constant_pool.ConstantLong attribute)</a>
+</li>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantRef.value">(umbrella.java.constant_pool.ConstantRef attribute)</a>
+</li>
+          <li><a href="abi/java/constant_pool.html#umbrella.java.constant_pool.ConstantUTF8.value">(umbrella.java.constant_pool.ConstantUTF8 attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/java/attribute.html#umbrella.java.attribute.ArrayValue.values">values (umbrella.java.attribute.ArrayValue attribute)</a>
+</li>
+        <li><a href="api/runtime.html#umbrella.runtime.Virtual">Virtual (class in umbrella.runtime)</a>
+</li>
+        <li><a href="api/runtime.html#umbrella.runtime.VirtualArray">VirtualArray (class in umbrella.runtime)</a>
+</li>
+        <li><a href="api/runtime.html#umbrella.runtime.VirtualMemoryBlock">VirtualMemoryBlock (class in umbrella.runtime)</a>
+</li>
+        <li><a href="abi/objc/index.html#umbrella.objc.TargetObjCClassRaw64.vtable">vtable (umbrella.objc.TargetObjCClassRaw64 attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="W" class="genindex-section">
+  <h2>W</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/objc/index.html#umbrella.objc.TargetClassDataRaw64.weak_ivar_layout">weak_ivar_layout (umbrella.objc.TargetClassDataRaw64 attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="abi/swift/metadata_values.html#umbrella.swift.GenericPackKind.WitnessTable">WitnessTable (umbrella.swift.GenericPackKind attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, MatrixEditor
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=8c5712d9"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="_static/tabs.js?v=3ee01567"></script>
+    </body>
+</html>

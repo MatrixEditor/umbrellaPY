@@ -1,0 +1,687 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="3.1.2. Constant Pool" href="constant_pool.html" /><link rel="prev" title="3. Java Class Files" href="index.html" />
+
+    <!-- Generated with Sphinx 7.2.6 and Furo 2023.09.10 -->
+        <title>3.1.1. Access Flags (Enums) - Umbrella 0.0.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Umbrella 0.0.4 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Umbrella 0.0.4 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Using this Library</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">API Concepts &amp; Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">List of ABI Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Components</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/runtime.html">Static Runtime</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/iterator.html">Iterators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/flags.html">Flags and FlagSet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/dump.html">Class-Dump</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/trailing_objects.html">Trailing Objects</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ABI Implementations</span></p>
+<ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../swift/index.html">1. Swift ABI</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of 1. Swift ABI</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../swift/metadata_values.html">1.1. Metadata Values (Enums)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../swift/reconstruction.html">1.2. Reconstruction of Swift Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../swift/reconstruction.html#protocols">1.3. Protocols</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../objc/index.html">2. Objective-C ABI</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">3. Java Class Files</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of 3. Java Class Files</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">3.1.1. Access Flags (Enums)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constant_pool.html">3.1.2. Constant Pool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attribute.html">3.1.3. Attribute Types</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="access-flags-enums">
+<span id="java-abi-access-flags"></span><h1><span class="section-number">3.1.1. </span>Access Flags (Enums)<a class="headerlink" href="#access-flags-enums" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.FieldAccessFlags">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.access_flags.</span></span><span class="sig-name descname"><span class="pre">FieldAccessFlags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/umbrella/java/access_flags.html#FieldAccessFlags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.java.access_flags.FieldAccessFlags" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.FieldAccessFlags.ACC_PUBLIC">
+<span class="sig-name descname"><span class="pre">ACC_PUBLIC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#umbrella.java.access_flags.FieldAccessFlags.ACC_PUBLIC" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.FieldAccessFlags.ACC_PRIVATE">
+<span class="sig-name descname"><span class="pre">ACC_PRIVATE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#umbrella.java.access_flags.FieldAccessFlags.ACC_PRIVATE" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.FieldAccessFlags.ACC_PROTECTED">
+<span class="sig-name descname"><span class="pre">ACC_PROTECTED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#umbrella.java.access_flags.FieldAccessFlags.ACC_PROTECTED" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.FieldAccessFlags.ACC_STATIC">
+<span class="sig-name descname"><span class="pre">ACC_STATIC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#umbrella.java.access_flags.FieldAccessFlags.ACC_STATIC" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.FieldAccessFlags.ACC_FINAL">
+<span class="sig-name descname"><span class="pre">ACC_FINAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">16</span></em><a class="headerlink" href="#umbrella.java.access_flags.FieldAccessFlags.ACC_FINAL" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.FieldAccessFlags.ACC_VOLATILE">
+<span class="sig-name descname"><span class="pre">ACC_VOLATILE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">64</span></em><a class="headerlink" href="#umbrella.java.access_flags.FieldAccessFlags.ACC_VOLATILE" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.FieldAccessFlags.ACC_TRANSIENT">
+<span class="sig-name descname"><span class="pre">ACC_TRANSIENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">128</span></em><a class="headerlink" href="#umbrella.java.access_flags.FieldAccessFlags.ACC_TRANSIENT" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.FieldAccessFlags.ACC_SYNTHETIC">
+<span class="sig-name descname"><span class="pre">ACC_SYNTHETIC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4096</span></em><a class="headerlink" href="#umbrella.java.access_flags.FieldAccessFlags.ACC_SYNTHETIC" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.FieldAccessFlags.ACC_ENUM">
+<span class="sig-name descname"><span class="pre">ACC_ENUM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">16384</span></em><a class="headerlink" href="#umbrella.java.access_flags.FieldAccessFlags.ACC_ENUM" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.ClassAccessFlags">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.access_flags.</span></span><span class="sig-name descname"><span class="pre">ClassAccessFlags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/umbrella/java/access_flags.html#ClassAccessFlags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.java.access_flags.ClassAccessFlags" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.ClassAccessFlags.ACC_PUBLIC">
+<span class="sig-name descname"><span class="pre">ACC_PUBLIC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#umbrella.java.access_flags.ClassAccessFlags.ACC_PUBLIC" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.ClassAccessFlags.ACC_STATIC">
+<span class="sig-name descname"><span class="pre">ACC_STATIC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#umbrella.java.access_flags.ClassAccessFlags.ACC_STATIC" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.ClassAccessFlags.ACC_FINAL">
+<span class="sig-name descname"><span class="pre">ACC_FINAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">16</span></em><a class="headerlink" href="#umbrella.java.access_flags.ClassAccessFlags.ACC_FINAL" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.ClassAccessFlags.ACC_SUPER">
+<span class="sig-name descname"><span class="pre">ACC_SUPER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32</span></em><a class="headerlink" href="#umbrella.java.access_flags.ClassAccessFlags.ACC_SUPER" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.ClassAccessFlags.ACC_INTERFACE">
+<span class="sig-name descname"><span class="pre">ACC_INTERFACE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">512</span></em><a class="headerlink" href="#umbrella.java.access_flags.ClassAccessFlags.ACC_INTERFACE" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.ClassAccessFlags.ACC_ABSTRACT">
+<span class="sig-name descname"><span class="pre">ACC_ABSTRACT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1024</span></em><a class="headerlink" href="#umbrella.java.access_flags.ClassAccessFlags.ACC_ABSTRACT" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.ClassAccessFlags.ACC_SYNTHETIC">
+<span class="sig-name descname"><span class="pre">ACC_SYNTHETIC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4096</span></em><a class="headerlink" href="#umbrella.java.access_flags.ClassAccessFlags.ACC_SYNTHETIC" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.ClassAccessFlags.ACC_ANNOTATION">
+<span class="sig-name descname"><span class="pre">ACC_ANNOTATION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8192</span></em><a class="headerlink" href="#umbrella.java.access_flags.ClassAccessFlags.ACC_ANNOTATION" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.ClassAccessFlags.ACC_ENUM">
+<span class="sig-name descname"><span class="pre">ACC_ENUM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">16384</span></em><a class="headerlink" href="#umbrella.java.access_flags.ClassAccessFlags.ACC_ENUM" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.ClassAccessFlags.ACC_MODULE">
+<span class="sig-name descname"><span class="pre">ACC_MODULE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32768</span></em><a class="headerlink" href="#umbrella.java.access_flags.ClassAccessFlags.ACC_MODULE" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.MethodAccessFlags">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.access_flags.</span></span><span class="sig-name descname"><span class="pre">MethodAccessFlags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/umbrella/java/access_flags.html#MethodAccessFlags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.java.access_flags.MethodAccessFlags" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.MethodAccessFlags.ACC_PUBLIC">
+<span class="sig-name descname"><span class="pre">ACC_PUBLIC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#umbrella.java.access_flags.MethodAccessFlags.ACC_PUBLIC" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.MethodAccessFlags.ACC_PRIVATE">
+<span class="sig-name descname"><span class="pre">ACC_PRIVATE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#umbrella.java.access_flags.MethodAccessFlags.ACC_PRIVATE" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.MethodAccessFlags.ACC_PROTECTED">
+<span class="sig-name descname"><span class="pre">ACC_PROTECTED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#umbrella.java.access_flags.MethodAccessFlags.ACC_PROTECTED" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.MethodAccessFlags.ACC_STATIC">
+<span class="sig-name descname"><span class="pre">ACC_STATIC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#umbrella.java.access_flags.MethodAccessFlags.ACC_STATIC" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.MethodAccessFlags.ACC_FINAL">
+<span class="sig-name descname"><span class="pre">ACC_FINAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">16</span></em><a class="headerlink" href="#umbrella.java.access_flags.MethodAccessFlags.ACC_FINAL" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.MethodAccessFlags.ACC_SYNCHRONIZED">
+<span class="sig-name descname"><span class="pre">ACC_SYNCHRONIZED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32</span></em><a class="headerlink" href="#umbrella.java.access_flags.MethodAccessFlags.ACC_SYNCHRONIZED" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.MethodAccessFlags.ACC_BRIDGE">
+<span class="sig-name descname"><span class="pre">ACC_BRIDGE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">64</span></em><a class="headerlink" href="#umbrella.java.access_flags.MethodAccessFlags.ACC_BRIDGE" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.MethodAccessFlags.ACC_VARARGS">
+<span class="sig-name descname"><span class="pre">ACC_VARARGS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">128</span></em><a class="headerlink" href="#umbrella.java.access_flags.MethodAccessFlags.ACC_VARARGS" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.MethodAccessFlags.ACC_NATIVE">
+<span class="sig-name descname"><span class="pre">ACC_NATIVE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">256</span></em><a class="headerlink" href="#umbrella.java.access_flags.MethodAccessFlags.ACC_NATIVE" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.MethodAccessFlags.ACC_ABSTRACT">
+<span class="sig-name descname"><span class="pre">ACC_ABSTRACT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1024</span></em><a class="headerlink" href="#umbrella.java.access_flags.MethodAccessFlags.ACC_ABSTRACT" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.MethodAccessFlags.ACC_STRICT">
+<span class="sig-name descname"><span class="pre">ACC_STRICT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2048</span></em><a class="headerlink" href="#umbrella.java.access_flags.MethodAccessFlags.ACC_STRICT" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.MethodAccessFlags.ACC_SYNTHETIC">
+<span class="sig-name descname"><span class="pre">ACC_SYNTHETIC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4096</span></em><a class="headerlink" href="#umbrella.java.access_flags.MethodAccessFlags.ACC_SYNTHETIC" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.ModuleAccessFlags">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.access_flags.</span></span><span class="sig-name descname"><span class="pre">ModuleAccessFlags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/umbrella/java/access_flags.html#ModuleAccessFlags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.java.access_flags.ModuleAccessFlags" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.ModuleAccessFlags.ACC_OPEN">
+<span class="sig-name descname"><span class="pre">ACC_OPEN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32</span></em><a class="headerlink" href="#umbrella.java.access_flags.ModuleAccessFlags.ACC_OPEN" title="Link to this definition">#</a></dt>
+<dd><p>Indicates that this module is open.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.ModuleAccessFlags.ACC_SYNTHETIC">
+<span class="sig-name descname"><span class="pre">ACC_SYNTHETIC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4096</span></em><a class="headerlink" href="#umbrella.java.access_flags.ModuleAccessFlags.ACC_SYNTHETIC" title="Link to this definition">#</a></dt>
+<dd><p>Indicates that this module was not explicitly or implicitly declared.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.ModuleAccessFlags.ACC_MANDATED">
+<span class="sig-name descname"><span class="pre">ACC_MANDATED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32768</span></em><a class="headerlink" href="#umbrella.java.access_flags.ModuleAccessFlags.ACC_MANDATED" title="Link to this definition">#</a></dt>
+<dd><p>Indicates that this module was implicitly declared.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.ParameterAccessFlags">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.access_flags.</span></span><span class="sig-name descname"><span class="pre">ParameterAccessFlags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/umbrella/java/access_flags.html#ParameterAccessFlags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.java.access_flags.ParameterAccessFlags" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.ParameterAccessFlags.ACC_FINAL">
+<span class="sig-name descname"><span class="pre">ACC_FINAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">16</span></em><a class="headerlink" href="#umbrella.java.access_flags.ParameterAccessFlags.ACC_FINAL" title="Link to this definition">#</a></dt>
+<dd><p>Indicates that the formal parameter was declared as <cite>final</cite>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.ParameterAccessFlags.ACC_SYNTHETIC">
+<span class="sig-name descname"><span class="pre">ACC_SYNTHETIC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4096</span></em><a class="headerlink" href="#umbrella.java.access_flags.ParameterAccessFlags.ACC_SYNTHETIC" title="Link to this definition">#</a></dt>
+<dd><p>Indicates that the formal parameter was not explicitly or implicitly
+declared in source code, as per the language specification in which the
+source code was written. (The formal parameter is an implementation
+artifact of the compiler that generated this class file.)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.ParameterAccessFlags.ACC_MANDATED">
+<span class="sig-name descname"><span class="pre">ACC_MANDATED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32768</span></em><a class="headerlink" href="#umbrella.java.access_flags.ParameterAccessFlags.ACC_MANDATED" title="Link to this definition">#</a></dt>
+<dd><p>Indicates that the formal parameter was implicitly declared in source
+code, following the specification of the language in which the source code
+was written. (The formal parameter is mandated by a language specification,
+and therefore, all compilers for the language must include it.)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.ModuleRequiresAccessFlags">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.access_flags.</span></span><span class="sig-name descname"><span class="pre">ModuleRequiresAccessFlags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/umbrella/java/access_flags.html#ModuleRequiresAccessFlags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.java.access_flags.ModuleRequiresAccessFlags" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.ModuleRequiresAccessFlags.ACC_TRANSITIVE">
+<span class="sig-name descname"><span class="pre">ACC_TRANSITIVE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32</span></em><a class="headerlink" href="#umbrella.java.access_flags.ModuleRequiresAccessFlags.ACC_TRANSITIVE" title="Link to this definition">#</a></dt>
+<dd><p>Indicates that any module dependent on the current module implicitly
+declares a dependency on the module specified by this entry.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.ModuleRequiresAccessFlags.ACC_STATIC_PHASE">
+<span class="sig-name descname"><span class="pre">ACC_STATIC_PHASE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">64</span></em><a class="headerlink" href="#umbrella.java.access_flags.ModuleRequiresAccessFlags.ACC_STATIC_PHASE" title="Link to this definition">#</a></dt>
+<dd><p>Indicates that this dependency is mandatory during the static phase
+(compile time) but optional during the dynamic phase (runtime).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.ModuleRequiresAccessFlags.ACC_SYNTHETIC">
+<span class="sig-name descname"><span class="pre">ACC_SYNTHETIC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4096</span></em><a class="headerlink" href="#umbrella.java.access_flags.ModuleRequiresAccessFlags.ACC_SYNTHETIC" title="Link to this definition">#</a></dt>
+<dd><p>Indicates that this dependency was not explicitly or implicitly declared
+in the source code of the module declaration.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.ModuleRequiresAccessFlags.ACC_MANDATED">
+<span class="sig-name descname"><span class="pre">ACC_MANDATED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32768</span></em><a class="headerlink" href="#umbrella.java.access_flags.ModuleRequiresAccessFlags.ACC_MANDATED" title="Link to this definition">#</a></dt>
+<dd><p>Indicates that this dependency was implicitly declared in the source code
+of the module declaration.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.ModuleExportsAccessFlags">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.access_flags.</span></span><span class="sig-name descname"><span class="pre">ModuleExportsAccessFlags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/umbrella/java/access_flags.html#ModuleExportsAccessFlags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.java.access_flags.ModuleExportsAccessFlags" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.ModuleExportsAccessFlags.ACC_SYNTHETIC">
+<span class="sig-name descname"><span class="pre">ACC_SYNTHETIC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4096</span></em><a class="headerlink" href="#umbrella.java.access_flags.ModuleExportsAccessFlags.ACC_SYNTHETIC" title="Link to this definition">#</a></dt>
+<dd><p>Indicates that this export was not explicitly or implicitly declared in
+the module declaration’s source code.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.ModuleExportsAccessFlags.ACC_MANDATED">
+<span class="sig-name descname"><span class="pre">ACC_MANDATED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32768</span></em><a class="headerlink" href="#umbrella.java.access_flags.ModuleExportsAccessFlags.ACC_MANDATED" title="Link to this definition">#</a></dt>
+<dd><p>Indicates that this export was implicitly declared in the source code of
+the module declaration.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.ModuleOpensAccessFlags">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.access_flags.</span></span><span class="sig-name descname"><span class="pre">ModuleOpensAccessFlags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/umbrella/java/access_flags.html#ModuleOpensAccessFlags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.java.access_flags.ModuleOpensAccessFlags" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.ModuleOpensAccessFlags.ACC_SYNTHETIC">
+<span class="sig-name descname"><span class="pre">ACC_SYNTHETIC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4096</span></em><a class="headerlink" href="#umbrella.java.access_flags.ModuleOpensAccessFlags.ACC_SYNTHETIC" title="Link to this definition">#</a></dt>
+<dd><p>Indicates that this opening was not explicitly or implicitly declared in
+the source code of the module declaration.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.ModuleOpensAccessFlags.ACC_MANDATED">
+<span class="sig-name descname"><span class="pre">ACC_MANDATED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32768</span></em><a class="headerlink" href="#umbrella.java.access_flags.ModuleOpensAccessFlags.ACC_MANDATED" title="Link to this definition">#</a></dt>
+<dd><p>Indicates that this opening was implicitly declared in the source code of
+the module declaration.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.list_flags">
+<span class="sig-prename descclassname"><span class="pre">umbrella.java.access_flags.</span></span><span class="sig-name descname"><span class="pre">list_flags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">IntEnum</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/umbrella/java/access_flags.html#list_flags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.java.access_flags.list_flags" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.Flags">
+<span class="sig-prename descclassname"><span class="pre">umbrella.java.access_flags.</span></span><span class="sig-name descname"><span class="pre">Flags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/umbrella/java/access_flags.html#Flags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.java.access_flags.Flags" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.access_flags.AccessFlags">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.access_flags.</span></span><span class="sig-name descname"><span class="pre">AccessFlags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/umbrella/java/access_flags.html#AccessFlags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.java.access_flags.AccessFlags" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="constant_pool.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title"><span class="section-number">3.1.2. </span>Constant Pool</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title"><span class="section-number">3. </span>Java Class Files</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, MatrixEditor
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">3.1.1. Access Flags (Enums)</a><ul>
+<li><a class="reference internal" href="#umbrella.java.access_flags.FieldAccessFlags"><code class="docutils literal notranslate"><span class="pre">FieldAccessFlags</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.access_flags.FieldAccessFlags.ACC_PUBLIC"><code class="docutils literal notranslate"><span class="pre">FieldAccessFlags.ACC_PUBLIC</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.FieldAccessFlags.ACC_PRIVATE"><code class="docutils literal notranslate"><span class="pre">FieldAccessFlags.ACC_PRIVATE</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.FieldAccessFlags.ACC_PROTECTED"><code class="docutils literal notranslate"><span class="pre">FieldAccessFlags.ACC_PROTECTED</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.FieldAccessFlags.ACC_STATIC"><code class="docutils literal notranslate"><span class="pre">FieldAccessFlags.ACC_STATIC</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.FieldAccessFlags.ACC_FINAL"><code class="docutils literal notranslate"><span class="pre">FieldAccessFlags.ACC_FINAL</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.FieldAccessFlags.ACC_VOLATILE"><code class="docutils literal notranslate"><span class="pre">FieldAccessFlags.ACC_VOLATILE</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.FieldAccessFlags.ACC_TRANSIENT"><code class="docutils literal notranslate"><span class="pre">FieldAccessFlags.ACC_TRANSIENT</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.FieldAccessFlags.ACC_SYNTHETIC"><code class="docutils literal notranslate"><span class="pre">FieldAccessFlags.ACC_SYNTHETIC</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.FieldAccessFlags.ACC_ENUM"><code class="docutils literal notranslate"><span class="pre">FieldAccessFlags.ACC_ENUM</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.ClassAccessFlags"><code class="docutils literal notranslate"><span class="pre">ClassAccessFlags</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.access_flags.ClassAccessFlags.ACC_PUBLIC"><code class="docutils literal notranslate"><span class="pre">ClassAccessFlags.ACC_PUBLIC</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.ClassAccessFlags.ACC_STATIC"><code class="docutils literal notranslate"><span class="pre">ClassAccessFlags.ACC_STATIC</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.ClassAccessFlags.ACC_FINAL"><code class="docutils literal notranslate"><span class="pre">ClassAccessFlags.ACC_FINAL</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.ClassAccessFlags.ACC_SUPER"><code class="docutils literal notranslate"><span class="pre">ClassAccessFlags.ACC_SUPER</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.ClassAccessFlags.ACC_INTERFACE"><code class="docutils literal notranslate"><span class="pre">ClassAccessFlags.ACC_INTERFACE</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.ClassAccessFlags.ACC_ABSTRACT"><code class="docutils literal notranslate"><span class="pre">ClassAccessFlags.ACC_ABSTRACT</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.ClassAccessFlags.ACC_SYNTHETIC"><code class="docutils literal notranslate"><span class="pre">ClassAccessFlags.ACC_SYNTHETIC</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.ClassAccessFlags.ACC_ANNOTATION"><code class="docutils literal notranslate"><span class="pre">ClassAccessFlags.ACC_ANNOTATION</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.ClassAccessFlags.ACC_ENUM"><code class="docutils literal notranslate"><span class="pre">ClassAccessFlags.ACC_ENUM</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.ClassAccessFlags.ACC_MODULE"><code class="docutils literal notranslate"><span class="pre">ClassAccessFlags.ACC_MODULE</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.MethodAccessFlags"><code class="docutils literal notranslate"><span class="pre">MethodAccessFlags</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.access_flags.MethodAccessFlags.ACC_PUBLIC"><code class="docutils literal notranslate"><span class="pre">MethodAccessFlags.ACC_PUBLIC</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.MethodAccessFlags.ACC_PRIVATE"><code class="docutils literal notranslate"><span class="pre">MethodAccessFlags.ACC_PRIVATE</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.MethodAccessFlags.ACC_PROTECTED"><code class="docutils literal notranslate"><span class="pre">MethodAccessFlags.ACC_PROTECTED</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.MethodAccessFlags.ACC_STATIC"><code class="docutils literal notranslate"><span class="pre">MethodAccessFlags.ACC_STATIC</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.MethodAccessFlags.ACC_FINAL"><code class="docutils literal notranslate"><span class="pre">MethodAccessFlags.ACC_FINAL</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.MethodAccessFlags.ACC_SYNCHRONIZED"><code class="docutils literal notranslate"><span class="pre">MethodAccessFlags.ACC_SYNCHRONIZED</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.MethodAccessFlags.ACC_BRIDGE"><code class="docutils literal notranslate"><span class="pre">MethodAccessFlags.ACC_BRIDGE</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.MethodAccessFlags.ACC_VARARGS"><code class="docutils literal notranslate"><span class="pre">MethodAccessFlags.ACC_VARARGS</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.MethodAccessFlags.ACC_NATIVE"><code class="docutils literal notranslate"><span class="pre">MethodAccessFlags.ACC_NATIVE</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.MethodAccessFlags.ACC_ABSTRACT"><code class="docutils literal notranslate"><span class="pre">MethodAccessFlags.ACC_ABSTRACT</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.MethodAccessFlags.ACC_STRICT"><code class="docutils literal notranslate"><span class="pre">MethodAccessFlags.ACC_STRICT</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.MethodAccessFlags.ACC_SYNTHETIC"><code class="docutils literal notranslate"><span class="pre">MethodAccessFlags.ACC_SYNTHETIC</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.ModuleAccessFlags"><code class="docutils literal notranslate"><span class="pre">ModuleAccessFlags</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.access_flags.ModuleAccessFlags.ACC_OPEN"><code class="docutils literal notranslate"><span class="pre">ModuleAccessFlags.ACC_OPEN</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.ModuleAccessFlags.ACC_SYNTHETIC"><code class="docutils literal notranslate"><span class="pre">ModuleAccessFlags.ACC_SYNTHETIC</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.ModuleAccessFlags.ACC_MANDATED"><code class="docutils literal notranslate"><span class="pre">ModuleAccessFlags.ACC_MANDATED</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.ParameterAccessFlags"><code class="docutils literal notranslate"><span class="pre">ParameterAccessFlags</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.access_flags.ParameterAccessFlags.ACC_FINAL"><code class="docutils literal notranslate"><span class="pre">ParameterAccessFlags.ACC_FINAL</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.ParameterAccessFlags.ACC_SYNTHETIC"><code class="docutils literal notranslate"><span class="pre">ParameterAccessFlags.ACC_SYNTHETIC</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.ParameterAccessFlags.ACC_MANDATED"><code class="docutils literal notranslate"><span class="pre">ParameterAccessFlags.ACC_MANDATED</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.ModuleRequiresAccessFlags"><code class="docutils literal notranslate"><span class="pre">ModuleRequiresAccessFlags</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.access_flags.ModuleRequiresAccessFlags.ACC_TRANSITIVE"><code class="docutils literal notranslate"><span class="pre">ModuleRequiresAccessFlags.ACC_TRANSITIVE</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.ModuleRequiresAccessFlags.ACC_STATIC_PHASE"><code class="docutils literal notranslate"><span class="pre">ModuleRequiresAccessFlags.ACC_STATIC_PHASE</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.ModuleRequiresAccessFlags.ACC_SYNTHETIC"><code class="docutils literal notranslate"><span class="pre">ModuleRequiresAccessFlags.ACC_SYNTHETIC</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.ModuleRequiresAccessFlags.ACC_MANDATED"><code class="docutils literal notranslate"><span class="pre">ModuleRequiresAccessFlags.ACC_MANDATED</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.ModuleExportsAccessFlags"><code class="docutils literal notranslate"><span class="pre">ModuleExportsAccessFlags</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.access_flags.ModuleExportsAccessFlags.ACC_SYNTHETIC"><code class="docutils literal notranslate"><span class="pre">ModuleExportsAccessFlags.ACC_SYNTHETIC</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.ModuleExportsAccessFlags.ACC_MANDATED"><code class="docutils literal notranslate"><span class="pre">ModuleExportsAccessFlags.ACC_MANDATED</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.ModuleOpensAccessFlags"><code class="docutils literal notranslate"><span class="pre">ModuleOpensAccessFlags</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.access_flags.ModuleOpensAccessFlags.ACC_SYNTHETIC"><code class="docutils literal notranslate"><span class="pre">ModuleOpensAccessFlags.ACC_SYNTHETIC</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.ModuleOpensAccessFlags.ACC_MANDATED"><code class="docutils literal notranslate"><span class="pre">ModuleOpensAccessFlags.ACC_MANDATED</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.list_flags"><code class="docutils literal notranslate"><span class="pre">list_flags()</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.Flags"><code class="docutils literal notranslate"><span class="pre">Flags()</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.access_flags.AccessFlags"><code class="docutils literal notranslate"><span class="pre">AccessFlags</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/documentation_options.js?v=8c5712d9"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../../_static/tabs.js?v=3ee01567"></script>
+    </body>
+</html>

@@ -1,0 +1,1160 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="1.2. Reconstruction of Swift Code" href="reconstruction.html" /><link rel="prev" title="1. Swift ABI" href="index.html" />
+
+    <!-- Generated with Sphinx 7.2.6 and Furo 2023.09.10 -->
+        <title>1.1. Metadata Values (Enums) - Umbrella 0.0.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Umbrella 0.0.4 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Umbrella 0.0.4 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Using this Library</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">API Concepts &amp; Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">List of ABI Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Components</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/runtime.html">Static Runtime</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/iterator.html">Iterators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/flags.html">Flags and FlagSet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/dump.html">Class-Dump</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/trailing_objects.html">Trailing Objects</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ABI Implementations</span></p>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">1. Swift ABI</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of 1. Swift ABI</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">1.1. Metadata Values (Enums)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reconstruction.html">1.2. Reconstruction of Swift Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reconstruction.html#protocols">1.3. Protocols</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../objc/index.html">2. Objective-C ABI</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../java/index.html">3. Java Class Files</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of 3. Java Class Files</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../java/access_flags.html">3.1.1. Access Flags (Enums)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../java/constant_pool.html">3.1.2. Constant Pool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../java/attribute.html">3.1.3. Attribute Types</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="metadata-values-enums">
+<span id="abi-swift-metadata-values"></span><h1><span class="section-number">1.1. </span>Metadata Values (Enums)<a class="headerlink" href="#metadata-values-enums" title="Link to this heading">#</a></h1>
+<p>This document covers all used enums and flags within the Swift ABI.</p>
+<section id="protocol-context">
+<h2><span class="section-number">1.1.1. </span>Protocol Context<a class="headerlink" href="#protocol-context" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.swift.ProtocolClassConstraint">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.swift.</span></span><span class="sig-name descname"><span class="pre">ProtocolClassConstraint</span></span><a class="reference internal" href="../../_modules/umbrella/swift/metadata_values.html#ProtocolClassConstraint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.swift.ProtocolClassConstraint" title="Link to this definition">#</a></dt>
+<dd><p>Flag that indicates whether an existential type is class-constrained or not.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.ProtocolClassConstraint.Class">
+<span class="sig-name descname"><span class="pre">Class</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#umbrella.swift.ProtocolClassConstraint.Class" title="Link to this definition">#</a></dt>
+<dd><p>The protocol is class-constrained, so only class types can conform to it.</p>
+<p>This must be 0 for ABI compatibility with Objective-C protocol_t records.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.ProtocolClassConstraint.Any">
+<span class="sig-name descname"><span class="pre">Any</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#umbrella.swift.ProtocolClassConstraint.Any" title="Link to this definition">#</a></dt>
+<dd><p>Any type can conform to the protocol.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.swift.SpecialProtocol">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.swift.</span></span><span class="sig-name descname"><span class="pre">SpecialProtocol</span></span><a class="reference internal" href="../../_modules/umbrella/swift/metadata_values.html#SpecialProtocol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.swift.SpecialProtocol" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.SpecialProtocol.NotSpecial">
+<span class="sig-name descname"><span class="pre">NotSpecial</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#umbrella.swift.SpecialProtocol.NotSpecial" title="Link to this definition">#</a></dt>
+<dd><p>Not a special protocol.</p>
+<p>This must be 0 for ABI compatibility with Objective-C protocol_t records.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.SpecialProtocol.Error">
+<span class="sig-name descname"><span class="pre">Error</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#umbrella.swift.SpecialProtocol.Error" title="Link to this definition">#</a></dt>
+<dd><p>The Error protocol.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.swift.ProtocolContextDescriptorFlags">
+<em class="property"><span class="pre">final</span><span class="w"> </span><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.swift.</span></span><span class="sig-name descname"><span class="pre">ProtocolContextDescriptorFlags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_FlagSet__flags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/umbrella/swift/metadata_values.html#ProtocolContextDescriptorFlags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.swift.ProtocolContextDescriptorFlags" title="Link to this definition">#</a></dt>
+<dd><p>Flags for protocol context descriptors. These values are used as the
+kindSpecificFlags of the <a class="reference internal" href="#umbrella.swift.ContextDescriptorFlags" title="umbrella.swift.ContextDescriptorFlags"><code class="xref py py-class docutils literal notranslate"><span class="pre">ContextDescriptorFlags</span></code></a> for the protocol.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="umbrella.swift.ProtocolContextDescriptorFlags.has_class_constraint">
+<span class="sig-name descname"><span class="pre">has_class_constraint</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#umbrella.swift.ProtocolClassConstraint" title="umbrella.swift.metadata_values.ProtocolClassConstraint"><span class="pre">ProtocolClassConstraint</span></a></span></span><a class="reference internal" href="../../_modules/umbrella/swift/metadata_values.html#ProtocolContextDescriptorFlags.has_class_constraint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.swift.ProtocolContextDescriptorFlags.has_class_constraint" title="Link to this definition">#</a></dt>
+<dd><p>Whether this protocol is class-constrained.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="umbrella.swift.ProtocolContextDescriptorFlags.is_resilient">
+<span class="sig-name descname"><span class="pre">is_resilient</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../_modules/umbrella/swift/metadata_values.html#ProtocolContextDescriptorFlags.is_resilient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.swift.ProtocolContextDescriptorFlags.is_resilient" title="Link to this definition">#</a></dt>
+<dd><p>Whether this protocol is resilient.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="umbrella.swift.ProtocolContextDescriptorFlags.get_special_protocol_kind">
+<span class="sig-name descname"><span class="pre">get_special_protocol_kind</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#umbrella.swift.SpecialProtocol" title="umbrella.swift.metadata_values.SpecialProtocol"><span class="pre">SpecialProtocol</span></a></span></span><a class="reference internal" href="../../_modules/umbrella/swift/metadata_values.html#ProtocolContextDescriptorFlags.get_special_protocol_kind"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.swift.ProtocolContextDescriptorFlags.get_special_protocol_kind" title="Link to this definition">#</a></dt>
+<dd><p>Special protocol value.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.swift.ProtocolRequirementKind">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.swift.</span></span><span class="sig-name descname"><span class="pre">ProtocolRequirementKind</span></span><a class="reference internal" href="../../_modules/umbrella/swift/metadata_values.html#ProtocolRequirementKind"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.swift.ProtocolRequirementKind" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.ProtocolRequirementKind.BaseProtocol">
+<span class="sig-name descname"><span class="pre">BaseProtocol</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#umbrella.swift.ProtocolRequirementKind.BaseProtocol" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.ProtocolRequirementKind.Method">
+<span class="sig-name descname"><span class="pre">Method</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#umbrella.swift.ProtocolRequirementKind.Method" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.ProtocolRequirementKind.Init">
+<span class="sig-name descname"><span class="pre">Init</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#umbrella.swift.ProtocolRequirementKind.Init" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.ProtocolRequirementKind.Getter">
+<span class="sig-name descname"><span class="pre">Getter</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#umbrella.swift.ProtocolRequirementKind.Getter" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.ProtocolRequirementKind.Setter">
+<span class="sig-name descname"><span class="pre">Setter</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#umbrella.swift.ProtocolRequirementKind.Setter" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.ProtocolRequirementKind.ReadCoroutine">
+<span class="sig-name descname"><span class="pre">ReadCoroutine</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#umbrella.swift.ProtocolRequirementKind.ReadCoroutine" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.ProtocolRequirementKind.ModifyCoroutine">
+<span class="sig-name descname"><span class="pre">ModifyCoroutine</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#umbrella.swift.ProtocolRequirementKind.ModifyCoroutine" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.ProtocolRequirementKind.AssociatedTypeAccessFunction">
+<span class="sig-name descname"><span class="pre">AssociatedTypeAccessFunction</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">7</span></em><a class="headerlink" href="#umbrella.swift.ProtocolRequirementKind.AssociatedTypeAccessFunction" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.ProtocolRequirementKind.AssociatedConformanceAccessFunction">
+<span class="sig-name descname"><span class="pre">AssociatedConformanceAccessFunction</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#umbrella.swift.ProtocolRequirementKind.AssociatedConformanceAccessFunction" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.swift.ProcolRequirementFlags">
+<em class="property"><span class="pre">final</span><span class="w"> </span><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.swift.</span></span><span class="sig-name descname"><span class="pre">ProcolRequirementFlags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_ProcolRequirementFlags__flags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/umbrella/swift/metadata_values.html#ProcolRequirementFlags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.swift.ProcolRequirementFlags" title="Link to this definition">#</a></dt>
+<dd><p>Flags that go in a ProtocolRequirement structure.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.ProcolRequirementFlags.kind">
+<span class="sig-name descname"><span class="pre">kind</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.swift.ProtocolRequirementKind" title="umbrella.swift.metadata_values.ProtocolRequirementKind"><span class="pre">ProtocolRequirementKind</span></a></em><a class="headerlink" href="#umbrella.swift.ProcolRequirementFlags.kind" title="Link to this definition">#</a></dt>
+<dd><p>The kind of the protocol requirement</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.ProcolRequirementFlags.instance">
+<span class="sig-name descname"><span class="pre">instance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#umbrella.swift.ProcolRequirementFlags.instance" title="Link to this definition">#</a></dt>
+<dd><p>whether the requirement is bound to an instance</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="metadata">
+<h2><span class="section-number">1.1.2. </span>Metadata<a class="headerlink" href="#metadata" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.swift.MetadataKind">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.swift.</span></span><span class="sig-name descname"><span class="pre">MetadataKind</span></span><a class="reference internal" href="../../_modules/umbrella/swift/metadata_values.html#MetadataKind"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.swift.MetadataKind" title="Link to this definition">#</a></dt>
+<dd><p>Kinds of Swift metadata records.  Some of these are types, some aren’t. (not a complete view)</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.MetadataKind.Class">
+<span class="sig-name descname"><span class="pre">Class</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#umbrella.swift.MetadataKind.Class" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.MetadataKind.Struct">
+<span class="sig-name descname"><span class="pre">Struct</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">512</span></em><a class="headerlink" href="#umbrella.swift.MetadataKind.Struct" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.MetadataKind.Enum">
+<span class="sig-name descname"><span class="pre">Enum</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">513</span></em><a class="headerlink" href="#umbrella.swift.MetadataKind.Enum" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.swift.MetadataInitializationKind">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.swift.</span></span><span class="sig-name descname"><span class="pre">MetadataInitializationKind</span></span><a class="reference internal" href="../../_modules/umbrella/swift/metadata_values.html#MetadataInitializationKind"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.swift.MetadataInitializationKind" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.MetadataInitializationKind.NoMetadataInitialization">
+<span class="sig-name descname"><span class="pre">NoMetadataInitialization</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#umbrella.swift.MetadataInitializationKind.NoMetadataInitialization" title="Link to this definition">#</a></dt>
+<dd><p>There are either no special rules for initializing the metadata
+or the metadata is generic.  (Genericity is set in the
+non-kind-specific descriptor flags.)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.MetadataInitializationKind.SingletonMetadataInitialization">
+<span class="sig-name descname"><span class="pre">SingletonMetadataInitialization</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#umbrella.swift.MetadataInitializationKind.SingletonMetadataInitialization" title="Link to this definition">#</a></dt>
+<dd><p>The type requires non-trivial singleton initialization using the
+“in-place” code pattern.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.MetadataInitializationKind.ForeignMetadataInitialization">
+<span class="sig-name descname"><span class="pre">ForeignMetadataInitialization</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#umbrella.swift.MetadataInitializationKind.ForeignMetadataInitialization" title="Link to this definition">#</a></dt>
+<dd><p>The type requires non-trivial singleton initialization using the
+“foreign” code pattern.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="generic-context">
+<h2><span class="section-number">1.1.3. </span>Generic Context<a class="headerlink" href="#generic-context" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.swift.GenericParamKind">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.swift.</span></span><span class="sig-name descname"><span class="pre">GenericParamKind</span></span><a class="reference internal" href="../../_modules/umbrella/swift/metadata_values.html#GenericParamKind"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.swift.GenericParamKind" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.GenericParamKind.Type">
+<span class="sig-name descname"><span class="pre">Type</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#umbrella.swift.GenericParamKind.Type" title="Link to this definition">#</a></dt>
+<dd><p>A type parameter.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.GenericParamKind.TypePack">
+<span class="sig-name descname"><span class="pre">TypePack</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#umbrella.swift.GenericParamKind.TypePack" title="Link to this definition">#</a></dt>
+<dd><p>A type parameter pack.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.GenericParamKind.Max">
+<span class="sig-name descname"><span class="pre">Max</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">63</span></em><a class="headerlink" href="#umbrella.swift.GenericParamKind.Max" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.swift.GenericPackKind">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.swift.</span></span><span class="sig-name descname"><span class="pre">GenericPackKind</span></span><a class="reference internal" href="../../_modules/umbrella/swift/metadata_values.html#GenericPackKind"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.swift.GenericPackKind" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.GenericPackKind.Metadata">
+<span class="sig-name descname"><span class="pre">Metadata</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#umbrella.swift.GenericPackKind.Metadata" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.GenericPackKind.WitnessTable">
+<span class="sig-name descname"><span class="pre">WitnessTable</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#umbrella.swift.GenericPackKind.WitnessTable" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.swift.GenericRequirementKind">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.swift.</span></span><span class="sig-name descname"><span class="pre">GenericRequirementKind</span></span><a class="reference internal" href="../../_modules/umbrella/swift/metadata_values.html#GenericRequirementKind"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.swift.GenericRequirementKind" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.GenericRequirementKind.Protocol">
+<span class="sig-name descname"><span class="pre">Protocol</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#umbrella.swift.GenericRequirementKind.Protocol" title="Link to this definition">#</a></dt>
+<dd><p>A protocol requirement.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.GenericRequirementKind.Sametype">
+<span class="sig-name descname"><span class="pre">Sametype</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#umbrella.swift.GenericRequirementKind.Sametype" title="Link to this definition">#</a></dt>
+<dd><p>A same-type requirement.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.GenericRequirementKind.Baseclass">
+<span class="sig-name descname"><span class="pre">Baseclass</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#umbrella.swift.GenericRequirementKind.Baseclass" title="Link to this definition">#</a></dt>
+<dd><p>A base class requirement.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.GenericRequirementKind.SameConformance">
+<span class="sig-name descname"><span class="pre">SameConformance</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#umbrella.swift.GenericRequirementKind.SameConformance" title="Link to this definition">#</a></dt>
+<dd><p>A “same-conformance” requirement, implied by a same-type or base-class
+constraint that binds a parameter with protocol requirements.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.GenericRequirementKind.SameShape">
+<span class="sig-name descname"><span class="pre">SameShape</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#umbrella.swift.GenericRequirementKind.SameShape" title="Link to this definition">#</a></dt>
+<dd><p>A same-shape requirement between generic parameter packs.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.GenericRequirementKind.Layout">
+<span class="sig-name descname"><span class="pre">Layout</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">31</span></em><a class="headerlink" href="#umbrella.swift.GenericRequirementKind.Layout" title="Link to this definition">#</a></dt>
+<dd><p>A layout constraint.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.swift.GenericRequirementFlags">
+<em class="property"><span class="pre">final</span><span class="w"> </span><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.swift.</span></span><span class="sig-name descname"><span class="pre">GenericRequirementFlags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_GenericRequirementFlags__flags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/umbrella/swift/metadata_values.html#GenericRequirementFlags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.swift.GenericRequirementFlags" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.GenericRequirementFlags.has_key_arg">
+<span class="sig-name descname"><span class="pre">has_key_arg</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#umbrella.swift.GenericRequirementFlags.has_key_arg" title="Link to this definition">#</a></dt>
+<dd><p>whether this requirement is a key argument</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.GenericRequirementFlags.kind">
+<span class="sig-name descname"><span class="pre">kind</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.swift.GenericRequirementKind" title="umbrella.swift.metadata_values.GenericRequirementKind"><span class="pre">GenericRequirementKind</span></a></em><a class="headerlink" href="#umbrella.swift.GenericRequirementFlags.kind" title="Link to this definition">#</a></dt>
+<dd><p>the kind of this requirment</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="context-descriptor">
+<h2><span class="section-number">1.1.4. </span>Context Descriptor<a class="headerlink" href="#context-descriptor" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.swift.ClassFlags">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.swift.</span></span><span class="sig-name descname"><span class="pre">ClassFlags</span></span><a class="reference internal" href="../../_modules/umbrella/swift/metadata_values.html#ClassFlags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.swift.ClassFlags" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.ClassFlags.IsSwiftPreStableABI">
+<span class="sig-name descname"><span class="pre">IsSwiftPreStableABI</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#umbrella.swift.ClassFlags.IsSwiftPreStableABI" title="Link to this definition">#</a></dt>
+<dd><p>Is this a Swift class from the Darwin pre-stable ABI?
+This bit is clear in stable ABI Swift classes.
+The Objective-C runtime also reads this bit.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.ClassFlags.UsesSwiftRefcounting">
+<span class="sig-name descname"><span class="pre">UsesSwiftRefcounting</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#umbrella.swift.ClassFlags.UsesSwiftRefcounting" title="Link to this definition">#</a></dt>
+<dd><p>Does this class use Swift refcounting?</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.ClassFlags.HasCustomObjCName">
+<span class="sig-name descname"><span class="pre">HasCustomObjCName</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#umbrella.swift.ClassFlags.HasCustomObjCName" title="Link to this definition">#</a></dt>
+<dd><p>Has this class a custom name, specified with the &#64;objc attribute?</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.ClassFlags.IsStaticSpecialization">
+<span class="sig-name descname"><span class="pre">IsStaticSpecialization</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#umbrella.swift.ClassFlags.IsStaticSpecialization" title="Link to this definition">#</a></dt>
+<dd><p>Whether this metadata is a specialization of a generic metadata pattern
+which was created during compilation.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.ClassFlags.IsCanonicalStaticSpecialization">
+<span class="sig-name descname"><span class="pre">IsCanonicalStaticSpecialization</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">16</span></em><a class="headerlink" href="#umbrella.swift.ClassFlags.IsCanonicalStaticSpecialization" title="Link to this definition">#</a></dt>
+<dd><p>Whether this metadata is a specialization of a generic metadata pattern
+which was created during compilation and made to be canonical by
+modifying the metadata accessor.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.swift.ExtraClassDescriptorFlags">
+<em class="property"><span class="pre">final</span><span class="w"> </span><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.swift.</span></span><span class="sig-name descname"><span class="pre">ExtraClassDescriptorFlags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_FlagSet__flags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/umbrella/swift/metadata_values.html#ExtraClassDescriptorFlags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.swift.ExtraClassDescriptorFlags" title="Link to this definition">#</a></dt>
+<dd><p>Extra flags for resilient classes, since we need more than 16 bits of
+flags there.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="umbrella.swift.ExtraClassDescriptorFlags.has_obj_c_resilient_class_stub">
+<span class="sig-name descname"><span class="pre">has_obj_c_resilient_class_stub</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../_modules/umbrella/swift/metadata_values.html#ExtraClassDescriptorFlags.has_obj_c_resilient_class_stub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.swift.ExtraClassDescriptorFlags.has_obj_c_resilient_class_stub" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.swift.TypeContextDescriptorFlags">
+<em class="property"><span class="pre">final</span><span class="w"> </span><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.swift.</span></span><span class="sig-name descname"><span class="pre">TypeContextDescriptorFlags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_TypeContextDescriptorFlags__flags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/umbrella/swift/metadata_values.html#TypeContextDescriptorFlags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.swift.TypeContextDescriptorFlags" title="Link to this definition">#</a></dt>
+<dd><p>Flags for nominal type context descriptors. These values are used as the
+kindSpecificFlags of the ContextDescriptorFlags for the type.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.TypeContextDescriptorFlags.has_vtable">
+<span class="sig-name descname"><span class="pre">has_vtable</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#umbrella.swift.TypeContextDescriptorFlags.has_vtable" title="Link to this definition">#</a></dt>
+<dd><p>Set if the context descriptor includes metadata for dynamically
+constructing a class’s vtables at metadata instantiation time.</p>
+<p>Only meaningful for class descriptors</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.TypeContextDescriptorFlags.has_override_table">
+<span class="sig-name descname"><span class="pre">has_override_table</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#umbrella.swift.TypeContextDescriptorFlags.has_override_table" title="Link to this definition">#</a></dt>
+<dd><p>Set if the context descriptor includes metadata for dynamically
+installing method overrides at metadata instantiation time.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.TypeContextDescriptorFlags.has_resilient_super_class">
+<span class="sig-name descname"><span class="pre">has_resilient_super_class</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#umbrella.swift.TypeContextDescriptorFlags.has_resilient_super_class" title="Link to this definition">#</a></dt>
+<dd><p>Set if the context descriptor is for a class with resilient ancestry.</p>
+<p>Only meaningful for class descriptors.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.TypeContextDescriptorFlags.immediate_members_negativ">
+<span class="sig-name descname"><span class="pre">immediate_members_negativ</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#umbrella.swift.TypeContextDescriptorFlags.immediate_members_negativ" title="Link to this definition">#</a></dt>
+<dd><p>Whether the immediate class members in this metadata are allocated
+at negative offsets.  For now, we don’t use this.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.TypeContextDescriptorFlags.resilient_superclass_reference_kind">
+<span class="sig-name descname"><span class="pre">resilient_superclass_reference_kind</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.swift.TypeReferenceKind" title="umbrella.swift.metadata_values.TypeReferenceKind"><span class="pre">TypeReferenceKind</span></a></em><a class="headerlink" href="#umbrella.swift.TypeContextDescriptorFlags.resilient_superclass_reference_kind" title="Link to this definition">#</a></dt>
+<dd><p>The kind of reference that this class makes to its resilient superclass
+descriptor.  A TypeReferenceKind.</p>
+<p>Only meaningful for class descriptors.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.TypeContextDescriptorFlags.has_import_info">
+<span class="sig-name descname"><span class="pre">has_import_info</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#umbrella.swift.TypeContextDescriptorFlags.has_import_info" title="Link to this definition">#</a></dt>
+<dd><p>Set if the type has extended import information.</p>
+<p>If true, a sequence of strings follow the null terminator in the
+descriptor, terminated by an empty string (i.e. by two null
+terminators in a row).  See TypeImportInfo for the details of
+these strings and the order in which they appear.</p>
+<p>Meaningful for all type-descriptor kinds.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.TypeContextDescriptorFlags.has_canonical_metadata_prespecializations">
+<span class="sig-name descname"><span class="pre">has_canonical_metadata_prespecializations</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#umbrella.swift.TypeContextDescriptorFlags.has_canonical_metadata_prespecializations" title="Link to this definition">#</a></dt>
+<dd><p>Set if the type descriptor has a pointer to a list of canonical
+prespecializations.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.TypeContextDescriptorFlags.has_layout_string">
+<span class="sig-name descname"><span class="pre">has_layout_string</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#umbrella.swift.TypeContextDescriptorFlags.has_layout_string" title="Link to this definition">#</a></dt>
+<dd><p>Set if the metadata contains a pointer to a layout string</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.TypeContextDescriptorFlags.is_actor">
+<span class="sig-name descname"><span class="pre">is_actor</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#umbrella.swift.TypeContextDescriptorFlags.is_actor" title="Link to this definition">#</a></dt>
+<dd><p>Set if the class is an actor.</p>
+<p>Only meaningful for class descriptors.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.TypeContextDescriptorFlags.is_default_actor">
+<span class="sig-name descname"><span class="pre">is_default_actor</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#umbrella.swift.TypeContextDescriptorFlags.is_default_actor" title="Link to this definition">#</a></dt>
+<dd><p>Set if the class is a default actor class.  Note that this is
+based on the best knowledge available to the class; actor
+classes with resilient superclassess might be default actors
+without knowing it.</p>
+<p>Only meaningful for class descriptors.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.TypeContextDescriptorFlags.meta_initialization">
+<span class="sig-name descname"><span class="pre">meta_initialization</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.swift.MetadataInitializationKind" title="umbrella.swift.metadata_values.MetadataInitializationKind"><span class="pre">MetadataInitializationKind</span></a></em><a class="headerlink" href="#umbrella.swift.TypeContextDescriptorFlags.meta_initialization" title="Link to this definition">#</a></dt>
+<dd><p>Whether there’s something unusual about how the metadata is
+initialized.</p>
+<p>Meaningful for all type-descriptor kinds.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.swift.ContextDescriptorKind">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.swift.</span></span><span class="sig-name descname"><span class="pre">ContextDescriptorKind</span></span><a class="reference internal" href="../../_modules/umbrella/swift/metadata_values.html#ContextDescriptorKind"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.swift.ContextDescriptorKind" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.ContextDescriptorKind.Module">
+<span class="sig-name descname"><span class="pre">Module</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#umbrella.swift.ContextDescriptorKind.Module" title="Link to this definition">#</a></dt>
+<dd><p>This context descriptor represents a module.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.ContextDescriptorKind.Extension">
+<span class="sig-name descname"><span class="pre">Extension</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#umbrella.swift.ContextDescriptorKind.Extension" title="Link to this definition">#</a></dt>
+<dd><p>This context descriptor represents an extension.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.ContextDescriptorKind.Anonymous">
+<span class="sig-name descname"><span class="pre">Anonymous</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#umbrella.swift.ContextDescriptorKind.Anonymous" title="Link to this definition">#</a></dt>
+<dd><p>This context descriptor represents an anonymous possibly-generic context
+such as a function body.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.ContextDescriptorKind.Protocol">
+<span class="sig-name descname"><span class="pre">Protocol</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#umbrella.swift.ContextDescriptorKind.Protocol" title="Link to this definition">#</a></dt>
+<dd><p>This context descriptor represents a protocol context.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.ContextDescriptorKind.Opaque">
+<span class="sig-name descname"><span class="pre">Opaque</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#umbrella.swift.ContextDescriptorKind.Opaque" title="Link to this definition">#</a></dt>
+<dd><p>This context descriptor represents an opaque type alias.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.ContextDescriptorKind.Class">
+<span class="sig-name descname"><span class="pre">Class</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">16</span></em><a class="headerlink" href="#umbrella.swift.ContextDescriptorKind.Class" title="Link to this definition">#</a></dt>
+<dd><p>This context descriptor represents a class.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.ContextDescriptorKind.Struct">
+<span class="sig-name descname"><span class="pre">Struct</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">17</span></em><a class="headerlink" href="#umbrella.swift.ContextDescriptorKind.Struct" title="Link to this definition">#</a></dt>
+<dd><p>This context descriptor represents a struct.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.ContextDescriptorKind.Enum">
+<span class="sig-name descname"><span class="pre">Enum</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">18</span></em><a class="headerlink" href="#umbrella.swift.ContextDescriptorKind.Enum" title="Link to this definition">#</a></dt>
+<dd><p>This context descriptor represents an enum.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.ContextDescriptorKind.Type_Last">
+<span class="sig-name descname"><span class="pre">Type_Last</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">31</span></em><a class="headerlink" href="#umbrella.swift.ContextDescriptorKind.Type_Last" title="Link to this definition">#</a></dt>
+<dd><p>Last kind that represents a type of any sort.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.swift.AnonymousContextDescriptorFlags">
+<em class="property"><span class="pre">final</span><span class="w"> </span><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.swift.</span></span><span class="sig-name descname"><span class="pre">AnonymousContextDescriptorFlags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_AnonymousContextDescriptorFlags__flags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/umbrella/swift/metadata_values.html#AnonymousContextDescriptorFlags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.swift.AnonymousContextDescriptorFlags" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.AnonymousContextDescriptorFlags.has_mangled_name">
+<span class="sig-name descname"><span class="pre">has_mangled_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#umbrella.swift.AnonymousContextDescriptorFlags.has_mangled_name" title="Link to this definition">#</a></dt>
+<dd><p>Whether this anonymous context descriptor is followed by its
+mangled name, which can be used to match the descriptor at runtime.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.swift.ContextDescriptorFlags">
+<em class="property"><span class="pre">final</span><span class="w"> </span><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.swift.</span></span><span class="sig-name descname"><span class="pre">ContextDescriptorFlags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_ContextDescriptorFlags__flags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/umbrella/swift/metadata_values.html#ContextDescriptorFlags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.swift.ContextDescriptorFlags" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="other-enums">
+<h2><span class="section-number">1.1.5. </span>Other Enums<a class="headerlink" href="#other-enums" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.swift.TypeReferenceKind">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.swift.</span></span><span class="sig-name descname"><span class="pre">TypeReferenceKind</span></span><a class="reference internal" href="../../_modules/umbrella/swift/metadata_values.html#TypeReferenceKind"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.swift.TypeReferenceKind" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.TypeReferenceKind.DirectTypeDescriptor">
+<span class="sig-name descname"><span class="pre">DirectTypeDescriptor</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#umbrella.swift.TypeReferenceKind.DirectTypeDescriptor" title="Link to this definition">#</a></dt>
+<dd><p>The conformance is for a nominal type referenced directly;
+getTypeDescriptor() points to the type context descriptor.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.TypeReferenceKind.IndirectTypeDescriptor">
+<span class="sig-name descname"><span class="pre">IndirectTypeDescriptor</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#umbrella.swift.TypeReferenceKind.IndirectTypeDescriptor" title="Link to this definition">#</a></dt>
+<dd><p>The conformance is for a nominal type referenced indirectly;
+getTypeDescriptor() points to the type context descriptor.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.TypeReferenceKind.DirectObjCClassName">
+<span class="sig-name descname"><span class="pre">DirectObjCClassName</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#umbrella.swift.TypeReferenceKind.DirectObjCClassName" title="Link to this definition">#</a></dt>
+<dd><p>The conformance is for an Objective-C class that should be looked up
+by class name.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.TypeReferenceKind.IndirectObjCClass">
+<span class="sig-name descname"><span class="pre">IndirectObjCClass</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#umbrella.swift.TypeReferenceKind.IndirectObjCClass" title="Link to this definition">#</a></dt>
+<dd><p>The conformance is for an Objective-C class that has no nominal type
+descriptor.
+getIndirectObjCClass() points to a variable that contains the pointer to
+the class object, which then requires a runtime call to get metadata.</p>
+<p>On platforms without Objective-C interoperability, this case is
+unused.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.swift.MethodDescriptorKind">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.swift.</span></span><span class="sig-name descname"><span class="pre">MethodDescriptorKind</span></span><a class="reference internal" href="../../_modules/umbrella/swift/metadata_values.html#MethodDescriptorKind"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.swift.MethodDescriptorKind" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.MethodDescriptorKind.Method">
+<span class="sig-name descname"><span class="pre">Method</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#umbrella.swift.MethodDescriptorKind.Method" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.MethodDescriptorKind.Init">
+<span class="sig-name descname"><span class="pre">Init</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#umbrella.swift.MethodDescriptorKind.Init" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.MethodDescriptorKind.Getter">
+<span class="sig-name descname"><span class="pre">Getter</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#umbrella.swift.MethodDescriptorKind.Getter" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.MethodDescriptorKind.Setter">
+<span class="sig-name descname"><span class="pre">Setter</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#umbrella.swift.MethodDescriptorKind.Setter" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.MethodDescriptorKind.ModifyCoroutine">
+<span class="sig-name descname"><span class="pre">ModifyCoroutine</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#umbrella.swift.MethodDescriptorKind.ModifyCoroutine" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.MethodDescriptorKind.ReadCoroutine">
+<span class="sig-name descname"><span class="pre">ReadCoroutine</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#umbrella.swift.MethodDescriptorKind.ReadCoroutine" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.swift.MethodDescriptorFlags">
+<em class="property"><span class="pre">final</span><span class="w"> </span><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.swift.</span></span><span class="sig-name descname"><span class="pre">MethodDescriptorFlags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_MethodDescriptorFlags__flags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/umbrella/swift/metadata_values.html#MethodDescriptorFlags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.swift.MethodDescriptorFlags" title="Link to this definition">#</a></dt>
+<dd><p>Flags that go in a MethodDescriptor structure.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.MethodDescriptorFlags.dynamic">
+<span class="sig-name descname"><span class="pre">dynamic</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#umbrella.swift.MethodDescriptorFlags.dynamic" title="Link to this definition">#</a></dt>
+<dd><p>Is the method marked ‘dynamic’?</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.MethodDescriptorFlags.instance">
+<span class="sig-name descname"><span class="pre">instance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#umbrella.swift.MethodDescriptorFlags.instance" title="Link to this definition">#</a></dt>
+<dd><p>Is the method an instance member?
+Note that ‘init’ is not considered an instance member.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="umbrella.swift.MethodDescriptorFlags.get_kind_name">
+<span class="sig-name descname"><span class="pre">get_kind_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../_modules/umbrella/swift/metadata_values.html#MethodDescriptorFlags.get_kind_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.swift.MethodDescriptorFlags.get_kind_name" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.swift.FieldDescriptorKind">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.swift.</span></span><span class="sig-name descname"><span class="pre">FieldDescriptorKind</span></span><a class="reference internal" href="../../_modules/umbrella/swift/metadata_values.html#FieldDescriptorKind"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.swift.FieldDescriptorKind" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.FieldDescriptorKind.Struct">
+<span class="sig-name descname"><span class="pre">Struct</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#umbrella.swift.FieldDescriptorKind.Struct" title="Link to this definition">#</a></dt>
+<dd><p>Swift nominal types.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.FieldDescriptorKind.Class">
+<span class="sig-name descname"><span class="pre">Class</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#umbrella.swift.FieldDescriptorKind.Class" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.FieldDescriptorKind.Enum">
+<span class="sig-name descname"><span class="pre">Enum</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#umbrella.swift.FieldDescriptorKind.Enum" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.FieldDescriptorKind.MultiPayloadEnum">
+<span class="sig-name descname"><span class="pre">MultiPayloadEnum</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#umbrella.swift.FieldDescriptorKind.MultiPayloadEnum" title="Link to this definition">#</a></dt>
+<dd><p>Fixed-size multi-payload enums have a special descriptor format that
+encodes spare bits.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.FieldDescriptorKind.Protocol">
+<span class="sig-name descname"><span class="pre">Protocol</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#umbrella.swift.FieldDescriptorKind.Protocol" title="Link to this definition">#</a></dt>
+<dd><p>A Swift opaque protocol. There are no fields, just a record for the
+type itself.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.FieldDescriptorKind.ClassProtocol">
+<span class="sig-name descname"><span class="pre">ClassProtocol</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#umbrella.swift.FieldDescriptorKind.ClassProtocol" title="Link to this definition">#</a></dt>
+<dd><p>A Swift class-bound protocol.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.FieldDescriptorKind.ObjCProtocol">
+<span class="sig-name descname"><span class="pre">ObjCProtocol</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#umbrella.swift.FieldDescriptorKind.ObjCProtocol" title="Link to this definition">#</a></dt>
+<dd><p>An Objective-C protocol, which may be imported or defined in Swift.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.FieldDescriptorKind.ObjCClass">
+<span class="sig-name descname"><span class="pre">ObjCClass</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">7</span></em><a class="headerlink" href="#umbrella.swift.FieldDescriptorKind.ObjCClass" title="Link to this definition">#</a></dt>
+<dd><p>An Objective-C class, which may be imported or defined in Swift.
+In the former case, field type metadata is not emitted, and
+must be obtained from the Objective-C runtime.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.swift.FieldRecordFlags">
+<em class="property"><span class="pre">final</span><span class="w"> </span><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.swift.</span></span><span class="sig-name descname"><span class="pre">FieldRecordFlags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_FieldRecordFlags__flags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/umbrella/swift/metadata_values.html#FieldRecordFlags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.swift.FieldRecordFlags" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.FieldRecordFlags.is_var">
+<span class="sig-name descname"><span class="pre">is_var</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#umbrella.swift.FieldRecordFlags.is_var" title="Link to this definition">#</a></dt>
+<dd><p>Is this a mutable <cite>var</cite> property?</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.FieldRecordFlags.is_indirect_case">
+<span class="sig-name descname"><span class="pre">is_indirect_case</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#umbrella.swift.FieldRecordFlags.is_indirect_case" title="Link to this definition">#</a></dt>
+<dd><p>Is this an indirect enum case?</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.swift.FieldRecordFlags.is_artificial">
+<span class="sig-name descname"><span class="pre">is_artificial</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#umbrella.swift.FieldRecordFlags.is_artificial" title="Link to this definition">#</a></dt>
+<dd><p>Is this an artificial field?</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="reconstruction.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title"><span class="section-number">1.2. </span>Reconstruction of Swift Code</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title"><span class="section-number">1. </span>Swift ABI</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, MatrixEditor
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">1.1. Metadata Values (Enums)</a><ul>
+<li><a class="reference internal" href="#protocol-context">1.1.1. Protocol Context</a><ul>
+<li><a class="reference internal" href="#umbrella.swift.ProtocolClassConstraint"><code class="docutils literal notranslate"><span class="pre">ProtocolClassConstraint</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.swift.ProtocolClassConstraint.Class"><code class="docutils literal notranslate"><span class="pre">ProtocolClassConstraint.Class</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.ProtocolClassConstraint.Any"><code class="docutils literal notranslate"><span class="pre">ProtocolClassConstraint.Any</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.swift.SpecialProtocol"><code class="docutils literal notranslate"><span class="pre">SpecialProtocol</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.swift.SpecialProtocol.NotSpecial"><code class="docutils literal notranslate"><span class="pre">SpecialProtocol.NotSpecial</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.SpecialProtocol.Error"><code class="docutils literal notranslate"><span class="pre">SpecialProtocol.Error</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.swift.ProtocolContextDescriptorFlags"><code class="docutils literal notranslate"><span class="pre">ProtocolContextDescriptorFlags</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.swift.ProtocolContextDescriptorFlags.has_class_constraint"><code class="docutils literal notranslate"><span class="pre">ProtocolContextDescriptorFlags.has_class_constraint()</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.ProtocolContextDescriptorFlags.is_resilient"><code class="docutils literal notranslate"><span class="pre">ProtocolContextDescriptorFlags.is_resilient()</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.ProtocolContextDescriptorFlags.get_special_protocol_kind"><code class="docutils literal notranslate"><span class="pre">ProtocolContextDescriptorFlags.get_special_protocol_kind()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.swift.ProtocolRequirementKind"><code class="docutils literal notranslate"><span class="pre">ProtocolRequirementKind</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.swift.ProtocolRequirementKind.BaseProtocol"><code class="docutils literal notranslate"><span class="pre">ProtocolRequirementKind.BaseProtocol</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.ProtocolRequirementKind.Method"><code class="docutils literal notranslate"><span class="pre">ProtocolRequirementKind.Method</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.ProtocolRequirementKind.Init"><code class="docutils literal notranslate"><span class="pre">ProtocolRequirementKind.Init</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.ProtocolRequirementKind.Getter"><code class="docutils literal notranslate"><span class="pre">ProtocolRequirementKind.Getter</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.ProtocolRequirementKind.Setter"><code class="docutils literal notranslate"><span class="pre">ProtocolRequirementKind.Setter</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.ProtocolRequirementKind.ReadCoroutine"><code class="docutils literal notranslate"><span class="pre">ProtocolRequirementKind.ReadCoroutine</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.ProtocolRequirementKind.ModifyCoroutine"><code class="docutils literal notranslate"><span class="pre">ProtocolRequirementKind.ModifyCoroutine</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.ProtocolRequirementKind.AssociatedTypeAccessFunction"><code class="docutils literal notranslate"><span class="pre">ProtocolRequirementKind.AssociatedTypeAccessFunction</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.ProtocolRequirementKind.AssociatedConformanceAccessFunction"><code class="docutils literal notranslate"><span class="pre">ProtocolRequirementKind.AssociatedConformanceAccessFunction</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.swift.ProcolRequirementFlags"><code class="docutils literal notranslate"><span class="pre">ProcolRequirementFlags</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.swift.ProcolRequirementFlags.kind"><code class="docutils literal notranslate"><span class="pre">ProcolRequirementFlags.kind</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.ProcolRequirementFlags.instance"><code class="docutils literal notranslate"><span class="pre">ProcolRequirementFlags.instance</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#metadata">1.1.2. Metadata</a><ul>
+<li><a class="reference internal" href="#umbrella.swift.MetadataKind"><code class="docutils literal notranslate"><span class="pre">MetadataKind</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.swift.MetadataKind.Class"><code class="docutils literal notranslate"><span class="pre">MetadataKind.Class</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.MetadataKind.Struct"><code class="docutils literal notranslate"><span class="pre">MetadataKind.Struct</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.MetadataKind.Enum"><code class="docutils literal notranslate"><span class="pre">MetadataKind.Enum</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.swift.MetadataInitializationKind"><code class="docutils literal notranslate"><span class="pre">MetadataInitializationKind</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.swift.MetadataInitializationKind.NoMetadataInitialization"><code class="docutils literal notranslate"><span class="pre">MetadataInitializationKind.NoMetadataInitialization</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.MetadataInitializationKind.SingletonMetadataInitialization"><code class="docutils literal notranslate"><span class="pre">MetadataInitializationKind.SingletonMetadataInitialization</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.MetadataInitializationKind.ForeignMetadataInitialization"><code class="docutils literal notranslate"><span class="pre">MetadataInitializationKind.ForeignMetadataInitialization</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#generic-context">1.1.3. Generic Context</a><ul>
+<li><a class="reference internal" href="#umbrella.swift.GenericParamKind"><code class="docutils literal notranslate"><span class="pre">GenericParamKind</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.swift.GenericParamKind.Type"><code class="docutils literal notranslate"><span class="pre">GenericParamKind.Type</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.GenericParamKind.TypePack"><code class="docutils literal notranslate"><span class="pre">GenericParamKind.TypePack</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.GenericParamKind.Max"><code class="docutils literal notranslate"><span class="pre">GenericParamKind.Max</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.swift.GenericPackKind"><code class="docutils literal notranslate"><span class="pre">GenericPackKind</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.swift.GenericPackKind.Metadata"><code class="docutils literal notranslate"><span class="pre">GenericPackKind.Metadata</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.GenericPackKind.WitnessTable"><code class="docutils literal notranslate"><span class="pre">GenericPackKind.WitnessTable</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.swift.GenericRequirementKind"><code class="docutils literal notranslate"><span class="pre">GenericRequirementKind</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.swift.GenericRequirementKind.Protocol"><code class="docutils literal notranslate"><span class="pre">GenericRequirementKind.Protocol</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.GenericRequirementKind.Sametype"><code class="docutils literal notranslate"><span class="pre">GenericRequirementKind.Sametype</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.GenericRequirementKind.Baseclass"><code class="docutils literal notranslate"><span class="pre">GenericRequirementKind.Baseclass</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.GenericRequirementKind.SameConformance"><code class="docutils literal notranslate"><span class="pre">GenericRequirementKind.SameConformance</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.GenericRequirementKind.SameShape"><code class="docutils literal notranslate"><span class="pre">GenericRequirementKind.SameShape</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.GenericRequirementKind.Layout"><code class="docutils literal notranslate"><span class="pre">GenericRequirementKind.Layout</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.swift.GenericRequirementFlags"><code class="docutils literal notranslate"><span class="pre">GenericRequirementFlags</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.swift.GenericRequirementFlags.has_key_arg"><code class="docutils literal notranslate"><span class="pre">GenericRequirementFlags.has_key_arg</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.GenericRequirementFlags.kind"><code class="docutils literal notranslate"><span class="pre">GenericRequirementFlags.kind</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#context-descriptor">1.1.4. Context Descriptor</a><ul>
+<li><a class="reference internal" href="#umbrella.swift.ClassFlags"><code class="docutils literal notranslate"><span class="pre">ClassFlags</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.swift.ClassFlags.IsSwiftPreStableABI"><code class="docutils literal notranslate"><span class="pre">ClassFlags.IsSwiftPreStableABI</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.ClassFlags.UsesSwiftRefcounting"><code class="docutils literal notranslate"><span class="pre">ClassFlags.UsesSwiftRefcounting</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.ClassFlags.HasCustomObjCName"><code class="docutils literal notranslate"><span class="pre">ClassFlags.HasCustomObjCName</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.ClassFlags.IsStaticSpecialization"><code class="docutils literal notranslate"><span class="pre">ClassFlags.IsStaticSpecialization</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.ClassFlags.IsCanonicalStaticSpecialization"><code class="docutils literal notranslate"><span class="pre">ClassFlags.IsCanonicalStaticSpecialization</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.swift.ExtraClassDescriptorFlags"><code class="docutils literal notranslate"><span class="pre">ExtraClassDescriptorFlags</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.swift.ExtraClassDescriptorFlags.has_obj_c_resilient_class_stub"><code class="docutils literal notranslate"><span class="pre">ExtraClassDescriptorFlags.has_obj_c_resilient_class_stub()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.swift.TypeContextDescriptorFlags"><code class="docutils literal notranslate"><span class="pre">TypeContextDescriptorFlags</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.swift.TypeContextDescriptorFlags.has_vtable"><code class="docutils literal notranslate"><span class="pre">TypeContextDescriptorFlags.has_vtable</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.TypeContextDescriptorFlags.has_override_table"><code class="docutils literal notranslate"><span class="pre">TypeContextDescriptorFlags.has_override_table</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.TypeContextDescriptorFlags.has_resilient_super_class"><code class="docutils literal notranslate"><span class="pre">TypeContextDescriptorFlags.has_resilient_super_class</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.TypeContextDescriptorFlags.immediate_members_negativ"><code class="docutils literal notranslate"><span class="pre">TypeContextDescriptorFlags.immediate_members_negativ</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.TypeContextDescriptorFlags.resilient_superclass_reference_kind"><code class="docutils literal notranslate"><span class="pre">TypeContextDescriptorFlags.resilient_superclass_reference_kind</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.TypeContextDescriptorFlags.has_import_info"><code class="docutils literal notranslate"><span class="pre">TypeContextDescriptorFlags.has_import_info</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.TypeContextDescriptorFlags.has_canonical_metadata_prespecializations"><code class="docutils literal notranslate"><span class="pre">TypeContextDescriptorFlags.has_canonical_metadata_prespecializations</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.TypeContextDescriptorFlags.has_layout_string"><code class="docutils literal notranslate"><span class="pre">TypeContextDescriptorFlags.has_layout_string</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.TypeContextDescriptorFlags.is_actor"><code class="docutils literal notranslate"><span class="pre">TypeContextDescriptorFlags.is_actor</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.TypeContextDescriptorFlags.is_default_actor"><code class="docutils literal notranslate"><span class="pre">TypeContextDescriptorFlags.is_default_actor</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.TypeContextDescriptorFlags.meta_initialization"><code class="docutils literal notranslate"><span class="pre">TypeContextDescriptorFlags.meta_initialization</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.swift.ContextDescriptorKind"><code class="docutils literal notranslate"><span class="pre">ContextDescriptorKind</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.swift.ContextDescriptorKind.Module"><code class="docutils literal notranslate"><span class="pre">ContextDescriptorKind.Module</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.ContextDescriptorKind.Extension"><code class="docutils literal notranslate"><span class="pre">ContextDescriptorKind.Extension</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.ContextDescriptorKind.Anonymous"><code class="docutils literal notranslate"><span class="pre">ContextDescriptorKind.Anonymous</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.ContextDescriptorKind.Protocol"><code class="docutils literal notranslate"><span class="pre">ContextDescriptorKind.Protocol</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.ContextDescriptorKind.Opaque"><code class="docutils literal notranslate"><span class="pre">ContextDescriptorKind.Opaque</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.ContextDescriptorKind.Class"><code class="docutils literal notranslate"><span class="pre">ContextDescriptorKind.Class</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.ContextDescriptorKind.Struct"><code class="docutils literal notranslate"><span class="pre">ContextDescriptorKind.Struct</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.ContextDescriptorKind.Enum"><code class="docutils literal notranslate"><span class="pre">ContextDescriptorKind.Enum</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.ContextDescriptorKind.Type_Last"><code class="docutils literal notranslate"><span class="pre">ContextDescriptorKind.Type_Last</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.swift.AnonymousContextDescriptorFlags"><code class="docutils literal notranslate"><span class="pre">AnonymousContextDescriptorFlags</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.swift.AnonymousContextDescriptorFlags.has_mangled_name"><code class="docutils literal notranslate"><span class="pre">AnonymousContextDescriptorFlags.has_mangled_name</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.swift.ContextDescriptorFlags"><code class="docutils literal notranslate"><span class="pre">ContextDescriptorFlags</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#other-enums">1.1.5. Other Enums</a><ul>
+<li><a class="reference internal" href="#umbrella.swift.TypeReferenceKind"><code class="docutils literal notranslate"><span class="pre">TypeReferenceKind</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.swift.TypeReferenceKind.DirectTypeDescriptor"><code class="docutils literal notranslate"><span class="pre">TypeReferenceKind.DirectTypeDescriptor</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.TypeReferenceKind.IndirectTypeDescriptor"><code class="docutils literal notranslate"><span class="pre">TypeReferenceKind.IndirectTypeDescriptor</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.TypeReferenceKind.DirectObjCClassName"><code class="docutils literal notranslate"><span class="pre">TypeReferenceKind.DirectObjCClassName</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.TypeReferenceKind.IndirectObjCClass"><code class="docutils literal notranslate"><span class="pre">TypeReferenceKind.IndirectObjCClass</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.swift.MethodDescriptorKind"><code class="docutils literal notranslate"><span class="pre">MethodDescriptorKind</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.swift.MethodDescriptorKind.Method"><code class="docutils literal notranslate"><span class="pre">MethodDescriptorKind.Method</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.MethodDescriptorKind.Init"><code class="docutils literal notranslate"><span class="pre">MethodDescriptorKind.Init</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.MethodDescriptorKind.Getter"><code class="docutils literal notranslate"><span class="pre">MethodDescriptorKind.Getter</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.MethodDescriptorKind.Setter"><code class="docutils literal notranslate"><span class="pre">MethodDescriptorKind.Setter</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.MethodDescriptorKind.ModifyCoroutine"><code class="docutils literal notranslate"><span class="pre">MethodDescriptorKind.ModifyCoroutine</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.MethodDescriptorKind.ReadCoroutine"><code class="docutils literal notranslate"><span class="pre">MethodDescriptorKind.ReadCoroutine</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.swift.MethodDescriptorFlags"><code class="docutils literal notranslate"><span class="pre">MethodDescriptorFlags</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.swift.MethodDescriptorFlags.dynamic"><code class="docutils literal notranslate"><span class="pre">MethodDescriptorFlags.dynamic</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.MethodDescriptorFlags.instance"><code class="docutils literal notranslate"><span class="pre">MethodDescriptorFlags.instance</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.MethodDescriptorFlags.get_kind_name"><code class="docutils literal notranslate"><span class="pre">MethodDescriptorFlags.get_kind_name()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.swift.FieldDescriptorKind"><code class="docutils literal notranslate"><span class="pre">FieldDescriptorKind</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.swift.FieldDescriptorKind.Struct"><code class="docutils literal notranslate"><span class="pre">FieldDescriptorKind.Struct</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.FieldDescriptorKind.Class"><code class="docutils literal notranslate"><span class="pre">FieldDescriptorKind.Class</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.FieldDescriptorKind.Enum"><code class="docutils literal notranslate"><span class="pre">FieldDescriptorKind.Enum</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.FieldDescriptorKind.MultiPayloadEnum"><code class="docutils literal notranslate"><span class="pre">FieldDescriptorKind.MultiPayloadEnum</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.FieldDescriptorKind.Protocol"><code class="docutils literal notranslate"><span class="pre">FieldDescriptorKind.Protocol</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.FieldDescriptorKind.ClassProtocol"><code class="docutils literal notranslate"><span class="pre">FieldDescriptorKind.ClassProtocol</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.FieldDescriptorKind.ObjCProtocol"><code class="docutils literal notranslate"><span class="pre">FieldDescriptorKind.ObjCProtocol</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.FieldDescriptorKind.ObjCClass"><code class="docutils literal notranslate"><span class="pre">FieldDescriptorKind.ObjCClass</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.swift.FieldRecordFlags"><code class="docutils literal notranslate"><span class="pre">FieldRecordFlags</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.swift.FieldRecordFlags.is_var"><code class="docutils literal notranslate"><span class="pre">FieldRecordFlags.is_var</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.FieldRecordFlags.is_indirect_case"><code class="docutils literal notranslate"><span class="pre">FieldRecordFlags.is_indirect_case</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.swift.FieldRecordFlags.is_artificial"><code class="docutils literal notranslate"><span class="pre">FieldRecordFlags.is_artificial</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/documentation_options.js?v=8c5712d9"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../../_static/tabs.js?v=3ee01567"></script>
+    </body>
+</html>

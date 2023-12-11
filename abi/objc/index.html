@@ -1,0 +1,1279 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="3. Java Class Files" href="../java/index.html" /><link rel="prev" title="1.2. Reconstruction of Swift Code" href="../swift/reconstruction.html" />
+
+    <!-- Generated with Sphinx 7.2.6 and Furo 2023.09.10 -->
+        <title>2. Objective-C ABI - Umbrella 0.0.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Umbrella 0.0.4 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Umbrella 0.0.4 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Using this Library</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">API Concepts &amp; Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">List of ABI Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Components</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/runtime.html">Static Runtime</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/iterator.html">Iterators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/flags.html">Flags and FlagSet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/dump.html">Class-Dump</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/trailing_objects.html">Trailing Objects</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ABI Implementations</span></p>
+<ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../swift/index.html">1. Swift ABI</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of 1. Swift ABI</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../swift/metadata_values.html">1.1. Metadata Values (Enums)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../swift/reconstruction.html">1.2. Reconstruction of Swift Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../swift/reconstruction.html#protocols">1.3. Protocols</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">2. Objective-C ABI</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../java/index.html">3. Java Class Files</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of 3. Java Class Files</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../java/access_flags.html">3.1.1. Access Flags (Enums)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../java/constant_pool.html">3.1.2. Constant Pool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../java/attribute.html">3.1.3. Attribute Types</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="objective-c-abi">
+<span id="abi-objc"></span><h1><span class="section-number">2. </span>Objective-C ABI<a class="headerlink" href="#objective-c-abi" title="Link to this heading">#</a></h1>
+<p>The following sections are going to introduce the Objective-C binary structure with
+its binary sections and structs. As each struct definition is mapped to an actual Python
+class, they will be displayed together. Furthermore, this ABI implementation explicitly
+supports 32-bit and 64-bit binaries - the struct will be chosen according to the currently
+used binary.</p>
+<p>To get more information about the type encoding used by Apple in Objective-C binaries,
+please refer to their website: <a class="reference external" href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html">Type Encodings</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All classes documented here will refer to a 64-bit architecture binary if both 64-bit
+and 32-bit structures don’t differ in the number of their fields (only pointer size has
+changed). For a list of annotated types, please refer to <a class="reference internal" href="../../api/runtime.html#runtime-types"><span class="std std-ref">Types</span></a>.</p>
+</div>
+<section id="objects">
+<h2><span class="section-number">2.1. </span>Objects<a class="headerlink" href="#objects" title="Link to this heading">#</a></h2>
+<p>The base for all Objective-C structs that can be instantiated will be the <code class="xref py py-class docutils literal notranslate"><span class="pre">TargetObjCObjectRaw64</span></code>
+and <code class="xref py py-class docutils literal notranslate"><span class="pre">TargetObjCObjectRaw32</span></code>. Structs extending an Objective-C object structure
+store a pointer to the class/protocol or category definition of which the object of this
+struct is an instance (also known as an <em>isa</em> pointer). For instance, the protocol A will
+store a reference to the protocol class A which stores class-level properties and
+methods.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.objc.TargetObjCObjectRaw64">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.objc.</span></span><span class="sig-name descname"><span class="pre">TargetObjCObjectRaw64</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">isa_storage</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/umbrella/objc/structs.html#TargetObjCObjectRaw64"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.objc.TargetObjCObjectRaw64" title="Link to this definition">#</a></dt>
+<dd><p>Base struct for all definitions that may store a class definition.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetObjCObjectRaw64.isa_storage">
+<span class="sig-name descname"><span class="pre">isa_storage</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uintptr_t</span></em><a class="headerlink" href="#umbrella.objc.TargetObjCObjectRaw64.isa_storage" title="Link to this definition">#</a></dt>
+<dd><p>Class storage or pointer</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="classes">
+<h2><span class="section-number">2.2. </span>Classes<a class="headerlink" href="#classes" title="Link to this heading">#</a></h2>
+<p>According to Apple’s developer documentation, “a class describes the behavior and
+properties common to any particular type of object”. <a class="footnote-reference brackets" href="#f1" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> They can be defined as blueprints
+for actual objects. Internally, classes first define their super class, cache, an
+optional vtable and their data as references with pointers.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.objc.TargetObjCClassRaw64">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.objc.</span></span><span class="sig-name descname"><span class="pre">TargetObjCClassRaw64</span></span><a class="reference internal" href="../../_modules/umbrella/objc/structs.html#TargetObjCClassRaw64"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.objc.TargetObjCClassRaw64" title="Link to this definition">#</a></dt>
+<dd><p>The basic structure of Objective-C class interfaces.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetObjCClassRaw64.superclass">
+<span class="sig-name descname"><span class="pre">superclass</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uintptr_t</span></em><a class="headerlink" href="#umbrella.objc.TargetObjCClassRaw64.superclass" title="Link to this definition">#</a></dt>
+<dd><p>The super class of this Objective-C class interface.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetObjCClassRaw64.cache">
+<span class="sig-name descname"><span class="pre">cache</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uintptr_t</span></em><a class="headerlink" href="#umbrella.objc.TargetObjCClassRaw64.cache" title="Link to this definition">#</a></dt>
+<dd><p>Internal cache pointer (unused)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetObjCClassRaw64.vtable">
+<span class="sig-name descname"><span class="pre">vtable</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uintptr_t</span></em><a class="headerlink" href="#umbrella.objc.TargetObjCClassRaw64.vtable" title="Link to this definition">#</a></dt>
+<dd><p>Reference to the internal VTable of this class interface (unused).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetObjCClassRaw64.data">
+<span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.objc.ClassDataBits64" title="umbrella.objc.ClassDataBits64"><span class="pre">ClassDataBits64</span></a></em><a class="headerlink" href="#umbrella.objc.TargetObjCClassRaw64.data" title="Link to this definition">#</a></dt>
+<dd><p>A mangled reference to the actual class data.</p>
+</dd></dl>
+
+</dd></dl>
+
+<p>Each class data reference stores additional information in its top bits. Therefore, an
+additional data structure is used to determine the actual location of the class data.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.objc.ClassDataBits64">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.objc.</span></span><span class="sig-name descname"><span class="pre">ClassDataBits64</span></span><a class="reference internal" href="../../_modules/umbrella/objc/structs.html#ClassDataBits64"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.objc.ClassDataBits64" title="Link to this definition">#</a></dt>
+<dd><p>Additional data structure to measure the referenced class data location.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ClassDataBits64.bits">
+<span class="sig-name descname"><span class="pre">bits</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.objc.ClassDataBits64.bits" title="Link to this definition">#</a></dt>
+<dd><p>The actual bits of a reference</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ClassDataBits64.ptr">
+<span class="sig-name descname"><span class="pre">ptr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#umbrella.objc.ClassDataBits64.ptr" title="Link to this definition">#</a></dt>
+<dd><p>The ‘decoded’ pointer (computed at runtime)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="umbrella.objc.ClassDataBits64.is_swift">
+<span class="sig-name descname"><span class="pre">is_swift</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#umbrella.objc.ClassDataBits64.is_swift" title="Link to this definition">#</a></dt>
+<dd><p>Returns whether the referenced class data points to a swift class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>whether the class is a swift class</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<section id="class-data">
+<h3><span class="section-number">2.2.1. </span>Class Data<a class="headerlink" href="#class-data" title="Link to this heading">#</a></h3>
+<p>The internal class data is responsible for providing information about the defined instance
+variables, methods and properties as well as the conforming protocols. Note that the following
+class describes the class data on 64-bit architectures. It includes an additional field named
+<em>reserved</em>.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.objc.TargetClassDataRaw64">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.objc.</span></span><span class="sig-name descname"><span class="pre">TargetClassDataRaw64</span></span><a class="reference internal" href="../../_modules/umbrella/objc/structs.html#TargetClassDataRaw64"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.objc.TargetClassDataRaw64" title="Link to this definition">#</a></dt>
+<dd><p>Struct equivalent to <code class="docutils literal notranslate"><span class="pre">class_data_ro_t</span></code>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetClassDataRaw64.flags">
+<span class="sig-name descname"><span class="pre">flags</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uint32_t</span></em><a class="headerlink" href="#umbrella.objc.TargetClassDataRaw64.flags" title="Link to this definition">#</a></dt>
+<dd><p>class flags (most common <em>is_swift</em> and <em>has_cxx_dtor</em>)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetClassDataRaw64.instance_start">
+<span class="sig-name descname"><span class="pre">instance_start</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uint32_t</span></em><a class="headerlink" href="#umbrella.objc.TargetClassDataRaw64.instance_start" title="Link to this definition">#</a></dt>
+<dd><p>The instance starting point (unused)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetClassDataRaw64.instance_end">
+<span class="sig-name descname"><span class="pre">instance_end</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uint32_t</span></em><a class="headerlink" href="#umbrella.objc.TargetClassDataRaw64.instance_end" title="Link to this definition">#</a></dt>
+<dd><p>The instance end point (unused)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetClassDataRaw64.reserved">
+<span class="sig-name descname"><span class="pre">reserved</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uint32_t</span></em><a class="headerlink" href="#umbrella.objc.TargetClassDataRaw64.reserved" title="Link to this definition">#</a></dt>
+<dd><p>Additional field on 64-bit systems (unused)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetClassDataRaw64.ivar_layout">
+<span class="sig-name descname"><span class="pre">ivar_layout</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uintptr_t</span></em><a class="headerlink" href="#umbrella.objc.TargetClassDataRaw64.ivar_layout" title="Link to this definition">#</a></dt>
+<dd><p>A reference to the IVar layout - always zero (unused)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetClassDataRaw64.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uintptr_t</span></em><a class="headerlink" href="#umbrella.objc.TargetClassDataRaw64.name" title="Link to this definition">#</a></dt>
+<dd><p>Pointer to the source-written name of this class</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetClassDataRaw64.base_methods">
+<span class="sig-name descname"><span class="pre">base_methods</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uintptr_t</span></em><a class="headerlink" href="#umbrella.objc.TargetClassDataRaw64.base_methods" title="Link to this definition">#</a></dt>
+<dd><p>A reference to all defined instance methods</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetClassDataRaw64.base_protocols">
+<span class="sig-name descname"><span class="pre">base_protocols</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uintptr_t</span></em><a class="headerlink" href="#umbrella.objc.TargetClassDataRaw64.base_protocols" title="Link to this definition">#</a></dt>
+<dd><p>A reference to all conformed protocols</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetClassDataRaw64.ivars">
+<span class="sig-name descname"><span class="pre">ivars</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uintptr_t</span></em><a class="headerlink" href="#umbrella.objc.TargetClassDataRaw64.ivars" title="Link to this definition">#</a></dt>
+<dd><p>A pointer to a list of defined instance variables</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetClassDataRaw64.weak_ivar_layout">
+<span class="sig-name descname"><span class="pre">weak_ivar_layout</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uintptr_t</span></em><a class="headerlink" href="#umbrella.objc.TargetClassDataRaw64.weak_ivar_layout" title="Link to this definition">#</a></dt>
+<dd><p>Reference to the weak instance variable layout (unused)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetClassDataRaw64.base_properties">
+<span class="sig-name descname"><span class="pre">base_properties</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uintptr_t</span></em><a class="headerlink" href="#umbrella.objc.TargetClassDataRaw64.base_properties" title="Link to this definition">#</a></dt>
+<dd><p>A pointer to a list of all instance properties</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="class-model">
+<h3><span class="section-number">2.2.2. </span>Class Model<a class="headerlink" href="#class-model" title="Link to this heading">#</a></h3>
+<p>After parsing the data, the Python API will create an instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">ObjCClass</span></code> which
+stores all relevant information about the class.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCClass">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.objc.</span></span><span class="sig-name descname"><span class="pre">ObjCClass</span></span><a class="reference internal" href="../../_modules/umbrella/objc/base.html#ObjCClass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.objc.ObjCClass" title="Link to this definition">#</a></dt>
+<dd><p>The Class <a class="footnote-reference brackets" href="#f2" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> runtime type implementation. This class may also represent
+an encoded Swift class, but it won’t store Swift type information. These should
+be retrieved via a :class`SwiftRuntime` instance.</p>
+<p>All list attributes with a size greater than one will be set as a <code class="xref py py-class docutils literal notranslate"><span class="pre">BoundListIterator</span></code>
+and are therefore lazy within their usage.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCClass.raw">
+<span class="sig-name descname"><span class="pre">raw</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">TargetObjCClassRaw32</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.objc.TargetObjCClassRaw64" title="umbrella.objc.structs.TargetObjCClassRaw64"><span class="pre">TargetObjCClassRaw64</span></a></em><a class="headerlink" href="#umbrella.objc.ObjCClass.raw" title="Link to this definition">#</a></dt>
+<dd><p>parsed raw class struct</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCClass.raw_data">
+<span class="sig-name descname"><span class="pre">raw_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">TargetClassDataRaw32</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.objc.TargetClassDataRaw64" title="umbrella.objc.structs.TargetClassDataRaw64"><span class="pre">TargetClassDataRaw64</span></a></em><a class="headerlink" href="#umbrella.objc.ObjCClass.raw_data" title="Link to this definition">#</a></dt>
+<dd><p>parsed raw class data</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCClass.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#umbrella.objc.ObjCClass.name" title="Link to this definition">#</a></dt>
+<dd><p>the name of this class</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCClass.super_class">
+<span class="sig-name descname"><span class="pre">super_class</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.objc.ObjCClass" title="umbrella.objc.base.ObjCClass"><span class="pre">ObjCClass</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#umbrella.objc.ObjCClass.super_class" title="Link to this definition">#</a></dt>
+<dd><p>the super class (optional)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCClass.metaclass">
+<span class="sig-name descname"><span class="pre">metaclass</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.objc.ObjCClass" title="umbrella.objc.base.ObjCClass"><span class="pre">ObjCClass</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#umbrella.objc.ObjCClass.metaclass" title="Link to this definition">#</a></dt>
+<dd><p>the class of which this one is an instance</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCClass.methods">
+<span class="sig-name descname"><span class="pre">methods</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BoundListIterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.objc.ObjCMethod" title="umbrella.objc.base.ObjCMethod"><span class="pre">ObjCMethod</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#umbrella.objc.ObjCClass.methods" title="Link to this definition">#</a></dt>
+<dd><p>an iterator over all defined methods</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCClass.ivars">
+<span class="sig-name descname"><span class="pre">ivars</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BoundListIterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.objc.ObjCIVar" title="umbrella.objc.base.ObjCIVar"><span class="pre">ObjCIVar</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#umbrella.objc.ObjCClass.ivars" title="Link to this definition">#</a></dt>
+<dd><p>all defined instance variables</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCClass.protocols">
+<span class="sig-name descname"><span class="pre">protocols</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BoundListIterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.objc.ObjCProtocol" title="umbrella.objc.base.ObjCProtocol"><span class="pre">ObjCProtocol</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#umbrella.objc.ObjCClass.protocols" title="Link to this definition">#</a></dt>
+<dd><p>a list of all conformed protocols</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCClass.properties">
+<span class="sig-name descname"><span class="pre">properties</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BoundListIterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.objc.ObjCProperty" title="umbrella.objc.base.ObjCProperty"><span class="pre">ObjCProperty</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#umbrella.objc.ObjCClass.properties" title="Link to this definition">#</a></dt>
+<dd><p>a list of instance properties</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<section id="methods">
+<h2><span class="section-number">2.3. </span>Methods<a class="headerlink" href="#methods" title="Link to this heading">#</a></h2>
+<p>“Methods are the primary way an object manipulates and provides access to its state”. <a class="footnote-reference brackets" href="#f3" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a> Internally,
+they are represented through a simple struct that stores the method’s name, signature and implementation
+address.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.objc.TargetMethodRaw64">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.objc.</span></span><span class="sig-name descname"><span class="pre">TargetMethodRaw64</span></span><a class="reference internal" href="../../_modules/umbrella/objc/structs.html#TargetMethodRaw64"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.objc.TargetMethodRaw64" title="Link to this definition">#</a></dt>
+<dd><p>Objective-C method description.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetMethodRaw64.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uintptr_t</span></em><a class="headerlink" href="#umbrella.objc.TargetMethodRaw64.name" title="Link to this definition">#</a></dt>
+<dd><p>The name of this method.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetMethodRaw64.signature">
+<span class="sig-name descname"><span class="pre">signature</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uintptr_t</span></em><a class="headerlink" href="#umbrella.objc.TargetMethodRaw64.signature" title="Link to this definition">#</a></dt>
+<dd><p>The types of this method.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetMethodRaw64.impl">
+<span class="sig-name descname"><span class="pre">impl</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uintptr_t</span></em><a class="headerlink" href="#umbrella.objc.TargetMethodRaw64.impl" title="Link to this definition">#</a></dt>
+<dd><p>The absolute implementation address</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCMethod">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.objc.</span></span><span class="sig-name descname"><span class="pre">ObjCMethod</span></span><a class="reference internal" href="../../_modules/umbrella/objc/base.html#ObjCMethod"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.objc.ObjCMethod" title="Link to this definition">#</a></dt>
+<dd><p>The Method runtime type implementation. See <a class="reference internal" href="#umbrella.objc.TargetMethodRaw64" title="umbrella.objc.TargetMethodRaw64"><code class="xref py py-class docutils literal notranslate"><span class="pre">TargetMethodRaw64</span></code></a> or
+<code class="xref py py-class docutils literal notranslate"><span class="pre">TargetMethodRaw32</span></code> for detailed information about the internal structure
+of an objc-method.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>You can simply generate a fully qualified signature of this method by using
+<code class="docutils literal notranslate"><span class="pre">decode_desc()</span></code>. It will produce something like this:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">method</span> <span class="o">=</span> <span class="n">ObjCMethod</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;someMethod&quot;</span><span class="p">,</span> <span class="n">signature</span><span class="o">=</span><span class="s2">&quot;B16@0:8&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">method</span><span class="o">.</span><span class="n">decode_desc</span><span class="p">()</span>
+<span class="go">&#39;(BOOL)someMethod&#39;</span>
+</pre></div>
+</div>
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCMethod.raw">
+<span class="sig-name descname"><span class="pre">raw</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">TargetMethodRaw32</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.objc.TargetMethodRaw64" title="umbrella.objc.structs.TargetMethodRaw64"><span class="pre">TargetMethodRaw64</span></a></em><a class="headerlink" href="#umbrella.objc.ObjCMethod.raw" title="Link to this definition">#</a></dt>
+<dd><p>parsed raw structure</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCMethod.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#umbrella.objc.ObjCMethod.name" title="Link to this definition">#</a></dt>
+<dd><p>the method’s name (selector string)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCMethod.signature">
+<span class="sig-name descname"><span class="pre">signature</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#umbrella.objc.ObjCMethod.signature" title="Link to this definition">#</a></dt>
+<dd><p>the method’s signature (encoded)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCMethod.is_class_method">
+<span class="sig-name descname"><span class="pre">is_class_method</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#umbrella.objc.ObjCMethod.is_class_method" title="Link to this definition">#</a></dt>
+<dd><p>whether this method is a class method</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCMethod.is_small">
+<span class="sig-name descname"><span class="pre">is_small</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#umbrella.objc.ObjCMethod.is_small" title="Link to this definition">#</a></dt>
+<dd><p>whether this method stores relative pointers</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCMethod.decode_desc">
+<span class="sig-name descname"><span class="pre">decode_desc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../_modules/umbrella/objc/base.html#ObjCMethod.decode_desc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.objc.ObjCMethod.decode_desc" title="Link to this definition">#</a></dt>
+<dd><p>Decodes the signature of this method.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">method</span> <span class="o">=</span> <span class="n">ObjCMethod</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;foo:bar:&quot;</span><span class="p">,</span> <span class="n">signature</span><span class="o">=</span><span class="s2">&quot;q32@0:8@16q24&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">method</span><span class="o">.</span><span class="n">decode_desc</span><span class="p">()</span>
+<span class="go">&#39;(long long)foo:(id) bar:(long long)&#39;</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the <em>decoded</em> signature.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCMethod.get_impl">
+<span class="sig-name descname"><span class="pre">get_impl</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../_modules/umbrella/objc/base.html#ObjCMethod.get_impl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.objc.ObjCMethod.get_impl" title="Link to this definition">#</a></dt>
+<dd><p>Returns the address for the implementation of this method</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the implementation address</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><em>Small</em> methods store pointers (<code class="docutils literal notranslate"><span class="pre">int32_t</span></code>) relative to the struct’s address.</p>
+</div>
+</section>
+<section id="properties">
+<h2><span class="section-number">2.4. </span>Properties<a class="headerlink" href="#properties" title="Link to this heading">#</a></h2>
+<p>Properties in Objective-C provide a public access interface to a class. Their internal structure is
+even more simple than the previously introduced method structure: They just store the name and
+attributes as a string.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.objc.TargetPropertyRaw64">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.objc.</span></span><span class="sig-name descname"><span class="pre">TargetPropertyRaw64</span></span><a class="reference internal" href="../../_modules/umbrella/objc/structs.html#TargetPropertyRaw64"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.objc.TargetPropertyRaw64" title="Link to this definition">#</a></dt>
+<dd><p>Raw layout of an Objective-C property.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetPropertyRaw64.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uintptr_t</span></em><a class="headerlink" href="#umbrella.objc.TargetPropertyRaw64.name" title="Link to this definition">#</a></dt>
+<dd><p>the property’s name (reference)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetPropertyRaw64.attributes">
+<span class="sig-name descname"><span class="pre">attributes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uintptr_t</span></em><a class="headerlink" href="#umbrella.objc.TargetPropertyRaw64.attributes" title="Link to this definition">#</a></dt>
+<dd><p>its attributes (reference)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCProperty">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.objc.</span></span><span class="sig-name descname"><span class="pre">ObjCProperty</span></span><a class="reference internal" href="../../_modules/umbrella/objc/base.html#ObjCProperty"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.objc.ObjCProperty" title="Link to this definition">#</a></dt>
+<dd><p>The Property <a class="footnote-reference brackets" href="#f4" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a> runtime type implementation. <a class="reference internal" href="#umbrella.objc.TargetPropertyRaw64" title="umbrella.objc.TargetPropertyRaw64"><code class="xref py py-class docutils literal notranslate"><span class="pre">TargetPropertyRaw64</span></code></a> or
+<code class="xref py py-class docutils literal notranslate"><span class="pre">TargetPropertyRaw32</span></code> provide more information about the raw structure.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCProperty.raw">
+<span class="sig-name descname"><span class="pre">raw</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">TargetPropertyRaw32</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.objc.TargetPropertyRaw64" title="umbrella.objc.structs.TargetPropertyRaw64"><span class="pre">TargetPropertyRaw64</span></a></em><a class="headerlink" href="#umbrella.objc.ObjCProperty.raw" title="Link to this definition">#</a></dt>
+<dd><p>the parsed structure</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCProperty.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#umbrella.objc.ObjCProperty.name" title="Link to this definition">#</a></dt>
+<dd><p>the property’s name</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCProperty.attributes">
+<span class="sig-name descname"><span class="pre">attributes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#umbrella.objc.ObjCProperty.attributes" title="Link to this definition">#</a></dt>
+<dd><p>its attributes</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCProperty.parent">
+<span class="sig-name descname"><span class="pre">parent</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.objc.ObjCClass" title="umbrella.objc.base.ObjCClass"><span class="pre">ObjCClass</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.objc.ObjCCategory" title="umbrella.objc.base.ObjCCategory"><span class="pre">ObjCCategory</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.objc.ObjCProtocol" title="umbrella.objc.base.ObjCProtocol"><span class="pre">ObjCProtocol</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#umbrella.objc.ObjCProperty.parent" title="Link to this definition">#</a></dt>
+<dd><p>the parent context</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCProperty.decode_attributes">
+<span class="sig-name descname"><span class="pre">decode_attributes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../_modules/umbrella/objc/base.html#ObjCProperty.decode_attributes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.objc.ObjCProperty.decode_attributes" title="Link to this definition">#</a></dt>
+<dd><p>Decodes this property into a fully representative string.</p>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">prop</span> <span class="o">=</span> <span class="n">ObjCProperty</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="n">attributes</span><span class="o">=</span><span class="s1">&#39;T@&quot;NSMutableSet&quot;,&amp;,N,V_foo&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">prop</span><span class="o">.</span><span class="n">decode_attributes</span><span class="p">()</span>
+<span class="go">&#39;@property (retain, nonatomic) NSMutableSet foo&#39;</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the decoded attributes as string</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="instance-variables">
+<h2><span class="section-number">2.5. </span>Instance Variables<a class="headerlink" href="#instance-variables" title="Link to this heading">#</a></h2>
+<p>The primary way to maintain the internal state of an object can be done by defining instance
+variables.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.objc.TargetIVarRaw64">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.objc.</span></span><span class="sig-name descname"><span class="pre">TargetIVarRaw64</span></span><a class="reference internal" href="../../_modules/umbrella/objc/structs.html#TargetIVarRaw64"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.objc.TargetIVarRaw64" title="Link to this definition">#</a></dt>
+<dd><p>Raw IVar structure.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetIVarRaw64.offset">
+<span class="sig-name descname"><span class="pre">offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int32_t</span></em><a class="headerlink" href="#umbrella.objc.TargetIVarRaw64.offset" title="Link to this definition">#</a></dt>
+<dd><p>offset was originally 64-bit on some x86_64 platforms.
+We read and write only 32 bits of it. Some metadata provides all 64
+bits. This is harmless for unsigned little-endian values.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetIVarRaw64.remainder">
+<span class="sig-name descname"><span class="pre">remainder</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uint32_t</span></em><a class="headerlink" href="#umbrella.objc.TargetIVarRaw64.remainder" title="Link to this definition">#</a></dt>
+<dd><p>unused (only 64-bit)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetIVarRaw64.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uintptr_t</span></em><a class="headerlink" href="#umbrella.objc.TargetIVarRaw64.name" title="Link to this definition">#</a></dt>
+<dd><p>the name of this ivar</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetIVarRaw64.type">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uintptr_t</span></em><a class="headerlink" href="#umbrella.objc.TargetIVarRaw64.type" title="Link to this definition">#</a></dt>
+<dd><p>its type</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetIVarRaw64.alignment">
+<span class="sig-name descname"><span class="pre">alignment</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uint32_t</span></em><a class="headerlink" href="#umbrella.objc.TargetIVarRaw64.alignment" title="Link to this definition">#</a></dt>
+<dd><p>the internal alignment</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetIVarRaw64.size">
+<span class="sig-name descname"><span class="pre">size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uint32_t</span></em><a class="headerlink" href="#umbrella.objc.TargetIVarRaw64.size" title="Link to this definition">#</a></dt>
+<dd><p>the internal ivar size in memory</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Be aware that sometimes the name and encoded type of an instance variable must be swapped before
+using them - no idea why. Automatic swapping will be applied while parsing IVars.</p>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCIVar">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.objc.</span></span><span class="sig-name descname"><span class="pre">ObjCIVar</span></span><a class="reference internal" href="../../_modules/umbrella/objc/base.html#ObjCIVar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.objc.ObjCIVar" title="Link to this definition">#</a></dt>
+<dd><p>The <a class="reference external" href="https://developer.apple.com/documentation/objectivec/ivar?language=objc">Ivar</a>
+runtime type implementation. For more information about its raw structure, see
+<a class="reference internal" href="#umbrella.objc.TargetIVarRaw64" title="umbrella.objc.TargetIVarRaw64"><code class="xref py py-class docutils literal notranslate"><span class="pre">TargetIVarRaw64</span></code></a> or <code class="xref py py-class docutils literal notranslate"><span class="pre">TargetIVarRaw32</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ivar objects will store their mangled/encoded name by default. It can be
+decoded using <cite>decode_type()</cite>.</p>
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCIVar.raw">
+<span class="sig-name descname"><span class="pre">raw</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">TargetIVarRaw32</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.objc.TargetIVarRaw64" title="umbrella.objc.structs.TargetIVarRaw64"><span class="pre">TargetIVarRaw64</span></a></em><a class="headerlink" href="#umbrella.objc.ObjCIVar.raw" title="Link to this definition">#</a></dt>
+<dd><p>parsed raw structure</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCIVar.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#umbrella.objc.ObjCIVar.name" title="Link to this definition">#</a></dt>
+<dd><p>the name of this ivar</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCIVar.type_name">
+<span class="sig-name descname"><span class="pre">type_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#umbrella.objc.ObjCIVar.type_name" title="Link to this definition">#</a></dt>
+<dd><p>the encoded type-name of this ivar</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCIVar.parent">
+<span class="sig-name descname"><span class="pre">parent</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.objc.ObjCClass" title="umbrella.objc.base.ObjCClass"><span class="pre">ObjCClass</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.objc.ObjCCategory" title="umbrella.objc.base.ObjCCategory"><span class="pre">ObjCCategory</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.objc.ObjCProtocol" title="umbrella.objc.base.ObjCProtocol"><span class="pre">ObjCProtocol</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#umbrella.objc.ObjCIVar.parent" title="Link to this definition">#</a></dt>
+<dd><p>the parent context</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCIVar.decode_type">
+<span class="sig-name descname"><span class="pre">decode_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../_modules/umbrella/objc/base.html#ObjCIVar.decode_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.objc.ObjCIVar.decode_type" title="Link to this definition">#</a></dt>
+<dd><p>Decodes the type-name of this ivar using the <code class="docutils literal notranslate"><span class="pre">objc.decoder</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the decoded type name</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="protocols">
+<h2><span class="section-number">2.6. </span>Protocols<a class="headerlink" href="#protocols" title="Link to this heading">#</a></h2>
+<p>Objective-C protocols are used to declare properties and methods that are independent from any other
+class. They can be seen as interfaces in terms of the Java language, except this type can define
+required and optional methods, both class and instance ones. Fortunately</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.objc.TargetProtocolRaw64">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.objc.</span></span><span class="sig-name descname"><span class="pre">TargetProtocolRaw64</span></span><a class="reference internal" href="../../_modules/umbrella/objc/structs.html#TargetProtocolRaw64"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.objc.TargetProtocolRaw64" title="Link to this definition">#</a></dt>
+<dd><p>Raw protocol struct.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetProtocolRaw64.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uintptr_t</span></em><a class="headerlink" href="#umbrella.objc.TargetProtocolRaw64.name" title="Link to this definition">#</a></dt>
+<dd><p>the protocol’s name (reference)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetProtocolRaw64.protocols">
+<span class="sig-name descname"><span class="pre">protocols</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uintptr_t</span></em><a class="headerlink" href="#umbrella.objc.TargetProtocolRaw64.protocols" title="Link to this definition">#</a></dt>
+<dd><p>a reference to a list of protocols this one conforms to</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetProtocolRaw64.required_instance_methods">
+<span class="sig-name descname"><span class="pre">required_instance_methods</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uintptr_t</span></em><a class="headerlink" href="#umbrella.objc.TargetProtocolRaw64.required_instance_methods" title="Link to this definition">#</a></dt>
+<dd><p>a list of required instance methods (list reference)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetProtocolRaw64.required_class_methods">
+<span class="sig-name descname"><span class="pre">required_class_methods</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uintptr_t</span></em><a class="headerlink" href="#umbrella.objc.TargetProtocolRaw64.required_class_methods" title="Link to this definition">#</a></dt>
+<dd><p>a list of required class methods (list reference)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetProtocolRaw64.optional_instance_methods">
+<span class="sig-name descname"><span class="pre">optional_instance_methods</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uintptr_t</span></em><a class="headerlink" href="#umbrella.objc.TargetProtocolRaw64.optional_instance_methods" title="Link to this definition">#</a></dt>
+<dd><p>a list of optional instance methods (list reference)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetProtocolRaw64.optional_class_methods">
+<span class="sig-name descname"><span class="pre">optional_class_methods</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uintptr_t</span></em><a class="headerlink" href="#umbrella.objc.TargetProtocolRaw64.optional_class_methods" title="Link to this definition">#</a></dt>
+<dd><p>a list of optional class methods (list reference)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetProtocolRaw64.instance_properties">
+<span class="sig-name descname"><span class="pre">instance_properties</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uintptr_t</span></em><a class="headerlink" href="#umbrella.objc.TargetProtocolRaw64.instance_properties" title="Link to this definition">#</a></dt>
+<dd><p>all defined instance properties (list reference)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetProtocolRaw64.size">
+<span class="sig-name descname"><span class="pre">size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uint32_t</span></em><a class="headerlink" href="#umbrella.objc.TargetProtocolRaw64.size" title="Link to this definition">#</a></dt>
+<dd><p>the size of this struct</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetProtocolRaw64.flags">
+<span class="sig-name descname"><span class="pre">flags</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uint32_t</span></em><a class="headerlink" href="#umbrella.objc.TargetProtocolRaw64.flags" title="Link to this definition">#</a></dt>
+<dd><p>additional flags for this protocol</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCProtocol">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.objc.</span></span><span class="sig-name descname"><span class="pre">ObjCProtocol</span></span><a class="reference internal" href="../../_modules/umbrella/objc/base.html#ObjCProtocol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.objc.ObjCProtocol" title="Link to this definition">#</a></dt>
+<dd><p>Runtime type of an Objective-C protocol.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCProtocol.raw">
+<span class="sig-name descname"><span class="pre">raw</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">TargetProtocolRaw32</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.objc.TargetProtocolRaw64" title="umbrella.objc.structs.TargetProtocolRaw64"><span class="pre">TargetProtocolRaw64</span></a></em><a class="headerlink" href="#umbrella.objc.ObjCProtocol.raw" title="Link to this definition">#</a></dt>
+<dd><p>the parsed raw structure</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCProtocol.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#umbrella.objc.ObjCProtocol.name" title="Link to this definition">#</a></dt>
+<dd><p>the parsed protocol name</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCProtocol.parent">
+<span class="sig-name descname"><span class="pre">parent</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.objc.ObjCClass" title="umbrella.objc.base.ObjCClass"><span class="pre">ObjCClass</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.objc.ObjCCategory" title="umbrella.objc.base.ObjCCategory"><span class="pre">ObjCCategory</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.objc.ObjCProtocol" title="umbrella.objc.base.ObjCProtocol"><span class="pre">ObjCProtocol</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#umbrella.objc.ObjCProtocol.parent" title="Link to this definition">#</a></dt>
+<dd><p>the parent context</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCProtocol.protocols">
+<span class="sig-name descname"><span class="pre">protocols</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BoundListIterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.objc.ObjCProtocol" title="umbrella.objc.base.ObjCProtocol"><span class="pre">ObjCProtocol</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#umbrella.objc.ObjCProtocol.protocols" title="Link to this definition">#</a></dt>
+<dd><p>all conformed protocols</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCProtocol.required_instance_methods">
+<span class="sig-name descname"><span class="pre">required_instance_methods</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BoundListIterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.objc.ObjCMethod" title="umbrella.objc.base.ObjCMethod"><span class="pre">ObjCMethod</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#umbrella.objc.ObjCProtocol.required_instance_methods" title="Link to this definition">#</a></dt>
+<dd><p>a list of required instance methods</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCProtocol.required_class_methods">
+<span class="sig-name descname"><span class="pre">required_class_methods</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BoundListIterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.objc.ObjCMethod" title="umbrella.objc.base.ObjCMethod"><span class="pre">ObjCMethod</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#umbrella.objc.ObjCProtocol.required_class_methods" title="Link to this definition">#</a></dt>
+<dd><p>a list of required class methods</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCProtocol.optional_instance_methods">
+<span class="sig-name descname"><span class="pre">optional_instance_methods</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BoundListIterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.objc.ObjCMethod" title="umbrella.objc.base.ObjCMethod"><span class="pre">ObjCMethod</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#umbrella.objc.ObjCProtocol.optional_instance_methods" title="Link to this definition">#</a></dt>
+<dd><p>a list of optional instance methods</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCProtocol.optional_class_methods">
+<span class="sig-name descname"><span class="pre">optional_class_methods</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BoundListIterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.objc.ObjCMethod" title="umbrella.objc.base.ObjCMethod"><span class="pre">ObjCMethod</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#umbrella.objc.ObjCProtocol.optional_class_methods" title="Link to this definition">#</a></dt>
+<dd><p>a list of optional class methods</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCProtocol.instance_properties">
+<span class="sig-name descname"><span class="pre">instance_properties</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BoundListIterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.objc.ObjCProperty" title="umbrella.objc.base.ObjCProperty"><span class="pre">ObjCProperty</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#umbrella.objc.ObjCProtocol.instance_properties" title="Link to this definition">#</a></dt>
+<dd><p>a list of defined instance properties</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="categories-and-extensions">
+<h2><span class="section-number">2.7. </span>Categories and Extensions<a class="headerlink" href="#categories-and-extensions" title="Link to this heading">#</a></h2>
+<p>Categories in Objective-C add methods (and properties) to an existing class. There are two types of
+categories: Anonymous Categories (Extensions) and default Categories.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.objc.TargetCategoryRaw64">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.objc.</span></span><span class="sig-name descname"><span class="pre">TargetCategoryRaw64</span></span><a class="reference internal" href="../../_modules/umbrella/objc/structs.html#TargetCategoryRaw64"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.objc.TargetCategoryRaw64" title="Link to this definition">#</a></dt>
+<dd><p>Raw struct of an Objective-C Category</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetCategoryRaw64.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uintptr_t</span></em><a class="headerlink" href="#umbrella.objc.TargetCategoryRaw64.name" title="Link to this definition">#</a></dt>
+<dd><p>the catgory’s name</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetCategoryRaw64.base_class">
+<span class="sig-name descname"><span class="pre">base_class</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uintptr_t</span></em><a class="headerlink" href="#umbrella.objc.TargetCategoryRaw64.base_class" title="Link to this definition">#</a></dt>
+<dd><p>a reference to the base class of this category</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetCategoryRaw64.instance_methods">
+<span class="sig-name descname"><span class="pre">instance_methods</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uintptr_t</span></em><a class="headerlink" href="#umbrella.objc.TargetCategoryRaw64.instance_methods" title="Link to this definition">#</a></dt>
+<dd><p>a reference to a list of instance methods</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetCategoryRaw64.class_methods">
+<span class="sig-name descname"><span class="pre">class_methods</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uintptr_t</span></em><a class="headerlink" href="#umbrella.objc.TargetCategoryRaw64.class_methods" title="Link to this definition">#</a></dt>
+<dd><p>a reference to all defined additional class methods</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetCategoryRaw64.base_protocols">
+<span class="sig-name descname"><span class="pre">base_protocols</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uintptr_t</span></em><a class="headerlink" href="#umbrella.objc.TargetCategoryRaw64.base_protocols" title="Link to this definition">#</a></dt>
+<dd><p>a reference to all additional conformed protocols</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.TargetCategoryRaw64.instance_properties">
+<span class="sig-name descname"><span class="pre">instance_properties</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uintptr_t</span></em><a class="headerlink" href="#umbrella.objc.TargetCategoryRaw64.instance_properties" title="Link to this definition">#</a></dt>
+<dd><p>pointer to a property list structure</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCCategory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.objc.</span></span><span class="sig-name descname"><span class="pre">ObjCCategory</span></span><a class="reference internal" href="../../_modules/umbrella/objc/base.html#ObjCCategory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.objc.ObjCCategory" title="Link to this definition">#</a></dt>
+<dd><p>The <a class="reference external" href="https://developer.apple.com/documentation/objectivec/category?language=objc">Category</a>
+runtime type implementation. More information about the raw structures can be taken
+from <a class="reference internal" href="#umbrella.objc.TargetCategoryRaw64" title="umbrella.objc.TargetCategoryRaw64"><code class="xref py py-class docutils literal notranslate"><span class="pre">TargetCategoryRaw64</span></code></a> and <code class="xref py py-class docutils literal notranslate"><span class="pre">TargetCategoryRaw32</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Categories with no base class are extensions.</p>
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCCategory.raw">
+<span class="sig-name descname"><span class="pre">raw</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">TargetCategoryRaw32</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.objc.TargetCategoryRaw64" title="umbrella.objc.structs.TargetCategoryRaw64"><span class="pre">TargetCategoryRaw64</span></a></em><a class="headerlink" href="#umbrella.objc.ObjCCategory.raw" title="Link to this definition">#</a></dt>
+<dd><p>the parsed raw structure</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCCategory.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#umbrella.objc.ObjCCategory.name" title="Link to this definition">#</a></dt>
+<dd><p>the parsed category name</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCCategory.base_class">
+<span class="sig-name descname"><span class="pre">base_class</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.objc.ObjCClass" title="umbrella.objc.base.ObjCClass"><span class="pre">ObjCClass</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#umbrella.objc.ObjCCategory.base_class" title="Link to this definition">#</a></dt>
+<dd><p>optional base class</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCCategory.class_methods">
+<span class="sig-name descname"><span class="pre">class_methods</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BoundListIterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.objc.ObjCMethod" title="umbrella.objc.base.ObjCMethod"><span class="pre">ObjCMethod</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#umbrella.objc.ObjCCategory.class_methods" title="Link to this definition">#</a></dt>
+<dd><p>defined class methods</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCCategory.instance_methods">
+<span class="sig-name descname"><span class="pre">instance_methods</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BoundListIterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.objc.ObjCMethod" title="umbrella.objc.base.ObjCMethod"><span class="pre">ObjCMethod</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#umbrella.objc.ObjCCategory.instance_methods" title="Link to this definition">#</a></dt>
+<dd><p>defined instance methods</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCCategory.protocols">
+<span class="sig-name descname"><span class="pre">protocols</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BoundListIterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.objc.ObjCProtocol" title="umbrella.objc.base.ObjCProtocol"><span class="pre">ObjCProtocol</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#umbrella.objc.ObjCCategory.protocols" title="Link to this definition">#</a></dt>
+<dd><p>all conformed protocols</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCCategory.properties">
+<span class="sig-name descname"><span class="pre">properties</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BoundListIterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.objc.ObjCProperty" title="umbrella.objc.base.ObjCProperty"><span class="pre">ObjCProperty</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#umbrella.objc.ObjCCategory.properties" title="Link to this definition">#</a></dt>
+<dd><p>all defined additional properties</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="umbrella.objc.ObjCCategory.is_extension">
+<span class="sig-name descname"><span class="pre">is_extension</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../_modules/umbrella/objc/base.html#ObjCCategory.is_extension"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.objc.ObjCCategory.is_extension" title="Link to this definition">#</a></dt>
+<dd><p>Returns whether this categoriy is an extension.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>true, if this category has no base class.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<p>For a detailed overview of all structs mentioned in this document, please refer to
+<a class="reference external" href="http://opensource.apple.com/source/objc4/objc4-532/runtime/objc-runtime-new.h">runtime-new.h</a> of
+the official Apple Source Code.</p>
+<p><em>TODO: Metadata, Dumper</em></p>
+<p class="rubric">Footnotes</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="f1" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Apple developer documentation on <a class="reference external" href="https://developer.appl.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/DefiningClasses/DefiningClasses.html#//apple_ref/doc/uid/TP40011210-CH3-SW1">Defining Classes</a></p>
+</aside>
+<aside class="footnote brackets" id="f2" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>Objective-C <a class="reference external" href="https://developer.apple.com/documentation/objectivec/class?language=objc">Class</a></p>
+</aside>
+<aside class="footnote brackets" id="f3" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
+<p>objc-guide: <a class="reference external" href="https://microsoft.github.io/objc-guide/MethodsAndImplementations.html">Methods and Implementations</a></p>
+</aside>
+<aside class="footnote brackets" id="f4" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">4</a><span class="fn-bracket">]</span></span>
+<p>Objective-C <a class="reference external" href="https://developer.apple.com/documentation/objectivec/objc_property_t?language=objc">Property</a></p>
+</aside>
+</aside>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="../java/index.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title"><span class="section-number">3. </span>Java Class Files</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../swift/reconstruction.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title"><span class="section-number">1.2. </span>Reconstruction of Swift Code</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, MatrixEditor
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">2. Objective-C ABI</a><ul>
+<li><a class="reference internal" href="#objects">2.1. Objects</a><ul>
+<li><a class="reference internal" href="#umbrella.objc.TargetObjCObjectRaw64"><code class="docutils literal notranslate"><span class="pre">TargetObjCObjectRaw64</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.objc.TargetObjCObjectRaw64.isa_storage"><code class="docutils literal notranslate"><span class="pre">TargetObjCObjectRaw64.isa_storage</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#classes">2.2. Classes</a><ul>
+<li><a class="reference internal" href="#umbrella.objc.TargetObjCClassRaw64"><code class="docutils literal notranslate"><span class="pre">TargetObjCClassRaw64</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.objc.TargetObjCClassRaw64.superclass"><code class="docutils literal notranslate"><span class="pre">TargetObjCClassRaw64.superclass</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetObjCClassRaw64.cache"><code class="docutils literal notranslate"><span class="pre">TargetObjCClassRaw64.cache</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetObjCClassRaw64.vtable"><code class="docutils literal notranslate"><span class="pre">TargetObjCClassRaw64.vtable</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetObjCClassRaw64.data"><code class="docutils literal notranslate"><span class="pre">TargetObjCClassRaw64.data</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.objc.ClassDataBits64"><code class="docutils literal notranslate"><span class="pre">ClassDataBits64</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.objc.ClassDataBits64.bits"><code class="docutils literal notranslate"><span class="pre">ClassDataBits64.bits</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ClassDataBits64.ptr"><code class="docutils literal notranslate"><span class="pre">ClassDataBits64.ptr</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ClassDataBits64.is_swift"><code class="docutils literal notranslate"><span class="pre">ClassDataBits64.is_swift()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#class-data">2.2.1. Class Data</a><ul>
+<li><a class="reference internal" href="#umbrella.objc.TargetClassDataRaw64"><code class="docutils literal notranslate"><span class="pre">TargetClassDataRaw64</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.objc.TargetClassDataRaw64.flags"><code class="docutils literal notranslate"><span class="pre">TargetClassDataRaw64.flags</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetClassDataRaw64.instance_start"><code class="docutils literal notranslate"><span class="pre">TargetClassDataRaw64.instance_start</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetClassDataRaw64.instance_end"><code class="docutils literal notranslate"><span class="pre">TargetClassDataRaw64.instance_end</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetClassDataRaw64.reserved"><code class="docutils literal notranslate"><span class="pre">TargetClassDataRaw64.reserved</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetClassDataRaw64.ivar_layout"><code class="docutils literal notranslate"><span class="pre">TargetClassDataRaw64.ivar_layout</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetClassDataRaw64.name"><code class="docutils literal notranslate"><span class="pre">TargetClassDataRaw64.name</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetClassDataRaw64.base_methods"><code class="docutils literal notranslate"><span class="pre">TargetClassDataRaw64.base_methods</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetClassDataRaw64.base_protocols"><code class="docutils literal notranslate"><span class="pre">TargetClassDataRaw64.base_protocols</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetClassDataRaw64.ivars"><code class="docutils literal notranslate"><span class="pre">TargetClassDataRaw64.ivars</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetClassDataRaw64.weak_ivar_layout"><code class="docutils literal notranslate"><span class="pre">TargetClassDataRaw64.weak_ivar_layout</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetClassDataRaw64.base_properties"><code class="docutils literal notranslate"><span class="pre">TargetClassDataRaw64.base_properties</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#class-model">2.2.2. Class Model</a><ul>
+<li><a class="reference internal" href="#umbrella.objc.ObjCClass"><code class="docutils literal notranslate"><span class="pre">ObjCClass</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.objc.ObjCClass.raw"><code class="docutils literal notranslate"><span class="pre">ObjCClass.raw</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCClass.raw_data"><code class="docutils literal notranslate"><span class="pre">ObjCClass.raw_data</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCClass.name"><code class="docutils literal notranslate"><span class="pre">ObjCClass.name</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCClass.super_class"><code class="docutils literal notranslate"><span class="pre">ObjCClass.super_class</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCClass.metaclass"><code class="docutils literal notranslate"><span class="pre">ObjCClass.metaclass</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCClass.methods"><code class="docutils literal notranslate"><span class="pre">ObjCClass.methods</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCClass.ivars"><code class="docutils literal notranslate"><span class="pre">ObjCClass.ivars</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCClass.protocols"><code class="docutils literal notranslate"><span class="pre">ObjCClass.protocols</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCClass.properties"><code class="docutils literal notranslate"><span class="pre">ObjCClass.properties</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#methods">2.3. Methods</a><ul>
+<li><a class="reference internal" href="#umbrella.objc.TargetMethodRaw64"><code class="docutils literal notranslate"><span class="pre">TargetMethodRaw64</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.objc.TargetMethodRaw64.name"><code class="docutils literal notranslate"><span class="pre">TargetMethodRaw64.name</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetMethodRaw64.signature"><code class="docutils literal notranslate"><span class="pre">TargetMethodRaw64.signature</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetMethodRaw64.impl"><code class="docutils literal notranslate"><span class="pre">TargetMethodRaw64.impl</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCMethod"><code class="docutils literal notranslate"><span class="pre">ObjCMethod</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.objc.ObjCMethod.raw"><code class="docutils literal notranslate"><span class="pre">ObjCMethod.raw</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCMethod.name"><code class="docutils literal notranslate"><span class="pre">ObjCMethod.name</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCMethod.signature"><code class="docutils literal notranslate"><span class="pre">ObjCMethod.signature</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCMethod.is_class_method"><code class="docutils literal notranslate"><span class="pre">ObjCMethod.is_class_method</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCMethod.is_small"><code class="docutils literal notranslate"><span class="pre">ObjCMethod.is_small</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCMethod.decode_desc"><code class="docutils literal notranslate"><span class="pre">ObjCMethod.decode_desc()</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCMethod.get_impl"><code class="docutils literal notranslate"><span class="pre">ObjCMethod.get_impl()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#properties">2.4. Properties</a><ul>
+<li><a class="reference internal" href="#umbrella.objc.TargetPropertyRaw64"><code class="docutils literal notranslate"><span class="pre">TargetPropertyRaw64</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.objc.TargetPropertyRaw64.name"><code class="docutils literal notranslate"><span class="pre">TargetPropertyRaw64.name</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetPropertyRaw64.attributes"><code class="docutils literal notranslate"><span class="pre">TargetPropertyRaw64.attributes</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCProperty"><code class="docutils literal notranslate"><span class="pre">ObjCProperty</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.objc.ObjCProperty.raw"><code class="docutils literal notranslate"><span class="pre">ObjCProperty.raw</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCProperty.name"><code class="docutils literal notranslate"><span class="pre">ObjCProperty.name</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCProperty.attributes"><code class="docutils literal notranslate"><span class="pre">ObjCProperty.attributes</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCProperty.parent"><code class="docutils literal notranslate"><span class="pre">ObjCProperty.parent</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCProperty.decode_attributes"><code class="docutils literal notranslate"><span class="pre">ObjCProperty.decode_attributes()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#instance-variables">2.5. Instance Variables</a><ul>
+<li><a class="reference internal" href="#umbrella.objc.TargetIVarRaw64"><code class="docutils literal notranslate"><span class="pre">TargetIVarRaw64</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.objc.TargetIVarRaw64.offset"><code class="docutils literal notranslate"><span class="pre">TargetIVarRaw64.offset</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetIVarRaw64.remainder"><code class="docutils literal notranslate"><span class="pre">TargetIVarRaw64.remainder</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetIVarRaw64.name"><code class="docutils literal notranslate"><span class="pre">TargetIVarRaw64.name</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetIVarRaw64.type"><code class="docutils literal notranslate"><span class="pre">TargetIVarRaw64.type</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetIVarRaw64.alignment"><code class="docutils literal notranslate"><span class="pre">TargetIVarRaw64.alignment</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetIVarRaw64.size"><code class="docutils literal notranslate"><span class="pre">TargetIVarRaw64.size</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCIVar"><code class="docutils literal notranslate"><span class="pre">ObjCIVar</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.objc.ObjCIVar.raw"><code class="docutils literal notranslate"><span class="pre">ObjCIVar.raw</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCIVar.name"><code class="docutils literal notranslate"><span class="pre">ObjCIVar.name</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCIVar.type_name"><code class="docutils literal notranslate"><span class="pre">ObjCIVar.type_name</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCIVar.parent"><code class="docutils literal notranslate"><span class="pre">ObjCIVar.parent</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCIVar.decode_type"><code class="docutils literal notranslate"><span class="pre">ObjCIVar.decode_type()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#protocols">2.6. Protocols</a><ul>
+<li><a class="reference internal" href="#umbrella.objc.TargetProtocolRaw64"><code class="docutils literal notranslate"><span class="pre">TargetProtocolRaw64</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.objc.TargetProtocolRaw64.name"><code class="docutils literal notranslate"><span class="pre">TargetProtocolRaw64.name</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetProtocolRaw64.protocols"><code class="docutils literal notranslate"><span class="pre">TargetProtocolRaw64.protocols</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetProtocolRaw64.required_instance_methods"><code class="docutils literal notranslate"><span class="pre">TargetProtocolRaw64.required_instance_methods</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetProtocolRaw64.required_class_methods"><code class="docutils literal notranslate"><span class="pre">TargetProtocolRaw64.required_class_methods</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetProtocolRaw64.optional_instance_methods"><code class="docutils literal notranslate"><span class="pre">TargetProtocolRaw64.optional_instance_methods</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetProtocolRaw64.optional_class_methods"><code class="docutils literal notranslate"><span class="pre">TargetProtocolRaw64.optional_class_methods</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetProtocolRaw64.instance_properties"><code class="docutils literal notranslate"><span class="pre">TargetProtocolRaw64.instance_properties</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetProtocolRaw64.size"><code class="docutils literal notranslate"><span class="pre">TargetProtocolRaw64.size</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetProtocolRaw64.flags"><code class="docutils literal notranslate"><span class="pre">TargetProtocolRaw64.flags</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCProtocol"><code class="docutils literal notranslate"><span class="pre">ObjCProtocol</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.objc.ObjCProtocol.raw"><code class="docutils literal notranslate"><span class="pre">ObjCProtocol.raw</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCProtocol.name"><code class="docutils literal notranslate"><span class="pre">ObjCProtocol.name</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCProtocol.parent"><code class="docutils literal notranslate"><span class="pre">ObjCProtocol.parent</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCProtocol.protocols"><code class="docutils literal notranslate"><span class="pre">ObjCProtocol.protocols</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCProtocol.required_instance_methods"><code class="docutils literal notranslate"><span class="pre">ObjCProtocol.required_instance_methods</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCProtocol.required_class_methods"><code class="docutils literal notranslate"><span class="pre">ObjCProtocol.required_class_methods</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCProtocol.optional_instance_methods"><code class="docutils literal notranslate"><span class="pre">ObjCProtocol.optional_instance_methods</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCProtocol.optional_class_methods"><code class="docutils literal notranslate"><span class="pre">ObjCProtocol.optional_class_methods</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCProtocol.instance_properties"><code class="docutils literal notranslate"><span class="pre">ObjCProtocol.instance_properties</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#categories-and-extensions">2.7. Categories and Extensions</a><ul>
+<li><a class="reference internal" href="#umbrella.objc.TargetCategoryRaw64"><code class="docutils literal notranslate"><span class="pre">TargetCategoryRaw64</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.objc.TargetCategoryRaw64.name"><code class="docutils literal notranslate"><span class="pre">TargetCategoryRaw64.name</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetCategoryRaw64.base_class"><code class="docutils literal notranslate"><span class="pre">TargetCategoryRaw64.base_class</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetCategoryRaw64.instance_methods"><code class="docutils literal notranslate"><span class="pre">TargetCategoryRaw64.instance_methods</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetCategoryRaw64.class_methods"><code class="docutils literal notranslate"><span class="pre">TargetCategoryRaw64.class_methods</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetCategoryRaw64.base_protocols"><code class="docutils literal notranslate"><span class="pre">TargetCategoryRaw64.base_protocols</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.TargetCategoryRaw64.instance_properties"><code class="docutils literal notranslate"><span class="pre">TargetCategoryRaw64.instance_properties</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCCategory"><code class="docutils literal notranslate"><span class="pre">ObjCCategory</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.objc.ObjCCategory.raw"><code class="docutils literal notranslate"><span class="pre">ObjCCategory.raw</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCCategory.name"><code class="docutils literal notranslate"><span class="pre">ObjCCategory.name</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCCategory.base_class"><code class="docutils literal notranslate"><span class="pre">ObjCCategory.base_class</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCCategory.class_methods"><code class="docutils literal notranslate"><span class="pre">ObjCCategory.class_methods</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCCategory.instance_methods"><code class="docutils literal notranslate"><span class="pre">ObjCCategory.instance_methods</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCCategory.protocols"><code class="docutils literal notranslate"><span class="pre">ObjCCategory.protocols</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCCategory.properties"><code class="docutils literal notranslate"><span class="pre">ObjCCategory.properties</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.objc.ObjCCategory.is_extension"><code class="docutils literal notranslate"><span class="pre">ObjCCategory.is_extension()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/documentation_options.js?v=8c5712d9"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../../_static/tabs.js?v=3ee01567"></script>
+    </body>
+</html>

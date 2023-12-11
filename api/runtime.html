@@ -1,0 +1,890 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Iterators" href="iterator.html" /><link rel="prev" title="Examples" href="../examples/index.html" />
+
+    <!-- Generated with Sphinx 7.2.6 and Furo 2023.09.10 -->
+        <title>Static Runtime - Umbrella 0.0.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">Umbrella 0.0.4 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">Umbrella 0.0.4 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Using this Library</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">API Concepts &amp; Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../abi/index.html">List of ABI Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Components</span></p>
+<ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Static Runtime</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iterator.html">Iterators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="flags.html">Flags and FlagSet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dump.html">Class-Dump</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trailing_objects.html">Trailing Objects</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ABI Implementations</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../abi/swift/index.html">1. Swift ABI</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of 1. Swift ABI</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../abi/swift/metadata_values.html">1.1. Metadata Values (Enums)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../abi/swift/reconstruction.html">1.2. Reconstruction of Swift Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../abi/swift/reconstruction.html#protocols">1.3. Protocols</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../abi/objc/index.html">2. Objective-C ABI</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../abi/java/index.html">3. Java Class Files</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of 3. Java Class Files</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../abi/java/access_flags.html">3.1.1. Access Flags (Enums)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../abi/java/constant_pool.html">3.1.2. Constant Pool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../abi/java/attribute.html">3.1.3. Attribute Types</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="static-runtime">
+<span id="api-runtime"></span><h1>Static Runtime<a class="headerlink" href="#static-runtime" title="Link to this heading">#</a></h1>
+<p>This document aims to provide a detailed guide on internal classes used to organize
+the parsed metadata.</p>
+<section id="public-interface">
+<h2>Public Interface<a class="headerlink" href="#public-interface" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="umbrella.runtime.get_context_value">
+<span class="sig-prename descclassname"><span class="pre">umbrella.runtime.</span></span><span class="sig-name descname"><span class="pre">get_context_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/umbrella/runtime.html#get_context_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.runtime.get_context_value" title="Link to this definition">#</a></dt>
+<dd><p>Retrieve a context variable by its name (recursively).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> (<em>construct.Container</em>) – the context</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – the variable’s name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>cs.ConstructError</strong> – if the variable could not be found</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the associated value</p>
+</dd>
+</dl>
+<p>Note that this method is used within the <a class="reference internal" href="#umbrella.runtime.Virtual" title="umbrella.runtime.Virtual"><code class="xref py py-class docutils literal notranslate"><span class="pre">Virtual</span></code></a> object creation. You can
+use it to search for a value within a context that has been set in the parent context.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="umbrella.runtime.__x64__">
+<span class="sig-prename descclassname"><span class="pre">umbrella.runtime.</span></span><span class="sig-name descname"><span class="pre">__x64__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">binary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Binary</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Binary</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/umbrella/runtime.html#__x64__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.runtime.__x64__" title="Link to this definition">#</a></dt>
+<dd><p>Returns whether the binary is using 64-bit pointers</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>binary</strong> (<em>BinaryT</em>) – the parsed binary</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>whether the binary has 64-bit pointers</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="umbrella.runtime.sizeof">
+<span class="sig-prename descclassname"><span class="pre">umbrella.runtime.</span></span><span class="sig-name descname"><span class="pre">sizeof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">__struct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">t.Union</span><span class="p"><span class="pre">[</span></span><span class="pre">cs.Construct</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dc._DataclassT</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">contextkw</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../_modules/umbrella/runtime.html#sizeof"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.runtime.sizeof" title="Link to this definition">#</a></dt>
+<dd><p>Computes the size of a Construct object or dataclass struct.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>__struct</strong> (<em>t.Union</em><em>[</em><em>cs.Construct</em><em>, </em><em>dc._DataclassT</em><em>]</em>) – the struct or dataclass type</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the struct’s size</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+<p>Examples:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">umbrella.runtime</span> <span class="kn">import</span> <span class="n">sizeof</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sizeof</span><span class="p">(</span><span class="n">Virtual</span><span class="p">)</span> <span class="c1"># type reference</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sizeof</span><span class="p">(</span><span class="n">construct</span><span class="o">.</span><span class="n">Int32ul</span><span class="p">)</span> <span class="c1"># struct reference</span>
+<span class="go">4</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="types">
+<span id="runtime-types"></span><h2>Types<a class="headerlink" href="#types" title="Link to this heading">#</a></h2>
+<p>The following table serves as a reference for annotated types in structs. It tries to illustrate
+each type’s size.</p>
+<div class="table-wrapper colwidths-given docutils container" id="id1">
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Runtime Types</span><a class="headerlink" href="#id1" title="Link to this table">#</a></caption>
+<colgroup>
+<col style="width: 22.2%" />
+<col style="width: 22.2%" />
+<col style="width: 11.1%" />
+<col style="width: 44.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Size (in bytes)</p></th>
+<th class="head"><p>Python Type</p></th>
+<th class="head"><p>Info</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Void</p></td>
+<td><p>NaN</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">construct.Contruct</span></code></p></td>
+<td><p>This object represents an incomplete type that can be used within relative pointers (see Swift ABI)</p></td>
+</tr>
+<tr class="row-odd"><td><p>int8_t</p></td>
+<td><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+<td><p>signed char</p></td>
+</tr>
+<tr class="row-even"><td><p>uint8_t</p></td>
+<td><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+<td><p>unsigned char</p></td>
+</tr>
+<tr class="row-odd"><td><p>int16_t</p></td>
+<td><p>2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+<td><p>signed short</p></td>
+</tr>
+<tr class="row-even"><td><p>uint16_t</p></td>
+<td><p>2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+<td><p>unsigned short</p></td>
+</tr>
+<tr class="row-odd"><td><p>int32_t</p></td>
+<td><p>4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+<td><p>signed integer</p></td>
+</tr>
+<tr class="row-even"><td><p>uint32_t</p></td>
+<td><p>4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+<td><p>unsigned integer</p></td>
+</tr>
+<tr class="row-odd"><td><p>int64_t</p></td>
+<td><p>8</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+<td><p>signed long</p></td>
+</tr>
+<tr class="row-even"><td><p>uint64_t</p></td>
+<td><p>8</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+<td><p>unsigned long</p></td>
+</tr>
+<tr class="row-odd"><td><p>uintptr_t</p></td>
+<td><p>4 or 8</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+<td><p>Pointer type with a size of 8 bytes on 64-bit architectures and 4 on 32-bit ones.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="abstract-classes">
+<h2>Abstract Classes<a class="headerlink" href="#abstract-classes" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.runtime.DataStream">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.runtime.</span></span><span class="sig-name descname"><span class="pre">DataStream</span></span><a class="reference internal" href="../_modules/umbrella/runtime.html#DataStream"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.runtime.DataStream" title="Link to this definition">#</a></dt>
+<dd><p>Dummy class used for type annotations.</p>
+<p>It should be used to parse construct classes based on their virtual
+address value. In addition every <code class="docutils literal notranslate"><span class="pre">DataStream</span></code> supports reading
+single or multiple raw bytes.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="umbrella.runtime.DataStream.read_struct">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_struct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_DataStream__struct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">t.Generic</span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_DataStream__vaddress</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">t.Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/umbrella/runtime.html#DataStream.read_struct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.runtime.DataStream.read_struct" title="Link to this definition">#</a></dt>
+<dd><p>Reads a generic construct object or dataclass struct from the untderlying stream.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__struct</strong> (<em>t.Generic</em><em>[</em><em>T</em><em>]</em>) – the struct to parse</p></li>
+<li><p><strong>__vaddress</strong> (<em>int</em>) – the virtual memory address</p></li>
+<li><p><strong>fix</strong> (<em>bool</em><em>, </em><em>optional</em>) – whether the address should be fixed, defaults to False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the parsed object or nothing in case of an error</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>t.Optional[T]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="umbrella.runtime.DataStream.read_raw">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_raw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_DataStream__vaddress</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_DataStream__size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bytes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/umbrella/runtime.html#DataStream.read_raw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.runtime.DataStream.read_raw" title="Link to this definition">#</a></dt>
+<dd><p>Reads raw bytes from the underlying stream.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__vaddress</strong> (<em>int</em>) – the virtual memory address</p></li>
+<li><p><strong>__size</strong> (<em>int</em>) – the block size (how many bytes to consume)</p></li>
+<li><p><strong>fix</strong> (<em>bool</em><em>, </em><em>optional</em>) – whether the address should be translated before, defaults to False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the bytes read or none if an invalid virtual address was provided</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>t.Optional[bytes]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<p>The next classes will be more important as they can be used as markers to trigger special
+struct parsing.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.runtime.CString">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.runtime.</span></span><span class="sig-name descname"><span class="pre">CString</span></span><a class="headerlink" href="#umbrella.runtime.CString" title="Link to this definition">#</a></dt>
+<dd><p>A typing class that can be used to mark pointers to strings in virtual memory. Note
+that the returened string instance won’t store the zero termination character at the
+end. As this class is marked to be a singelton instance, you can reference it
+directly. Be aware that the following code won’t work:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">umbrella.runtime</span> <span class="kn">import</span> <span class="n">CString</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="nd">@dataclass</span>
+<span class="linenos">4</span><span class="k">class</span> <span class="nc">Foo</span><span class="p">:</span>
+<span class="linenos">5</span>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">csfield</span><span class="p">(</span><span class="n">CString</span><span class="p">)</span> <span class="c1"># !!! DON&#39;T DO THAT</span>
+</pre></div>
+</div>
+<p>Due to the fact that this class is only a template/marker we can’t use it for parsing
+purposes directly.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">umbrella.runtime</span> <span class="kn">import</span> <span class="n">CString</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="n">runtime</span> <span class="o">=</span> <span class="n">Runtime</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="linenos">4</span><span class="n">objc</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">runtime</span><span class="o">.</span><span class="n">read_struct</span><span class="p">(</span><span class="n">CString</span><span class="p">,</span> <span class="mh">0x1234</span><span class="p">)</span> <span class="c1"># Thats the right way</span>
+</pre></div>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="umbrella.runtime.CString.umbrella.runtime.CString.is_cstring">
+<span class="sig-name descname"><span class="pre">is_cstring</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ty</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#umbrella.runtime.CString.umbrella.runtime.CString.is_cstring" title="Link to this definition">#</a></dt>
+<dd><p>Returns whether the given object or type conforms to a <code class="docutils literal notranslate"><span class="pre">CString</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ty</strong> (<em>type</em><em> | </em><a class="reference internal" href="#umbrella.runtime.CString" title="umbrella.runtime.CString"><em>CString</em></a>) – the object or type</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>whether the given type conforms to a CString</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.runtime.RawCString">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.runtime.</span></span><span class="sig-name descname"><span class="pre">RawCString</span></span><a class="headerlink" href="#umbrella.runtime.RawCString" title="Link to this definition">#</a></dt>
+<dd><p>A typing class that can be used to mark pointers to zero terminated bytearrays in
+virtual memory.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="umbrella.runtime.RawCString.umbrella.runtime.RawCString.is_raw_cstring">
+<span class="sig-name descname"><span class="pre">is_raw_cstring</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ty</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#umbrella.runtime.RawCString.umbrella.runtime.RawCString.is_raw_cstring" title="Link to this definition">#</a></dt>
+<dd><p>Returns whether the given object or type conforms to a <code class="docutils literal notranslate"><span class="pre">RawCString</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ty</strong> (<em>type</em><em> | </em><a class="reference internal" href="#umbrella.runtime.RawCString" title="umbrella.runtime.RawCString"><em>RawCString</em></a>) – the object or type</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>whether the given type conforms to a RawCString</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.runtime.Virtual">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.runtime.</span></span><span class="sig-name descname"><span class="pre">Virtual</span></span><a class="reference internal" href="../_modules/umbrella/runtime.html#Virtual"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.runtime.Virtual" title="Link to this definition">#</a></dt>
+<dd><p>Base class of all virtual memory objects.</p>
+<p>Each runtime implementation should set the <code class="docutils literal notranslate"><span class="pre">'address'</span></code> and <code class="docutils literal notranslate"><span class="pre">'fp'</span></code>
+variable in the base context before parsing any struct. It ensures
+that virtual memory objects store their address and datastream
+correctly.</p>
+<p>Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">stream</span> <span class="o">=</span> <span class="o">...</span> <span class="c1"># instance of DataStream</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">read_struct</span><span class="p">(</span><span class="n">Virtual</span><span class="p">,</span> <span class="mi">12345</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="n">_address</span>
+<span class="go">12345</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.runtime.VirtualMemoryBlock">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.runtime.</span></span><span class="sig-name descname"><span class="pre">VirtualMemoryBlock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">struct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/umbrella/runtime.html#VirtualMemoryBlock"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.runtime.VirtualMemoryBlock" title="Link to this definition">#</a></dt>
+<dd><p>A virtual memory block that can be used to parse struct at certain addresses.</p>
+<p>This class can be used in ‘with’ statements and supports the ‘&#64;’ operation to
+parse the structs:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">VirtualMemoryBlock</span><span class="p">(</span><span class="n">runtime</span><span class="p">)</span> <span class="k">as</span> <span class="n">block</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">obj</span> <span class="o">=</span> <span class="p">(</span><span class="n">block</span><span class="o">+</span><span class="n">StructClass</span><span class="p">)</span> <span class="o">@</span> <span class="mh">0x1234</span>
+<span class="gp">...</span>
+</pre></div>
+</div>
+<p>The ‘+’ operation is used to assign a struct type to this memory block and ‘&#64;’
+finally to parse it. The shortcut for the code above would be:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="p">(</span><span class="n">runtime</span><span class="o">+</span><span class="n">StructClass</span><span class="p">)</span> <span class="o">@</span> <span class="mh">0x1234</span>
+</pre></div>
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.runtime.VirtualMemoryBlock.stream">
+<span class="sig-name descname"><span class="pre">stream</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.runtime.DataStream" title="umbrella.runtime.DataStream"><span class="pre">DataStream</span></a></em><a class="headerlink" href="#umbrella.runtime.VirtualMemoryBlock.stream" title="Link to this definition">#</a></dt>
+<dd><p>the datastream</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.runtime.VirtualMemoryBlock.struct">
+<span class="sig-name descname"><span class="pre">struct</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Construct</span></em><a class="headerlink" href="#umbrella.runtime.VirtualMemoryBlock.struct" title="Link to this definition">#</a></dt>
+<dd><p>the dataclass or construct to parse</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.runtime.VirtualArray">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.runtime.</span></span><span class="sig-name descname"><span class="pre">VirtualArray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">length</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subcon</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/umbrella/runtime.html#VirtualArray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.runtime.VirtualArray" title="Link to this definition">#</a></dt>
+<dd><p>Reimplementation of construct.Array that supports asigning virtual addresses.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.runtime.AlignedUnion">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.runtime.</span></span><span class="sig-name descname"><span class="pre">AlignedUnion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">length</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subcon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Construct</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/umbrella/runtime.html#AlignedUnion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.runtime.AlignedUnion" title="Link to this definition">#</a></dt>
+<dd><p>Wrapper around construct’s <code class="docutils literal notranslate"><span class="pre">Union</span></code> class that supports a size.</p>
+<p>Parsing first parses the union and then consumes the amount of bytes
+specified in the length of this struct.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.runtime.Runtime">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.runtime.</span></span><span class="sig-name descname"><span class="pre">Runtime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_Runtime__binary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Binary</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Binary</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/umbrella/runtime.html#Runtime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.runtime.Runtime" title="Link to this definition">#</a></dt>
+<dd><p>Basic implementation of a <a class="reference internal" href="#umbrella.runtime.DataStream" title="umbrella.runtime.DataStream"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataStream</span></code></a>.</p>
+<p>Each ABI implementation should extend this class as it provides basic functionality
+when parsing structs or strings. In addition, there is an inbuilt cache that returns
+its values on requested virtual addresses. This class provides the following methods
+as its public API:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">read_struct</span></code>: parsing structs</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">read_raw</span></code>: reading raw data blocks</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">read_string</span></code>: parsing of zero-terminated strings</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">read_ptr_section</span></code>: parsing a whole section as pointers</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">read_terminated</span></code>: abstract parsing of terminated sequences</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>__binary</strong> (<em>BinaryT</em>) – the parsed binary</p>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="umbrella.runtime.Runtime.binary">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">binary</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Binary</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Binary</span></em><a class="headerlink" href="#umbrella.runtime.Runtime.binary" title="Link to this definition">#</a></dt>
+<dd><p>Returns the parsed binary.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="umbrella.runtime.Runtime.get_binary_kind">
+<span class="sig-name descname"><span class="pre">get_binary_kind</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/umbrella/runtime.html#Runtime.get_binary_kind"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.runtime.Runtime.get_binary_kind" title="Link to this definition">#</a></dt>
+<dd><p>Returns the module name for the parsed binary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the binary’s module name</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="umbrella.runtime.Runtime.fixup_address">
+<span class="sig-name descname"><span class="pre">fixup_address</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_Runtime__vaddress</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../_modules/umbrella/runtime.html#Runtime.fixup_address"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.runtime.Runtime.fixup_address" title="Link to this definition">#</a></dt>
+<dd><p>Transforms the given virtual address.</p>
+<p>Some virtual addresses contain extra information that should be emitted.
+Therefore, sub-classes may implement this function to remove that
+information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>__vaddress</strong> (<em>int</em>) – the virtual memory address</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the ‘fixed’ address</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="umbrella.runtime.Runtime.is_64">
+<span class="sig-name descname"><span class="pre">is_64</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../_modules/umbrella/runtime.html#Runtime.is_64"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.runtime.Runtime.is_64" title="Link to this definition">#</a></dt>
+<dd><p>Returns whether this runtime is using 64-bit structures</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>whether the underlying binary uses 64-bit</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="umbrella.runtime.Runtime.read_struct">
+<span class="sig-name descname"><span class="pre">read_struct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_Runtime__struct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">t.Generic</span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_Runtime__vaddress</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">t.Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/umbrella/runtime.html#Runtime.read_struct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.runtime.Runtime.read_struct" title="Link to this definition">#</a></dt>
+<dd><p>Parses the given struct at the provided virtual address.</p>
+<p>This method not only accepts construct objects, it also supports raw
+dataclass types. For example, the follwing class is defined to be
+a dataclass stuct:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nd">@dataclass</span>
+<span class="gp">... </span><span class="k">class</span> <span class="nc">Foo</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">value</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">csfield</span><span class="p">(</span><span class="n">Int32ul</span><span class="p">)</span>
+<span class="gp">...</span>
+</pre></div>
+</div>
+<p>with an object extending the <code class="docutils literal notranslate"><span class="pre">Runtime</span></code> class, you can use a raw type
+reference to parse the virtual memory.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">runtime</span> <span class="o">=</span> <span class="o">...</span> <span class="c1"># assume your instance here</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">runtime</span><span class="o">.</span><span class="n">read_struct</span><span class="p">(</span><span class="n">Foo</span><span class="p">,</span> <span class="mh">0x12345</span><span class="p">)</span>
+<span class="go">Foo(value=...)</span>
+</pre></div>
+</div>
+<p>Note that the usage of <code class="docutils literal notranslate"><span class="pre">CString</span></code> will result in a returned string value
+and <code class="docutils literal notranslate"><span class="pre">RawString</span></code> will return the string as a bytearray (<code class="docutils literal notranslate"><span class="pre">bytes</span></code> object).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__struct</strong> (<em>dataclass type reference</em><em> or </em><em>Construct instance</em>) – the struct to parse</p></li>
+<li><p><strong>__vaddress</strong> (<em>int</em>) – the virtual memory address</p></li>
+<li><p><strong>fix</strong> (<em>bool</em><em>, </em><em>optional</em>) – whether to fix the provided address, defaults to False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the parsed struct or nothing on an invalid address</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>t.Optional[T]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="umbrella.runtime.Runtime.read_raw">
+<span class="sig-name descname"><span class="pre">read_raw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_Runtime__vaddress</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_Runtime__size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bytes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/umbrella/runtime.html#Runtime.read_raw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.runtime.Runtime.read_raw" title="Link to this definition">#</a></dt>
+<dd><p>Reads the data from the provided virtual address</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__vaddress</strong> (<em>int</em>) – the virtual starting address</p></li>
+<li><p><strong>__size</strong> (<em>int</em>) – the amount of bytes to read</p></li>
+<li><p><strong>fix</strong> (<em>bool</em><em>, </em><em>optional</em>) – whether to fix the virtual address, defaults to False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the bytes consumed</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>t.Optional[bytes]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="umbrella.runtime.Runtime.read_terminated">
+<span class="sig-name descname"><span class="pre">read_terminated</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_Runtime__vaddress</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">term</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bytes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/umbrella/runtime.html#Runtime.read_terminated"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.runtime.Runtime.read_terminated" title="Link to this definition">#</a></dt>
+<dd><p>Parses a terminated byte sequence using a 16-byte buffer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__vaddress</strong> (<em>int</em>) – the starting address</p></li>
+<li><p><strong>term</strong> (<em>int</em><em>, </em><em>optional</em>) – the terminator, defaults to 0</p></li>
+<li><p><strong>fix</strong> (<em>bool</em><em>, </em><em>optional</em>) – whether to apply a fix the given address, defaults to False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the consumed bytes excluding the terminator</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>t.Optional[bytes]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="umbrella.runtime.Runtime.read_string">
+<span class="sig-name descname"><span class="pre">read_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_Runtime__vaddress</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/umbrella/runtime.html#Runtime.read_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.runtime.Runtime.read_string" title="Link to this definition">#</a></dt>
+<dd><p>Parses a CString without the trailing zero.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__vaddress</strong> (<em>int</em>) – the starting address</p></li>
+<li><p><strong>fix</strong> (<em>bool</em><em>, </em><em>optional</em>) – whether to fix the address, defaults to False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the parsed string or nothing on failure</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>t.Optional[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="umbrella.runtime.Runtime.read_ptr_section">
+<span class="sig-name descname"><span class="pre">read_ptr_section</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_Runtime__name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">struct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Construct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/umbrella/runtime.html#Runtime.read_ptr_section"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.runtime.Runtime.read_ptr_section" title="Link to this definition">#</a></dt>
+<dd><p>Parses a pointer section (see <code class="xref py py-class docutils literal notranslate"><span class="pre">ReflectionSectionIterator</span></code>)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__name</strong> (<em>str</em>) – the section’s name</p></li>
+<li><p><strong>struct</strong> (<em>t.Optional</em><em>[</em><em>cs.Construct</em><em>]</em><em>, </em><em>optional</em><em> (</em><em>default is Int64ul</em><em>)</em>) – the pointer struct, defaults to None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the pointer values mapped to their virtual address</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>t.Dict[int, int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="umbrella.runtime.Runtime.pointers">
+<span class="sig-name descname"><span class="pre">pointers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_Runtime__name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">struct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Construct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/umbrella/runtime.html#Runtime.pointers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#umbrella.runtime.Runtime.pointers" title="Link to this definition">#</a></dt>
+<dd><p>Returns only the values of all pointers</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>__name</strong> (<em>str</em>) – the section’s name</p></li>
+<li><p><strong>struct</strong> (<em>t.Optional</em><em>[</em><em>cs.Construct</em><em>]</em><em>, </em><em>optional</em>) – the pointer struct to use, defaults to None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a list of parsed pointer values</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>t.List[int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="iterator.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Iterators</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../examples/index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Examples</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, MatrixEditor
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Static Runtime</a><ul>
+<li><a class="reference internal" href="#public-interface">Public Interface</a><ul>
+<li><a class="reference internal" href="#umbrella.runtime.get_context_value"><code class="docutils literal notranslate"><span class="pre">get_context_value()</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.runtime.__x64__"><code class="docutils literal notranslate"><span class="pre">__x64__()</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.runtime.sizeof"><code class="docutils literal notranslate"><span class="pre">sizeof()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#types">Types</a></li>
+<li><a class="reference internal" href="#abstract-classes">Abstract Classes</a><ul>
+<li><a class="reference internal" href="#umbrella.runtime.DataStream"><code class="docutils literal notranslate"><span class="pre">DataStream</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.runtime.DataStream.read_struct"><code class="docutils literal notranslate"><span class="pre">DataStream.read_struct()</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.runtime.DataStream.read_raw"><code class="docutils literal notranslate"><span class="pre">DataStream.read_raw()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.runtime.CString"><code class="docutils literal notranslate"><span class="pre">umbrella.runtime.CString</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.runtime.CString.umbrella.runtime.CString.is_cstring"><code class="docutils literal notranslate"><span class="pre">umbrella.runtime.CString.is_cstring()</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.runtime.RawCString"><code class="docutils literal notranslate"><span class="pre">umbrella.runtime.RawCString</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.runtime.RawCString.umbrella.runtime.RawCString.is_raw_cstring"><code class="docutils literal notranslate"><span class="pre">umbrella.runtime.RawCString.is_raw_cstring()</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.runtime.Virtual"><code class="docutils literal notranslate"><span class="pre">Virtual</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.runtime.VirtualMemoryBlock"><code class="docutils literal notranslate"><span class="pre">VirtualMemoryBlock</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.runtime.VirtualMemoryBlock.stream"><code class="docutils literal notranslate"><span class="pre">VirtualMemoryBlock.stream</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.runtime.VirtualMemoryBlock.struct"><code class="docutils literal notranslate"><span class="pre">VirtualMemoryBlock.struct</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.runtime.VirtualArray"><code class="docutils literal notranslate"><span class="pre">VirtualArray</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.runtime.AlignedUnion"><code class="docutils literal notranslate"><span class="pre">AlignedUnion</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.runtime.Runtime"><code class="docutils literal notranslate"><span class="pre">Runtime</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.runtime.Runtime.binary"><code class="docutils literal notranslate"><span class="pre">Runtime.binary</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.runtime.Runtime.get_binary_kind"><code class="docutils literal notranslate"><span class="pre">Runtime.get_binary_kind()</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.runtime.Runtime.fixup_address"><code class="docutils literal notranslate"><span class="pre">Runtime.fixup_address()</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.runtime.Runtime.is_64"><code class="docutils literal notranslate"><span class="pre">Runtime.is_64()</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.runtime.Runtime.read_struct"><code class="docutils literal notranslate"><span class="pre">Runtime.read_struct()</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.runtime.Runtime.read_raw"><code class="docutils literal notranslate"><span class="pre">Runtime.read_raw()</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.runtime.Runtime.read_terminated"><code class="docutils literal notranslate"><span class="pre">Runtime.read_terminated()</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.runtime.Runtime.read_string"><code class="docutils literal notranslate"><span class="pre">Runtime.read_string()</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.runtime.Runtime.read_ptr_section"><code class="docutils literal notranslate"><span class="pre">Runtime.read_ptr_section()</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.runtime.Runtime.pointers"><code class="docutils literal notranslate"><span class="pre">Runtime.pointers()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=8c5712d9"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    </body>
+</html>

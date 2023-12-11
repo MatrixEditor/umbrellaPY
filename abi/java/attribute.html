@@ -1,0 +1,1338 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Roadmap" href="../../roadmap.html" /><link rel="prev" title="3.1.2. Constant Pool" href="constant_pool.html" />
+
+    <!-- Generated with Sphinx 7.2.6 and Furo 2023.09.10 -->
+        <title>3.1.3. Attribute Types - Umbrella 0.0.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Umbrella 0.0.4 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Umbrella 0.0.4 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Using this Library</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">API Concepts &amp; Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">List of ABI Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Components</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/runtime.html">Static Runtime</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/iterator.html">Iterators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/flags.html">Flags and FlagSet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/dump.html">Class-Dump</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/trailing_objects.html">Trailing Objects</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ABI Implementations</span></p>
+<ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../swift/index.html">1. Swift ABI</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of 1. Swift ABI</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../swift/metadata_values.html">1.1. Metadata Values (Enums)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../swift/reconstruction.html">1.2. Reconstruction of Swift Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../swift/reconstruction.html#protocols">1.3. Protocols</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../objc/index.html">2. Objective-C ABI</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">3. Java Class Files</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of 3. Java Class Files</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="access_flags.html">3.1.1. Access Flags (Enums)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constant_pool.html">3.1.2. Constant Pool</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">3.1.3. Attribute Types</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="attribute-types">
+<span id="java-abi-attribute"></span><h1><span class="section-number">3.1.3. </span>Attribute Types<a class="headerlink" href="#attribute-types" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.FieldInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">FieldInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">access_flags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'AccessFlags'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">descriptor_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_attributes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attributes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'t.List[AttributeInfo]'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.FieldInfo" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.FieldInfo.access_flags">
+<span class="sig-name descname"><span class="pre">access_flags</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="access_flags.html#umbrella.java.access_flags.AccessFlags" title="umbrella.java.access_flags.AccessFlags"><span class="pre">AccessFlags</span></a></em><a class="headerlink" href="#umbrella.java.attribute.FieldInfo.access_flags" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.FieldInfo.name_index">
+<span class="sig-name descname"><span class="pre">name_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.FieldInfo.name_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.FieldInfo.descriptor_index">
+<span class="sig-name descname"><span class="pre">descriptor_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.FieldInfo.descriptor_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.FieldInfo.num_attributes">
+<span class="sig-name descname"><span class="pre">num_attributes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.FieldInfo.num_attributes" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.FieldInfo.attributes">
+<span class="sig-name descname"><span class="pre">attributes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.java.attribute.AttributeInfo" title="umbrella.java.attribute.AttributeInfo"><span class="pre">AttributeInfo</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#umbrella.java.attribute.FieldInfo.attributes" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.MethodInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">MethodInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">access_flags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'AccessFlags'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">descriptor_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_attributes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attributes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'t.List[AttributeInfo]'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.MethodInfo" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.MethodInfo.access_flags">
+<span class="sig-name descname"><span class="pre">access_flags</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="access_flags.html#umbrella.java.access_flags.AccessFlags" title="umbrella.java.access_flags.AccessFlags"><span class="pre">AccessFlags</span></a></em><a class="headerlink" href="#umbrella.java.attribute.MethodInfo.access_flags" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.MethodInfo.name_index">
+<span class="sig-name descname"><span class="pre">name_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.MethodInfo.name_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.MethodInfo.descriptor_index">
+<span class="sig-name descname"><span class="pre">descriptor_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.MethodInfo.descriptor_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.MethodInfo.num_attributes">
+<span class="sig-name descname"><span class="pre">num_attributes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.MethodInfo.num_attributes" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.MethodInfo.attributes">
+<span class="sig-name descname"><span class="pre">attributes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.java.attribute.AttributeInfo" title="umbrella.java.attribute.AttributeInfo"><span class="pre">AttributeInfo</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#umbrella.java.attribute.MethodInfo.attributes" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.AttributeInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">AttributeInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attribute_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint32_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'t.Union[*kAttributeTypes,</span> <span class="pre">bytes]'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.AttributeInfo" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.AttributeInfo.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#umbrella.java.attribute.AttributeInfo.name" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.AttributeInfo.name_index">
+<span class="sig-name descname"><span class="pre">name_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.AttributeInfo.name_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.AttributeInfo.attribute_length">
+<span class="sig-name descname"><span class="pre">attribute_length</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.AttributeInfo.attribute_length" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.AttributeInfo.info">
+<span class="sig-name descname"><span class="pre">info</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.java.attribute.AnnotationDefault" title="umbrella.java.attribute.AnnotationDefault"><span class="pre">AnnotationDefault</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.java.attribute.BootstrapMethods" title="umbrella.java.attribute.BootstrapMethods"><span class="pre">BootstrapMethods</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.java.attribute.Code" title="umbrella.java.attribute.Code"><span class="pre">Code</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ConstantValue</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.java.attribute.Exceptions" title="umbrella.java.attribute.Exceptions"><span class="pre">Exceptions</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.java.attribute.InnerClasses" title="umbrella.java.attribute.InnerClasses"><span class="pre">InnerClasses</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.java.attribute.LineNumberTable" title="umbrella.java.attribute.LineNumberTable"><span class="pre">LineNumberTable</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.java.attribute.LocalVariableTable" title="umbrella.java.attribute.LocalVariableTable"><span class="pre">LocalVariableTable</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.java.attribute.LocalVariableTypeTable" title="umbrella.java.attribute.LocalVariableTypeTable"><span class="pre">LocalVariableTypeTable</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.java.attribute.Module" title="umbrella.java.attribute.Module"><span class="pre">Module</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ModuleMainClass</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.java.attribute.ModulePackages" title="umbrella.java.attribute.ModulePackages"><span class="pre">ModulePackages</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">NestHost</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.java.attribute.NestMembers" title="umbrella.java.attribute.NestMembers"><span class="pre">NestMembers</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">PermittedSubclasses</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.java.attribute.Record" title="umbrella.java.attribute.Record"><span class="pre">Record</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">RuntimeInvisibleAnnotations</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">RuntimeInvisibleParameterAnnotations</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">RuntimeVisibleAnnotations</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">RuntimeVisibleParameterAnnotations</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Signature</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">SourceFile</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span></em><a class="headerlink" href="#umbrella.java.attribute.AttributeInfo.info" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<section id="struct-definitions">
+<h2><span class="section-number">3.1.3.1. </span>Struct Definitions<a class="headerlink" href="#struct-definitions" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Exceptions">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">Exceptions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_exceptions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exception_index_table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'t.List[uint16_t]'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.Exceptions" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Exceptions.num_exceptions">
+<span class="sig-name descname"><span class="pre">num_exceptions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.Exceptions.num_exceptions" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Exceptions.exception_index_table">
+<span class="sig-name descname"><span class="pre">exception_index_table</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#umbrella.java.attribute.Exceptions.exception_index_table" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.InnerClass">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">InnerClass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inner_class_info_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outer_class_info_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inner_name_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inner_class_access_flags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'AccessFlags'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.InnerClass" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.InnerClass.inner_class_info_index">
+<span class="sig-name descname"><span class="pre">inner_class_info_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.InnerClass.inner_class_info_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.InnerClass.outer_class_info_index">
+<span class="sig-name descname"><span class="pre">outer_class_info_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.InnerClass.outer_class_info_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.InnerClass.inner_name_index">
+<span class="sig-name descname"><span class="pre">inner_name_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.InnerClass.inner_name_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.InnerClass.inner_class_access_flags">
+<span class="sig-name descname"><span class="pre">inner_class_access_flags</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="access_flags.html#umbrella.java.access_flags.AccessFlags" title="umbrella.java.access_flags.AccessFlags"><span class="pre">AccessFlags</span></a></em><a class="headerlink" href="#umbrella.java.attribute.InnerClass.inner_class_access_flags" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.InnerClasses">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">InnerClasses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_inner_classes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'t.List[uint16_t]'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.InnerClasses" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.InnerClasses.num_inner_classes">
+<span class="sig-name descname"><span class="pre">num_inner_classes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.InnerClasses.num_inner_classes" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.InnerClasses.classes">
+<span class="sig-name descname"><span class="pre">classes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#umbrella.java.attribute.InnerClasses.classes" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.CodeException">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">CodeException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_pc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_pc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler_pc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">catch_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.CodeException" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.CodeException.start_pc">
+<span class="sig-name descname"><span class="pre">start_pc</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.CodeException.start_pc" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.CodeException.end_pc">
+<span class="sig-name descname"><span class="pre">end_pc</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.CodeException.end_pc" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.CodeException.handler_pc">
+<span class="sig-name descname"><span class="pre">handler_pc</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.CodeException.handler_pc" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.CodeException.catch_type">
+<span class="sig-name descname"><span class="pre">catch_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.CodeException.catch_type" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Code">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">Code</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_stack</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_locals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bytecode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exception_table_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exception_table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'t.List[CodeException]'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_attributes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attributes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'t.List[AttributeInfo]'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.Code" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Code.max_stack">
+<span class="sig-name descname"><span class="pre">max_stack</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.Code.max_stack" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Code.max_locals">
+<span class="sig-name descname"><span class="pre">max_locals</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.Code.max_locals" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Code.code_length">
+<span class="sig-name descname"><span class="pre">code_length</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.Code.code_length" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Code.bytecode">
+<span class="sig-name descname"><span class="pre">bytecode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.Code.bytecode" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Code.exception_table_length">
+<span class="sig-name descname"><span class="pre">exception_table_length</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.Code.exception_table_length" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Code.exception_table">
+<span class="sig-name descname"><span class="pre">exception_table</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.java.attribute.CodeException" title="umbrella.java.attribute.CodeException"><span class="pre">CodeException</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#umbrella.java.attribute.Code.exception_table" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Code.num_attributes">
+<span class="sig-name descname"><span class="pre">num_attributes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.Code.num_attributes" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Code.attributes">
+<span class="sig-name descname"><span class="pre">attributes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.java.attribute.AttributeInfo" title="umbrella.java.attribute.AttributeInfo"><span class="pre">AttributeInfo</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#umbrella.java.attribute.Code.attributes" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.AttributeRef">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">AttributeRef</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.AttributeRef" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.AttributeRef.index">
+<span class="sig-name descname"><span class="pre">index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.AttributeRef.index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.EnclosingMethod">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">EnclosingMethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">class_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.EnclosingMethod" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.EnclosingMethod.class_index">
+<span class="sig-name descname"><span class="pre">class_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.EnclosingMethod.class_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.EnclosingMethod.name_index">
+<span class="sig-name descname"><span class="pre">name_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.EnclosingMethod.name_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.LineNumber">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">LineNumber</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_pc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.LineNumber" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.LineNumber.start_pc">
+<span class="sig-name descname"><span class="pre">start_pc</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.LineNumber.start_pc" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.LineNumber.line_number">
+<span class="sig-name descname"><span class="pre">line_number</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.LineNumber.line_number" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.LineNumberTable">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">LineNumberTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line_number_table_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line_number_table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'t.List[LineNumber]'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.LineNumberTable" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.LineNumberTable.line_number_table_length">
+<span class="sig-name descname"><span class="pre">line_number_table_length</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.LineNumberTable.line_number_table_length" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.LineNumberTable.line_number_table">
+<span class="sig-name descname"><span class="pre">line_number_table</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.java.attribute.LineNumber" title="umbrella.java.attribute.LineNumber"><span class="pre">LineNumber</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#umbrella.java.attribute.LineNumberTable.line_number_table" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.LocalVariable">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">LocalVariable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_pc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">descriptor_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.LocalVariable" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.LocalVariable.start_pc">
+<span class="sig-name descname"><span class="pre">start_pc</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.LocalVariable.start_pc" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.LocalVariable.length">
+<span class="sig-name descname"><span class="pre">length</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.LocalVariable.length" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.LocalVariable.name_index">
+<span class="sig-name descname"><span class="pre">name_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.LocalVariable.name_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.LocalVariable.descriptor_index">
+<span class="sig-name descname"><span class="pre">descriptor_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.LocalVariable.descriptor_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.LocalVariable.index">
+<span class="sig-name descname"><span class="pre">index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.LocalVariable.index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.LocalVariableTable">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">LocalVariableTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">local_variable_table_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_variable_table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'t.List[LocalVariable]'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.LocalVariableTable" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.LocalVariableTable.local_variable_table_length">
+<span class="sig-name descname"><span class="pre">local_variable_table_length</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.LocalVariableTable.local_variable_table_length" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.LocalVariableTable.local_variable_table">
+<span class="sig-name descname"><span class="pre">local_variable_table</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.java.attribute.LocalVariable" title="umbrella.java.attribute.LocalVariable"><span class="pre">LocalVariable</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#umbrella.java.attribute.LocalVariableTable.local_variable_table" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.LocalVariableType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">LocalVariableType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_pc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signature_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.LocalVariableType" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.LocalVariableType.start_pc">
+<span class="sig-name descname"><span class="pre">start_pc</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.LocalVariableType.start_pc" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.LocalVariableType.length">
+<span class="sig-name descname"><span class="pre">length</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.LocalVariableType.length" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.LocalVariableType.name_index">
+<span class="sig-name descname"><span class="pre">name_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.LocalVariableType.name_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.LocalVariableType.signature_index">
+<span class="sig-name descname"><span class="pre">signature_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.LocalVariableType.signature_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.LocalVariableType.index">
+<span class="sig-name descname"><span class="pre">index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.LocalVariableType.index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.LocalVariableTypeTable">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">LocalVariableTypeTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">local_variable_type_table_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_variable_type_table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'t.List[LocalVariable]'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.LocalVariableTypeTable" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.LocalVariableTypeTable.local_variable_type_table_length">
+<span class="sig-name descname"><span class="pre">local_variable_type_table_length</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.LocalVariableTypeTable.local_variable_type_table_length" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.LocalVariableTypeTable.local_variable_type_table">
+<span class="sig-name descname"><span class="pre">local_variable_type_table</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.java.attribute.LocalVariable" title="umbrella.java.attribute.LocalVariable"><span class="pre">LocalVariable</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#umbrella.java.attribute.LocalVariableTypeTable.local_variable_type_table" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.EnumConstValue">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">EnumConstValue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_name_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">const_name_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.EnumConstValue" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.EnumConstValue.type_name_index">
+<span class="sig-name descname"><span class="pre">type_name_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.EnumConstValue.type_name_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.EnumConstValue.const_name_index">
+<span class="sig-name descname"><span class="pre">const_name_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.EnumConstValue.const_name_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.ElementValueAdapter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">ElementValueAdapter</span></span><a class="headerlink" href="#umbrella.java.attribute.ElementValueAdapter" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.ElementValue">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">ElementValue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint8_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'t.Union[int,</span> <span class="pre">Annotation,</span> <span class="pre">EnumConstValue,</span> <span class="pre">AttributeRef]'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.ElementValue" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.ElementValue.tag">
+<span class="sig-name descname"><span class="pre">tag</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.ElementValue.tag" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.ElementValue.value">
+<span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.java.attribute.Annotation" title="umbrella.java.attribute.Annotation"><span class="pre">Annotation</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.java.attribute.EnumConstValue" title="umbrella.java.attribute.EnumConstValue"><span class="pre">EnumConstValue</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.java.attribute.AttributeRef" title="umbrella.java.attribute.AttributeRef"><span class="pre">AttributeRef</span></a></em><a class="headerlink" href="#umbrella.java.attribute.ElementValue.value" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.ArrayValue">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">ArrayValue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'t.List[ElementValue]'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.ArrayValue" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.ArrayValue.num_values">
+<span class="sig-name descname"><span class="pre">num_values</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.ArrayValue.num_values" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.ArrayValue.values">
+<span class="sig-name descname"><span class="pre">values</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.java.attribute.ElementValue" title="umbrella.java.attribute.ElementValue"><span class="pre">ElementValue</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#umbrella.java.attribute.ArrayValue.values" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.ElementValuePair">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">ElementValuePair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element_name_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'ElementValue'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.ElementValuePair" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.ElementValuePair.element_name_index">
+<span class="sig-name descname"><span class="pre">element_name_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.ElementValuePair.element_name_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.ElementValuePair.value">
+<span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.java.attribute.ElementValue" title="umbrella.java.attribute.ElementValue"><span class="pre">ElementValue</span></a></em><a class="headerlink" href="#umbrella.java.attribute.ElementValuePair.value" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Annotation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">Annotation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_element_value_pairs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element_value_pairs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'t.List[ElementValuePair]'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.Annotation" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Annotation.type_index">
+<span class="sig-name descname"><span class="pre">type_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.Annotation.type_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Annotation.num_element_value_pairs">
+<span class="sig-name descname"><span class="pre">num_element_value_pairs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.Annotation.num_element_value_pairs" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Annotation.element_value_pairs">
+<span class="sig-name descname"><span class="pre">element_value_pairs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.java.attribute.ElementValuePair" title="umbrella.java.attribute.ElementValuePair"><span class="pre">ElementValuePair</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#umbrella.java.attribute.Annotation.element_value_pairs" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.RuntimeAnnotations">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">RuntimeAnnotations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_annotations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'t.List[Annotation]'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.RuntimeAnnotations" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.RuntimeAnnotations.num_annotations">
+<span class="sig-name descname"><span class="pre">num_annotations</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.RuntimeAnnotations.num_annotations" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.RuntimeAnnotations.annotations">
+<span class="sig-name descname"><span class="pre">annotations</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.java.attribute.Annotation" title="umbrella.java.attribute.Annotation"><span class="pre">Annotation</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#umbrella.java.attribute.RuntimeAnnotations.annotations" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.ParameterAnnotation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">ParameterAnnotation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_annotations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'t.List[Annotation]'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.ParameterAnnotation" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.ParameterAnnotation.num_annotations">
+<span class="sig-name descname"><span class="pre">num_annotations</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.ParameterAnnotation.num_annotations" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.ParameterAnnotation.annotations">
+<span class="sig-name descname"><span class="pre">annotations</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.java.attribute.Annotation" title="umbrella.java.attribute.Annotation"><span class="pre">Annotation</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#umbrella.java.attribute.ParameterAnnotation.annotations" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.RuntimeParameterAnnotations">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">RuntimeParameterAnnotations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameter_annotations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'t.List[ParameterAnnotation]'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.RuntimeParameterAnnotations" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.RuntimeParameterAnnotations.num_parameters">
+<span class="sig-name descname"><span class="pre">num_parameters</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.RuntimeParameterAnnotations.num_parameters" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.RuntimeParameterAnnotations.parameter_annotations">
+<span class="sig-name descname"><span class="pre">parameter_annotations</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.java.attribute.ParameterAnnotation" title="umbrella.java.attribute.ParameterAnnotation"><span class="pre">ParameterAnnotation</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#umbrella.java.attribute.RuntimeParameterAnnotations.parameter_annotations" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.AnnotationDefault">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">AnnotationDefault</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'ElementValue'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.AnnotationDefault" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.AnnotationDefault.default_value">
+<span class="sig-name descname"><span class="pre">default_value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#umbrella.java.attribute.ElementValue" title="umbrella.java.attribute.ElementValue"><span class="pre">ElementValue</span></a></em><a class="headerlink" href="#umbrella.java.attribute.AnnotationDefault.default_value" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.BootstrapMethod">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">BootstrapMethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bootstrap_method_ref</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_bootstrap_arguments</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bootstrap_arguments</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'t.List[uint16_t]'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.BootstrapMethod" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.BootstrapMethod.bootstrap_method_ref">
+<span class="sig-name descname"><span class="pre">bootstrap_method_ref</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.BootstrapMethod.bootstrap_method_ref" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.BootstrapMethod.num_bootstrap_arguments">
+<span class="sig-name descname"><span class="pre">num_bootstrap_arguments</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.BootstrapMethod.num_bootstrap_arguments" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.BootstrapMethod.bootstrap_arguments">
+<span class="sig-name descname"><span class="pre">bootstrap_arguments</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#umbrella.java.attribute.BootstrapMethod.bootstrap_arguments" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.BootstrapMethods">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">BootstrapMethods</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_bootstrap_methods</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bootstrap_methods</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'t.List[BootstrapMethod]'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.BootstrapMethods" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.BootstrapMethods.num_bootstrap_methods">
+<span class="sig-name descname"><span class="pre">num_bootstrap_methods</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.BootstrapMethods.num_bootstrap_methods" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.BootstrapMethods.bootstrap_methods">
+<span class="sig-name descname"><span class="pre">bootstrap_methods</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.java.attribute.BootstrapMethod" title="umbrella.java.attribute.BootstrapMethod"><span class="pre">BootstrapMethod</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#umbrella.java.attribute.BootstrapMethods.bootstrap_methods" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.MethodParameter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">MethodParameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">access_flags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'AccessFlags'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.MethodParameter" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.MethodParameter.name_index">
+<span class="sig-name descname"><span class="pre">name_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.MethodParameter.name_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.MethodParameter.access_flags">
+<span class="sig-name descname"><span class="pre">access_flags</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="access_flags.html#umbrella.java.access_flags.AccessFlags" title="umbrella.java.access_flags.AccessFlags"><span class="pre">AccessFlags</span></a></em><a class="headerlink" href="#umbrella.java.attribute.MethodParameter.access_flags" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.MethodParameters">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">MethodParameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'t.List[MethodParameter]'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.MethodParameters" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.MethodParameters.parameters_count">
+<span class="sig-name descname"><span class="pre">parameters_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.MethodParameters.parameters_count" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.MethodParameters.parameters">
+<span class="sig-name descname"><span class="pre">parameters</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.java.attribute.MethodParameter" title="umbrella.java.attribute.MethodParameter"><span class="pre">MethodParameter</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#umbrella.java.attribute.MethodParameters.parameters" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">Module</span></span><a class="headerlink" href="#umbrella.java.attribute.Module" title="Link to this definition">#</a></dt>
+<dd><p>Java Module Attribute</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module.Exports">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Exports</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exports_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exports_flags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'AccessFlags'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exports_to_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exports_to_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'t.List[uint16_t]'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.Module.Exports" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module.Exports.exports_index">
+<span class="sig-name descname"><span class="pre">exports_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.Module.Exports.exports_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module.Exports.exports_flags">
+<span class="sig-name descname"><span class="pre">exports_flags</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="access_flags.html#umbrella.java.access_flags.AccessFlags" title="umbrella.java.access_flags.AccessFlags"><span class="pre">AccessFlags</span></a></em><a class="headerlink" href="#umbrella.java.attribute.Module.Exports.exports_flags" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module.Exports.exports_to_count">
+<span class="sig-name descname"><span class="pre">exports_to_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.Module.Exports.exports_to_count" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module.Exports.exports_to_index">
+<span class="sig-name descname"><span class="pre">exports_to_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#umbrella.java.attribute.Module.Exports.exports_to_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module.Opens">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Opens</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opens_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opens_flags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'AccessFlags'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opens_to_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opens_to_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'t.List[uint16_t]'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.Module.Opens" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module.Opens.opens_index">
+<span class="sig-name descname"><span class="pre">opens_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.Module.Opens.opens_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module.Opens.opens_flags">
+<span class="sig-name descname"><span class="pre">opens_flags</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="access_flags.html#umbrella.java.access_flags.AccessFlags" title="umbrella.java.access_flags.AccessFlags"><span class="pre">AccessFlags</span></a></em><a class="headerlink" href="#umbrella.java.attribute.Module.Opens.opens_flags" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module.Opens.opens_to_count">
+<span class="sig-name descname"><span class="pre">opens_to_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.Module.Opens.opens_to_count" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module.Opens.opens_to_index">
+<span class="sig-name descname"><span class="pre">opens_to_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#umbrella.java.attribute.Module.Opens.opens_to_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module.Provides">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Provides</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">provides_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">provides_with_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">provides_with_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'t.List[uint16_t]'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.Module.Provides" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module.Provides.provides_index">
+<span class="sig-name descname"><span class="pre">provides_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.Module.Provides.provides_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module.Provides.provides_with_count">
+<span class="sig-name descname"><span class="pre">provides_with_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.Module.Provides.provides_with_count" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module.Provides.provides_with_index">
+<span class="sig-name descname"><span class="pre">provides_with_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#umbrella.java.attribute.Module.Provides.provides_with_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module.Requires">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Requires</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">requires_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">requires_flags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'AccessFlags'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">requires_version_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.Module.Requires" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module.Requires.requires_index">
+<span class="sig-name descname"><span class="pre">requires_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.Module.Requires.requires_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module.Requires.requires_flags">
+<span class="sig-name descname"><span class="pre">requires_flags</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="access_flags.html#umbrella.java.access_flags.AccessFlags" title="umbrella.java.access_flags.AccessFlags"><span class="pre">AccessFlags</span></a></em><a class="headerlink" href="#umbrella.java.attribute.Module.Requires.requires_flags" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module.Requires.requires_version_index">
+<span class="sig-name descname"><span class="pre">requires_version_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.Module.Requires.requires_version_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module.module_name_index">
+<span class="sig-name descname"><span class="pre">module_name_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.Module.module_name_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module.module_flags">
+<span class="sig-name descname"><span class="pre">module_flags</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="access_flags.html#umbrella.java.access_flags.AccessFlags" title="umbrella.java.access_flags.AccessFlags"><span class="pre">AccessFlags</span></a></em><a class="headerlink" href="#umbrella.java.attribute.Module.module_flags" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module.module_version_index">
+<span class="sig-name descname"><span class="pre">module_version_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.Module.module_version_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module.requires_count">
+<span class="sig-name descname"><span class="pre">requires_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.Module.requires_count" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module.requires">
+<span class="sig-name descname"><span class="pre">requires</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.java.attribute.Module.Requires" title="umbrella.java.attribute.Module.Requires"><span class="pre">Requires</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#umbrella.java.attribute.Module.requires" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module.exports_count">
+<span class="sig-name descname"><span class="pre">exports_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.Module.exports_count" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module.exports">
+<span class="sig-name descname"><span class="pre">exports</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.java.attribute.Module.Exports" title="umbrella.java.attribute.Module.Exports"><span class="pre">Exports</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#umbrella.java.attribute.Module.exports" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module.opens_count">
+<span class="sig-name descname"><span class="pre">opens_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.Module.opens_count" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module.opens">
+<span class="sig-name descname"><span class="pre">opens</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.java.attribute.Module.Exports" title="umbrella.java.attribute.Module.Exports"><span class="pre">Exports</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#umbrella.java.attribute.Module.opens" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module.uses_count">
+<span class="sig-name descname"><span class="pre">uses_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.Module.uses_count" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module.uses">
+<span class="sig-name descname"><span class="pre">uses</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#umbrella.java.attribute.Module.uses" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module.provides_count">
+<span class="sig-name descname"><span class="pre">provides_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.Module.provides_count" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Module.provides">
+<span class="sig-name descname"><span class="pre">provides</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.java.attribute.Module.Provides" title="umbrella.java.attribute.Module.Provides"><span class="pre">Provides</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#umbrella.java.attribute.Module.provides" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.ModulePackages">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">ModulePackages</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">package_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">package_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'t.List[uint16_t]'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.ModulePackages" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.ModulePackages.package_count">
+<span class="sig-name descname"><span class="pre">package_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.ModulePackages.package_count" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.ModulePackages.package_index">
+<span class="sig-name descname"><span class="pre">package_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#umbrella.java.attribute.ModulePackages.package_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.NestMembers">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">NestMembers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number_of_classes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'t.List[uint16_t]'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.NestMembers" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.NestMembers.number_of_classes">
+<span class="sig-name descname"><span class="pre">number_of_classes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.NestMembers.number_of_classes" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.NestMembers.classes">
+<span class="sig-name descname"><span class="pre">classes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#umbrella.java.attribute.NestMembers.classes" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.RecordComponentInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">RecordComponentInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">descriptor_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attributes_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attributes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'t.List[AttributeInfo]'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.RecordComponentInfo" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.RecordComponentInfo.name_index">
+<span class="sig-name descname"><span class="pre">name_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.RecordComponentInfo.name_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.RecordComponentInfo.descriptor_index">
+<span class="sig-name descname"><span class="pre">descriptor_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.RecordComponentInfo.descriptor_index" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.RecordComponentInfo.attributes_count">
+<span class="sig-name descname"><span class="pre">attributes_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.RecordComponentInfo.attributes_count" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.RecordComponentInfo.attributes">
+<span class="sig-name descname"><span class="pre">attributes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.java.attribute.AttributeInfo" title="umbrella.java.attribute.AttributeInfo"><span class="pre">AttributeInfo</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#umbrella.java.attribute.RecordComponentInfo.attributes" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Record">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">umbrella.java.attribute.</span></span><span class="sig-name descname"><span class="pre">Record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">components_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'uint16_t'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'t.List[RecordComponentInfo]'</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#umbrella.java.attribute.Record" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Record.components_count">
+<span class="sig-name descname"><span class="pre">components_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#umbrella.java.attribute.Record.components_count" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="umbrella.java.attribute.Record.components">
+<span class="sig-name descname"><span class="pre">components</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#umbrella.java.attribute.RecordComponentInfo" title="umbrella.java.attribute.RecordComponentInfo"><span class="pre">RecordComponentInfo</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#umbrella.java.attribute.Record.components" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="../../roadmap.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Roadmap</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="constant_pool.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title"><span class="section-number">3.1.2. </span>Constant Pool</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, MatrixEditor
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">3.1.3. Attribute Types</a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.FieldInfo"><code class="docutils literal notranslate"><span class="pre">FieldInfo</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.FieldInfo.access_flags"><code class="docutils literal notranslate"><span class="pre">FieldInfo.access_flags</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.FieldInfo.name_index"><code class="docutils literal notranslate"><span class="pre">FieldInfo.name_index</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.FieldInfo.descriptor_index"><code class="docutils literal notranslate"><span class="pre">FieldInfo.descriptor_index</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.FieldInfo.num_attributes"><code class="docutils literal notranslate"><span class="pre">FieldInfo.num_attributes</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.FieldInfo.attributes"><code class="docutils literal notranslate"><span class="pre">FieldInfo.attributes</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.MethodInfo"><code class="docutils literal notranslate"><span class="pre">MethodInfo</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.MethodInfo.access_flags"><code class="docutils literal notranslate"><span class="pre">MethodInfo.access_flags</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.MethodInfo.name_index"><code class="docutils literal notranslate"><span class="pre">MethodInfo.name_index</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.MethodInfo.descriptor_index"><code class="docutils literal notranslate"><span class="pre">MethodInfo.descriptor_index</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.MethodInfo.num_attributes"><code class="docutils literal notranslate"><span class="pre">MethodInfo.num_attributes</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.MethodInfo.attributes"><code class="docutils literal notranslate"><span class="pre">MethodInfo.attributes</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.AttributeInfo"><code class="docutils literal notranslate"><span class="pre">AttributeInfo</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.AttributeInfo.name"><code class="docutils literal notranslate"><span class="pre">AttributeInfo.name</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.AttributeInfo.name_index"><code class="docutils literal notranslate"><span class="pre">AttributeInfo.name_index</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.AttributeInfo.attribute_length"><code class="docutils literal notranslate"><span class="pre">AttributeInfo.attribute_length</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.AttributeInfo.info"><code class="docutils literal notranslate"><span class="pre">AttributeInfo.info</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#struct-definitions">3.1.3.1. Struct Definitions</a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.Exceptions"><code class="docutils literal notranslate"><span class="pre">Exceptions</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.Exceptions.num_exceptions"><code class="docutils literal notranslate"><span class="pre">Exceptions.num_exceptions</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Exceptions.exception_index_table"><code class="docutils literal notranslate"><span class="pre">Exceptions.exception_index_table</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.InnerClass"><code class="docutils literal notranslate"><span class="pre">InnerClass</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.InnerClass.inner_class_info_index"><code class="docutils literal notranslate"><span class="pre">InnerClass.inner_class_info_index</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.InnerClass.outer_class_info_index"><code class="docutils literal notranslate"><span class="pre">InnerClass.outer_class_info_index</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.InnerClass.inner_name_index"><code class="docutils literal notranslate"><span class="pre">InnerClass.inner_name_index</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.InnerClass.inner_class_access_flags"><code class="docutils literal notranslate"><span class="pre">InnerClass.inner_class_access_flags</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.InnerClasses"><code class="docutils literal notranslate"><span class="pre">InnerClasses</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.InnerClasses.num_inner_classes"><code class="docutils literal notranslate"><span class="pre">InnerClasses.num_inner_classes</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.InnerClasses.classes"><code class="docutils literal notranslate"><span class="pre">InnerClasses.classes</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.CodeException"><code class="docutils literal notranslate"><span class="pre">CodeException</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.CodeException.start_pc"><code class="docutils literal notranslate"><span class="pre">CodeException.start_pc</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.CodeException.end_pc"><code class="docutils literal notranslate"><span class="pre">CodeException.end_pc</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.CodeException.handler_pc"><code class="docutils literal notranslate"><span class="pre">CodeException.handler_pc</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.CodeException.catch_type"><code class="docutils literal notranslate"><span class="pre">CodeException.catch_type</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Code"><code class="docutils literal notranslate"><span class="pre">Code</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.Code.max_stack"><code class="docutils literal notranslate"><span class="pre">Code.max_stack</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Code.max_locals"><code class="docutils literal notranslate"><span class="pre">Code.max_locals</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Code.code_length"><code class="docutils literal notranslate"><span class="pre">Code.code_length</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Code.bytecode"><code class="docutils literal notranslate"><span class="pre">Code.bytecode</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Code.exception_table_length"><code class="docutils literal notranslate"><span class="pre">Code.exception_table_length</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Code.exception_table"><code class="docutils literal notranslate"><span class="pre">Code.exception_table</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Code.num_attributes"><code class="docutils literal notranslate"><span class="pre">Code.num_attributes</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Code.attributes"><code class="docutils literal notranslate"><span class="pre">Code.attributes</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.AttributeRef"><code class="docutils literal notranslate"><span class="pre">AttributeRef</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.AttributeRef.index"><code class="docutils literal notranslate"><span class="pre">AttributeRef.index</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.EnclosingMethod"><code class="docutils literal notranslate"><span class="pre">EnclosingMethod</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.EnclosingMethod.class_index"><code class="docutils literal notranslate"><span class="pre">EnclosingMethod.class_index</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.EnclosingMethod.name_index"><code class="docutils literal notranslate"><span class="pre">EnclosingMethod.name_index</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.LineNumber"><code class="docutils literal notranslate"><span class="pre">LineNumber</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.LineNumber.start_pc"><code class="docutils literal notranslate"><span class="pre">LineNumber.start_pc</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.LineNumber.line_number"><code class="docutils literal notranslate"><span class="pre">LineNumber.line_number</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.LineNumberTable"><code class="docutils literal notranslate"><span class="pre">LineNumberTable</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.LineNumberTable.line_number_table_length"><code class="docutils literal notranslate"><span class="pre">LineNumberTable.line_number_table_length</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.LineNumberTable.line_number_table"><code class="docutils literal notranslate"><span class="pre">LineNumberTable.line_number_table</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.LocalVariable"><code class="docutils literal notranslate"><span class="pre">LocalVariable</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.LocalVariable.start_pc"><code class="docutils literal notranslate"><span class="pre">LocalVariable.start_pc</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.LocalVariable.length"><code class="docutils literal notranslate"><span class="pre">LocalVariable.length</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.LocalVariable.name_index"><code class="docutils literal notranslate"><span class="pre">LocalVariable.name_index</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.LocalVariable.descriptor_index"><code class="docutils literal notranslate"><span class="pre">LocalVariable.descriptor_index</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.LocalVariable.index"><code class="docutils literal notranslate"><span class="pre">LocalVariable.index</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.LocalVariableTable"><code class="docutils literal notranslate"><span class="pre">LocalVariableTable</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.LocalVariableTable.local_variable_table_length"><code class="docutils literal notranslate"><span class="pre">LocalVariableTable.local_variable_table_length</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.LocalVariableTable.local_variable_table"><code class="docutils literal notranslate"><span class="pre">LocalVariableTable.local_variable_table</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.LocalVariableType"><code class="docutils literal notranslate"><span class="pre">LocalVariableType</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.LocalVariableType.start_pc"><code class="docutils literal notranslate"><span class="pre">LocalVariableType.start_pc</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.LocalVariableType.length"><code class="docutils literal notranslate"><span class="pre">LocalVariableType.length</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.LocalVariableType.name_index"><code class="docutils literal notranslate"><span class="pre">LocalVariableType.name_index</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.LocalVariableType.signature_index"><code class="docutils literal notranslate"><span class="pre">LocalVariableType.signature_index</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.LocalVariableType.index"><code class="docutils literal notranslate"><span class="pre">LocalVariableType.index</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.LocalVariableTypeTable"><code class="docutils literal notranslate"><span class="pre">LocalVariableTypeTable</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.LocalVariableTypeTable.local_variable_type_table_length"><code class="docutils literal notranslate"><span class="pre">LocalVariableTypeTable.local_variable_type_table_length</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.LocalVariableTypeTable.local_variable_type_table"><code class="docutils literal notranslate"><span class="pre">LocalVariableTypeTable.local_variable_type_table</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.EnumConstValue"><code class="docutils literal notranslate"><span class="pre">EnumConstValue</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.EnumConstValue.type_name_index"><code class="docutils literal notranslate"><span class="pre">EnumConstValue.type_name_index</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.EnumConstValue.const_name_index"><code class="docutils literal notranslate"><span class="pre">EnumConstValue.const_name_index</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.ElementValueAdapter"><code class="docutils literal notranslate"><span class="pre">ElementValueAdapter</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.ElementValue"><code class="docutils literal notranslate"><span class="pre">ElementValue</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.ElementValue.tag"><code class="docutils literal notranslate"><span class="pre">ElementValue.tag</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.ElementValue.value"><code class="docutils literal notranslate"><span class="pre">ElementValue.value</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.ArrayValue"><code class="docutils literal notranslate"><span class="pre">ArrayValue</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.ArrayValue.num_values"><code class="docutils literal notranslate"><span class="pre">ArrayValue.num_values</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.ArrayValue.values"><code class="docutils literal notranslate"><span class="pre">ArrayValue.values</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.ElementValuePair"><code class="docutils literal notranslate"><span class="pre">ElementValuePair</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.ElementValuePair.element_name_index"><code class="docutils literal notranslate"><span class="pre">ElementValuePair.element_name_index</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.ElementValuePair.value"><code class="docutils literal notranslate"><span class="pre">ElementValuePair.value</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Annotation"><code class="docutils literal notranslate"><span class="pre">Annotation</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.Annotation.type_index"><code class="docutils literal notranslate"><span class="pre">Annotation.type_index</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Annotation.num_element_value_pairs"><code class="docutils literal notranslate"><span class="pre">Annotation.num_element_value_pairs</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Annotation.element_value_pairs"><code class="docutils literal notranslate"><span class="pre">Annotation.element_value_pairs</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.RuntimeAnnotations"><code class="docutils literal notranslate"><span class="pre">RuntimeAnnotations</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.RuntimeAnnotations.num_annotations"><code class="docutils literal notranslate"><span class="pre">RuntimeAnnotations.num_annotations</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.RuntimeAnnotations.annotations"><code class="docutils literal notranslate"><span class="pre">RuntimeAnnotations.annotations</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.ParameterAnnotation"><code class="docutils literal notranslate"><span class="pre">ParameterAnnotation</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.ParameterAnnotation.num_annotations"><code class="docutils literal notranslate"><span class="pre">ParameterAnnotation.num_annotations</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.ParameterAnnotation.annotations"><code class="docutils literal notranslate"><span class="pre">ParameterAnnotation.annotations</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.RuntimeParameterAnnotations"><code class="docutils literal notranslate"><span class="pre">RuntimeParameterAnnotations</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.RuntimeParameterAnnotations.num_parameters"><code class="docutils literal notranslate"><span class="pre">RuntimeParameterAnnotations.num_parameters</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.RuntimeParameterAnnotations.parameter_annotations"><code class="docutils literal notranslate"><span class="pre">RuntimeParameterAnnotations.parameter_annotations</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.AnnotationDefault"><code class="docutils literal notranslate"><span class="pre">AnnotationDefault</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.AnnotationDefault.default_value"><code class="docutils literal notranslate"><span class="pre">AnnotationDefault.default_value</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.BootstrapMethod"><code class="docutils literal notranslate"><span class="pre">BootstrapMethod</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.BootstrapMethod.bootstrap_method_ref"><code class="docutils literal notranslate"><span class="pre">BootstrapMethod.bootstrap_method_ref</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.BootstrapMethod.num_bootstrap_arguments"><code class="docutils literal notranslate"><span class="pre">BootstrapMethod.num_bootstrap_arguments</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.BootstrapMethod.bootstrap_arguments"><code class="docutils literal notranslate"><span class="pre">BootstrapMethod.bootstrap_arguments</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.BootstrapMethods"><code class="docutils literal notranslate"><span class="pre">BootstrapMethods</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.BootstrapMethods.num_bootstrap_methods"><code class="docutils literal notranslate"><span class="pre">BootstrapMethods.num_bootstrap_methods</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.BootstrapMethods.bootstrap_methods"><code class="docutils literal notranslate"><span class="pre">BootstrapMethods.bootstrap_methods</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.MethodParameter"><code class="docutils literal notranslate"><span class="pre">MethodParameter</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.MethodParameter.name_index"><code class="docutils literal notranslate"><span class="pre">MethodParameter.name_index</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.MethodParameter.access_flags"><code class="docutils literal notranslate"><span class="pre">MethodParameter.access_flags</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.MethodParameters"><code class="docutils literal notranslate"><span class="pre">MethodParameters</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.MethodParameters.parameters_count"><code class="docutils literal notranslate"><span class="pre">MethodParameters.parameters_count</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.MethodParameters.parameters"><code class="docutils literal notranslate"><span class="pre">MethodParameters.parameters</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module"><code class="docutils literal notranslate"><span class="pre">Module</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module.Exports"><code class="docutils literal notranslate"><span class="pre">Module.Exports</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module.Exports.exports_index"><code class="docutils literal notranslate"><span class="pre">Module.Exports.exports_index</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module.Exports.exports_flags"><code class="docutils literal notranslate"><span class="pre">Module.Exports.exports_flags</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module.Exports.exports_to_count"><code class="docutils literal notranslate"><span class="pre">Module.Exports.exports_to_count</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module.Exports.exports_to_index"><code class="docutils literal notranslate"><span class="pre">Module.Exports.exports_to_index</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module.Opens"><code class="docutils literal notranslate"><span class="pre">Module.Opens</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module.Opens.opens_index"><code class="docutils literal notranslate"><span class="pre">Module.Opens.opens_index</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module.Opens.opens_flags"><code class="docutils literal notranslate"><span class="pre">Module.Opens.opens_flags</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module.Opens.opens_to_count"><code class="docutils literal notranslate"><span class="pre">Module.Opens.opens_to_count</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module.Opens.opens_to_index"><code class="docutils literal notranslate"><span class="pre">Module.Opens.opens_to_index</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module.Provides"><code class="docutils literal notranslate"><span class="pre">Module.Provides</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module.Provides.provides_index"><code class="docutils literal notranslate"><span class="pre">Module.Provides.provides_index</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module.Provides.provides_with_count"><code class="docutils literal notranslate"><span class="pre">Module.Provides.provides_with_count</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module.Provides.provides_with_index"><code class="docutils literal notranslate"><span class="pre">Module.Provides.provides_with_index</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module.Requires"><code class="docutils literal notranslate"><span class="pre">Module.Requires</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module.Requires.requires_index"><code class="docutils literal notranslate"><span class="pre">Module.Requires.requires_index</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module.Requires.requires_flags"><code class="docutils literal notranslate"><span class="pre">Module.Requires.requires_flags</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module.Requires.requires_version_index"><code class="docutils literal notranslate"><span class="pre">Module.Requires.requires_version_index</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module.module_name_index"><code class="docutils literal notranslate"><span class="pre">Module.module_name_index</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module.module_flags"><code class="docutils literal notranslate"><span class="pre">Module.module_flags</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module.module_version_index"><code class="docutils literal notranslate"><span class="pre">Module.module_version_index</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module.requires_count"><code class="docutils literal notranslate"><span class="pre">Module.requires_count</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module.requires"><code class="docutils literal notranslate"><span class="pre">Module.requires</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module.exports_count"><code class="docutils literal notranslate"><span class="pre">Module.exports_count</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module.exports"><code class="docutils literal notranslate"><span class="pre">Module.exports</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module.opens_count"><code class="docutils literal notranslate"><span class="pre">Module.opens_count</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module.opens"><code class="docutils literal notranslate"><span class="pre">Module.opens</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module.uses_count"><code class="docutils literal notranslate"><span class="pre">Module.uses_count</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module.uses"><code class="docutils literal notranslate"><span class="pre">Module.uses</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module.provides_count"><code class="docutils literal notranslate"><span class="pre">Module.provides_count</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Module.provides"><code class="docutils literal notranslate"><span class="pre">Module.provides</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.ModulePackages"><code class="docutils literal notranslate"><span class="pre">ModulePackages</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.ModulePackages.package_count"><code class="docutils literal notranslate"><span class="pre">ModulePackages.package_count</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.ModulePackages.package_index"><code class="docutils literal notranslate"><span class="pre">ModulePackages.package_index</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.NestMembers"><code class="docutils literal notranslate"><span class="pre">NestMembers</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.NestMembers.number_of_classes"><code class="docutils literal notranslate"><span class="pre">NestMembers.number_of_classes</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.NestMembers.classes"><code class="docutils literal notranslate"><span class="pre">NestMembers.classes</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.RecordComponentInfo"><code class="docutils literal notranslate"><span class="pre">RecordComponentInfo</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.RecordComponentInfo.name_index"><code class="docutils literal notranslate"><span class="pre">RecordComponentInfo.name_index</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.RecordComponentInfo.descriptor_index"><code class="docutils literal notranslate"><span class="pre">RecordComponentInfo.descriptor_index</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.RecordComponentInfo.attributes_count"><code class="docutils literal notranslate"><span class="pre">RecordComponentInfo.attributes_count</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.RecordComponentInfo.attributes"><code class="docutils literal notranslate"><span class="pre">RecordComponentInfo.attributes</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Record"><code class="docutils literal notranslate"><span class="pre">Record</span></code></a><ul>
+<li><a class="reference internal" href="#umbrella.java.attribute.Record.components_count"><code class="docutils literal notranslate"><span class="pre">Record.components_count</span></code></a></li>
+<li><a class="reference internal" href="#umbrella.java.attribute.Record.components"><code class="docutils literal notranslate"><span class="pre">Record.components</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/documentation_options.js?v=8c5712d9"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../../_static/tabs.js?v=3ee01567"></script>
+    </body>
+</html>
