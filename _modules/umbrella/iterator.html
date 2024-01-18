@@ -478,8 +478,7 @@
 <div class="viewcode-block" id="LazyIterator._preload_context">
 <a class="viewcode-back" href="../../api/iterator.html#umbrella.iterator.LazyIterator._preload_context">[docs]</a>
     <span class="k">def</span> <span class="nf">_preload_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Prepares the internal context.&quot;&quot;&quot;</span>
-        <span class="k">pass</span></div>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Prepares the internal context.&quot;&quot;&quot;</span></div>
 
 
     <span class="nd">@property</span>
@@ -545,7 +544,9 @@
     <span class="n">kind</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># section name</span>
     <span class="n">struct</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">Type</span><span class="p">[</span><span class="n">E</span><span class="p">]</span>  <span class="c1"># the struct&#39;s type</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">runtime</span><span class="p">:</span> <span class="n">Runtime</span><span class="p">,</span> <span class="n">pointer_ty</span><span class="p">:</span> <span class="n">cs</span><span class="o">.</span><span class="n">Construct</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">runtime</span><span class="p">:</span> <span class="n">Runtime</span><span class="p">,</span> <span class="n">pointer_ty</span><span class="p">:</span> <span class="n">cs</span><span class="o">.</span><span class="n">Construct</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pointer_type</span> <span class="o">=</span> <span class="n">pointer_ty</span> <span class="ow">or</span> <span class="n">cs</span><span class="o">.</span><span class="n">Int64ul</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">runtime</span><span class="p">)</span>
 
@@ -584,7 +585,7 @@
 
     <span class="k">def</span> <span class="nf">_load_at</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">parent_address</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">E</span><span class="p">:</span>
         <span class="c1"># Just uses the runtime to parse the struct</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">read_struct</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">struct</span><span class="p">,</span> <span class="n">address</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">read_struct</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">struct</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">fix</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_address_of</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="c1"># NOTE: this function uses assumes absolute pointers by default</span>
