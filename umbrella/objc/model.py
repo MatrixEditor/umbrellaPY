@@ -22,6 +22,8 @@ from umbrella.objc import (
     BoundListIterator,
     ObjCMethod,
     ObjCIVar,
+    Pointer32,
+    Pointer64,
     # structs
     TargetIVarList,
     TargetPropertyList,
@@ -80,7 +82,7 @@ class IVarIterator(BoundListIterator[ObjCIVar]):
 
     def _load_list_element(self, raw_address: int, context: cs.Container) -> ObjCIVar:
         struct = context.struct
-        raw = self.runtime.read_struct(struct, raw_address)
+        raw = self.runtime.read_struct(struct, raw_address, fix=True)
 
         name = self.runtime.read_string(raw.name, fix=True)
         type_name = self.runtime.read_string(raw.type, fix=True)
@@ -176,7 +178,7 @@ class ProtocolIterator(BoundListIterator[ObjCProtocol]):
     @staticmethod
     def global_instance(runtime: Runtime) -> ProtocolIterator:
         section = runtime.binary.get_section("__objc_protolist")
-        struct = cs.Int64ul if runtime.is_64() else cs.Int32ul
+        struct = Pointer64 if runtime.is_64() else Pointer32
 
         ptrs = runtime.pointers("__objc_protolist", struct=struct)
         cls = TargetProtocolList32
@@ -221,7 +223,7 @@ class ProtocolIterator(BoundListIterator[ObjCProtocol]):
         self, raw_address: int, context: cs.Container
     ) -> ObjCProtocol:
         ctx = self.context
-        raw = self.runtime.read_struct(ctx.struct, raw_address)
+        raw = self.runtime.read_struct(ctx.struct, raw_address, fix=True)
 
         name = self.runtime.read_string(raw.name)
         protocol = ObjCProtocol(raw, name, parent=ctx.parent)
@@ -268,20 +270,22 @@ class ClassIterator(ReflectionSectionIterator[ObjCClass]):
         # super() as we want to skip type inspection
         is_64 = __runtime.is_64()
         self.struct = TargetObjCClassRaw64 if is_64 else TargetObjCClassRaw32
-        super().__init__(__runtime, pointer_ty=cs.Int64ul if is_64 else cs.Int32ul)
+        super().__init__(__runtime, pointer_ty=Pointer64 if is_64 else Pointer32)
         # prepare format hint
         self.context.is_64 = is_64
 
     def _load_at(self, address: int, parent_address=0) -> ObjCClass:
-        raw: RawClassT = super()._load_at(address)
+        raw: RawClassT = super()._load_at(address & 0x7FFFFFFFFFF)
+        if not raw:
+            return None
         ctx = self.context
 
         data_struct = TargetClassDataRaw64 if ctx.is_64 else TargetClassDataRaw32
-        raw_data: RawClassDataT = self.runtime.read_struct(data_struct, raw.data.ptr)
+        raw_data: RawClassDataT = self.runtime.read_struct(data_struct, raw.data.ptr, fix=True)
 
         if raw.data.is_swift():
             cls_struct = TargetSwiftClassRaw64 if ctx.is_64 else TargetSwiftClassRaw32
-            raw: RawSwiftClassT = self.runtime.read_struct(cls_struct, address)
+            raw: RawSwiftClassT = self.runtime.read_struct(cls_struct, address, fix=True)
 
         name = self.runtime.read_string(raw_data.name)
         cls = ObjCClass(raw, raw_data, name)
@@ -324,7 +328,7 @@ class CategoryIterator(ReflectionSectionIterator[ObjCCategory]):
         # super() as we want to skip type inspection
         is_64 = __runtime.is_64()
         self.struct = TargetCategoryRaw64 if is_64 else TargetCategoryRaw32
-        super().__init__(__runtime, pointer_ty=cs.Int64ul if is_64 else cs.Int32ul)
+        super().__init__(__runtime, pointer_ty=Pointer64 if is_64 else Pointer32)
         self.context.is_64 = is_64
 
     def _load_at(self, address: int, parent_address=0) -> ObjCCategory:
@@ -391,6 +395,9 @@ class ObjCMetadata(Runtime):
     @property
     def protocols(self) -> ProtocolIterator:
         return self._protocols
+
+    def fixup_address(self, __vaddress: int) -> int:
+        return __vaddress & 0x7FFFFFFFFFFF
 
     def get_import(self, selector: str) -> t.Optional[str]:
         # 1. Search imported symbols and return the framework path

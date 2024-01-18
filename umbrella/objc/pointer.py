@@ -25,10 +25,6 @@ PointerT = t.Union[PointerTy, cs.Construct]
 class PointerUnion(cs.Adapter, t.Generic[PointerTy]):
     value: int # the pointer value
 
-    def __init__(self, subcon):
-        # Default subcon will be int64
-        super().__init__(subcon)
-
     def _decode(self, obj, context, path):
         # We have to create a new object here as it would result in
         # errors if we have only one instance

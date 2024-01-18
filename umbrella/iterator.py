@@ -235,7 +235,6 @@ class LazyIterator(CachingIterator[E]):
 
     def _preload_context(self, **kwds) -> None:
         """Prepares the internal context."""
-        pass
 
     @property
     def runtime(self) -> Runtime:
@@ -297,7 +296,9 @@ class ReflectionSectionIterator(LazyIterator[E]):
     kind: str  # section name
     struct: t.Type[E]  # the struct's type
 
-    def __init__(self, runtime: Runtime, pointer_ty: cs.Construct = None, **kwds) -> None:
+    def __init__(
+        self, runtime: Runtime, pointer_ty: cs.Construct = None, **kwds
+    ) -> None:
         self._pointer_type = pointer_ty or cs.Int64ul
         super().__init__(runtime)
 
@@ -336,7 +337,7 @@ class ReflectionSectionIterator(LazyIterator[E]):
 
     def _load_at(self, address: int, parent_address=0) -> E:
         # Just uses the runtime to parse the struct
-        return self.runtime.read_struct(self.struct, address)
+        return self.runtime.read_struct(self.struct, address, fix=True)
 
     def _address_of(self, pos: int) -> int:
         # NOTE: this function uses assumes absolute pointers by default
